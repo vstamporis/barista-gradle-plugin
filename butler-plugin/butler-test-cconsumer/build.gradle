@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'gr.aueb.tsiskos.butler-plugin'
+}
+
+group 'gr.aueb.tsiskos'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
