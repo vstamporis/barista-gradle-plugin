@@ -14,6 +14,7 @@ import org.gradle.api.DefaultTask;
 import org.gradle.api.logging.LogLevel;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
+import server.HttpServerManager;
 import sun.rmi.runtime.Log;
 import sun.util.resources.ga.LocaleNames_ga;
 
@@ -37,6 +38,13 @@ public class TestDispacherServerTask extends DefaultTask {
         getProject().getLogger().log(LogLevel.LIFECYCLE,this.getPath());
         //getProject().getLogger().log(LogLevel.);
         System.out.println("Deploying Server at: "+serverURL);
+        HttpServerManager.startServer();
+    }
+
+    @TaskAction
+    public void stopServer(){
+        System.out.println("Shuting down Server at: "+serverURL);
+        HttpServerManager.stopServer();
     }
 
 

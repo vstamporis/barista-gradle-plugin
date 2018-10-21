@@ -65,38 +65,41 @@ public class BaristaPlugin implements Plugin<Project> {
                     }
                     else{
                         project.getLogger().log(LogLevel.ERROR,"Task  '"+TARGET_TASK+"' Found !!! ");
-                        targetTask.doLast(new Action<Task>() {
-                            @Override
-                            public void execute(Task task) {
-                                project.getLogger().log(LogLevel.ERROR,"EXECUTING SOMETHING NOW");
-                                project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
-                                        new Action<TestDispacherServerTask>() {
-                                            @Override
-                                            public void execute(TestDispacherServerTask testDispacherServerTask) {
-                                                testDispacherServerTask.deployServer();
-                                            }
-                                        });
-                            }
-                        });
+                        deployDispatcherServer(targetTask,project);
+//                        targetTask.doLast(new Action<Task>() {
+//                            @Override
+//                            public void execute(Task task) {
+//                                project.getLogger().log(LogLevel.ERROR,"EXECUTING SOMETHING NOW");
+//                                project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
+//                                        new Action<TestDispacherServerTask>() {
+//                                            @Override
+//                                            public void execute(TestDispacherServerTask testDispacherServerTask) {
+//                                                testDispacherServerTask.deployServer();
+//                                            }
+//                                        });
+//                            }
+//                        });
 
                     }
                 }
             });
 
-
-
-
-//            project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
-//                    new Action<TestDispacherServerTask>() {
-//                @Override
-//                public void execute(TestDispacherServerTask testDispacherServerTask) {
-//                    testDispacherServerTask.deployServer();
-//                }
-//            });
-                 //   .dependsOn("app:assembleDebugAndroidTest");
-
         }else{
             System.out.println("This is not an Android Project");
+            /**
+             * TODO Delete all if noe an android Project. Only for testing purposes
+             * TESTING SECTION
+             * deploys either way a deployServer task just to be able to run on none android projects
+             */
+            project.getLogger().log(LogLevel.ERROR,"EXECUTING SOMETHING NOW");
+            project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
+                    new Action<TestDispacherServerTask>() {
+                        @Override
+                        public void execute(TestDispacherServerTask testDispacherServerTask) {
+                            testDispacherServerTask.deployServer();
+                        }
+                    });
+
         }
 
 
@@ -119,4 +122,19 @@ public class BaristaPlugin implements Plugin<Project> {
         return isAndroidLibrary || isAndroidApp || isAndroidTest || isAndroidFeature || isAndroidInstantApp;
     }
 
+    private void deployDispatcherServer(Task targetTask, Project project){
+        targetTask.doLast(new Action<Task>() {
+            @Override
+            public void execute(Task task) {
+                project.getLogger().log(LogLevel.ERROR,"EXECUTING SOMETHING NOW");
+                project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
+                        new Action<TestDispacherServerTask>() {
+                            @Override
+                            public void execute(TestDispacherServerTask testDispacherServerTask) {
+                                testDispacherServerTask.deployServer();
+                            }
+                        });
+            }
+        });
+    }
 }

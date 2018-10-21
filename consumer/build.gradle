@@ -1,14 +1,13 @@
-apply plugin: 'se.thinkcode.demo.plugin'
 
-demoSetting {
-    message = "Hi from an extension"
-}
+apply plugin: 'gr.aueb.tsiskos.barista-plugin'
+
 
 buildscript {
     repositories {
+        mavenCentral()
         mavenLocal()
     }
     dependencies {
-        classpath 'se.thinkcode.gradle:demoPlugin:1.0.0-SNAPSHOT'
+        classpath 'gr.aueb.tsiskos:barista-plugin:1.0-SNAPSHOT'
     }
 }
