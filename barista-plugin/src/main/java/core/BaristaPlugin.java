@@ -1,7 +1,7 @@
 /**
  * Author: Tsiskomichelis Stelios
  * Created On: 17/10/2018
- * Project: android-plugin
+ * Project: barista-plugin
  * <p>
  * ClassName: TestDispacherServerTask
  * Role: Implements the task that deploys the adb test dispacher
@@ -24,34 +24,6 @@ public class BaristaPlugin implements Plugin<Project> {
 
     public void apply(Project project){
 
-/**
- * Ad-hoc execution method style
- */
-//          project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
-//                    new Action<TestDispacherServerTask>() {
-//                @Override
-//                public void execute(TestDispacherServerTask testDispacherServerTask) {
-//                    testDispacherServerTask.deployServer();
-//                }
-//            });
-
-
-
-      //  project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class);
-
-
-                //.doLast((Action<TestDispacherServerTask>) testDispacherServerTask -> testDispacherServerTask.deployServer());
-        //make sure that android plugin is present ( id 'com.android.application')
-//        project.getTasks().findByName("deployTestDispacherServerTask").dependsOn("generateDebugSources").doLast(new Action<Task>() {
-//            @Override
-//            public void execute(Task task) {
-//                project.getLogger().log(LogLevel.LIFECYCLE,"Running After assembleDebugAndroid");
-//            }
-//        });
-
-        // Add task to project
-
-
         if(isAndroidProject(project)){
             System.out.println("This is an Android Project");
             project.afterEvaluate(new Action<Project>() {
@@ -66,19 +38,6 @@ public class BaristaPlugin implements Plugin<Project> {
                     else{
                         project.getLogger().log(LogLevel.ERROR,"Task  '"+TARGET_TASK+"' Found !!! ");
                         deployDispatcherServer(targetTask,project);
-//                        targetTask.doLast(new Action<Task>() {
-//                            @Override
-//                            public void execute(Task task) {
-//                                project.getLogger().log(LogLevel.ERROR,"EXECUTING SOMETHING NOW");
-//                                project.getTasks().create("deployTestDispacherServerTask", TestDispacherServerTask.class,
-//                                        new Action<TestDispacherServerTask>() {
-//                                            @Override
-//                                            public void execute(TestDispacherServerTask testDispacherServerTask) {
-//                                                testDispacherServerTask.deployServer();
-//                                            }
-//                                        });
-//                            }
-//                        });
 
                     }
                 }

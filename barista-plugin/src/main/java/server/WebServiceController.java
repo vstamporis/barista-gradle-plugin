@@ -1,7 +1,7 @@
 /**
  * Author: Tsiskomichelis Stelios
  * Created On: 20/10/2018
- * Project: butler-plugin
+ * Project: barista-plugin
  * <p>
  * ClassName: ServerFactory
  * Role:

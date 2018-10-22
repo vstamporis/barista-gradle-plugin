@@ -1,7 +1,7 @@
 /**
  * Author: Tsiskomichelis Stelios
  * Created On: 17/10/2018
- * Project: android-plugin
+ * Project: barista-plugin
  * <p>
  * ClassName: TestDispacherServerTask
  * Role: Implements the task that deploys the adb test dispacher
