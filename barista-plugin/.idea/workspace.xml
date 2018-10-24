@@ -2,7 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd8c57ee-c92d-4f47-9a7f-4193f6d9c269" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/core/BaristaPlugin$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/core/BaristaPlugin$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/core/BaristaPlugin$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/core/BaristaPlugin$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/core/BaristaPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/core/TestDispacherServerTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/server/HttpServerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/server/WebServiceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/META-INF/gradle-plugins/gr.aueb.tsiskos.barista-plugin.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/server/test_utils/ConnectionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/BaristaPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/BaristaPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/TestDispacherServerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/TestDispacherServerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/HttpServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/WebServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/WebServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/gradle-plugins/gr.aueb.tsiskos.barista-plugin.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/server/test_utils/ConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consumer/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../consumer/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consumer/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../consumer/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consumer/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../consumer/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../consumer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../consumer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consumer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../consumer/build.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -191,20 +227,21 @@
     <session id="-1843788739">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="57" />
-          <entry key="gradle" value="68" />
-          <entry key="java" value="1808" />
+          <entry key="gradle" value="75" />
+          <entry key="java" value="2131" />
           <entry key="name" value="14" />
           <entry key="txt" value="44" />
           <entry key="xml" value="24" />
@@ -212,15 +249,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="68" />
-          <entry key="JAVA" value="1808" />
+          <entry key="Groovy" value="75" />
+          <entry key="JAVA" value="2131" />
           <entry key="PLAIN_TEXT" value="115" />
           <entry key="XML" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gradle" value="1" />
+          <entry key="gradle" value="2" />
           <entry key="gradlew" value="1" />
           <entry key="java" value="9" />
           <entry key="name" value="1" />
@@ -230,7 +267,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="1" />
+          <entry key="Groovy" value="2" />
           <entry key="JAVA" value="9" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Properties" value="2" />
@@ -241,49 +278,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/WebServiceController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#781#782#0" expanded="true" />
+                <element signature="e#827#828#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/TestDispacherServerTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="42" column="80" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/WebServiceController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/BaristaPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="22" column="89" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="89" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/HttpServerManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-141">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/core/TestDispacherServerTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/core/BaristaPlugin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-699">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="288">
+              <caret line="67" column="7" lean-forward="true" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -295,17 +344,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="30" column="85" selection-start-line="30" selection-start-column="85" selection-end-line="30" selection-end-column="85" />
+            <state relative-caret-position="90">
+              <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/server/test_utils/ConnectionTest.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="65" column="63" selection-start-line="65" selection-start-column="63" selection-end-line="65" selection-end-column="63" />
+            <state relative-caret-position="85">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -319,7 +368,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/gradle-plugins/gr.aueb.tsiskos.barista-plugin.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
@@ -527,9 +576,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6159789727686" />
+        <entry key="$PROJECT_DIR$" value="6159985498358" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="2450519369" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="3182942175" />
         <entry key="$PROJECT_DIR$/butler-test-cconsumer" value="0" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="2007532874" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="921734745" />
@@ -663,95 +712,149 @@
         <option value="$PROJECT_DIR$/src/main/java/server/ServerFactory.java" />
         <option value="$PROJECT_DIR$/src/test/java/server/ServiceControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/test/java/server/test_utils/testCOnnection.java" />
         <option value="$PROJECT_DIR$/src/test/java/server/test_utils/ConnectionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/HttpServerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/WebServiceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/TestDispacherServerTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/BaristaPlugin.java" />
+        <option value="$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/WebServiceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/TestDispacherServerTask.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/BaristaPlugin.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1939" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
+      <pane id="PackagesPane">
         <subPane>
           <expand>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_main" type="616d4139:PackageViewModuleNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_main" type="616d4139:PackageViewModuleNode" />
+              <item name="gr.aueb.android.barista" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_main" type="616d4139:PackageViewModuleNode" />
+              <item name="gr.aueb.android.barista" type="1f31426a:PackageElementNode" />
+              <item name="core" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_main" type="616d4139:PackageViewModuleNode" />
+              <item name="gr.aueb.android.barista" type="1f31426a:PackageElementNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_main" type="616d4139:PackageViewModuleNode" />
+              <item name="META-INF.gradle-plugins" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="gradle-plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_test" type="616d4139:PackageViewModuleNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_test" type="616d4139:PackageViewModuleNode" />
+              <item name="gr.aueb.android.barista" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin_test" type="616d4139:PackageViewModuleNode" />
+              <item name="gr.aueb.android.barista" type="1f31426a:PackageElementNode" />
+              <item name="server.test_utils" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
+      <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="butler-plugin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="butler-plugin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="barista-plugin" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="barista-plugin_main" type="616d4139:PackageViewModuleNode" />
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="barista" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="barista" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="barista-plugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="gradle-plugins" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -780,6 +883,44 @@
               <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="barista" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="barista" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -787,7 +928,100 @@
               <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="barista" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="META-INF" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="META-INF" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gradle-plugins" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="barista" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="barista" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="barista-plugin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="barista-plugin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="barista-plugin_test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="gr" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="aueb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="android" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="barista" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test_utils" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -796,7 +1030,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540135794210" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540324068213" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../consumer" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -821,7 +1055,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.HttpServerManager">
+  <component name="RunManager" selected="JUnit.ConnectionTest (1)">
     <configuration name="HttpServerManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.HttpServerManager" />
       <module name="barista-plugin_main" />
@@ -831,6 +1065,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectionTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="barista-plugin_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gr.aueb.android.barista.server.test_utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gr.aueb.android.barista.server.test_utils" />
+      <option name="MAIN_CLASS_NAME" value="gr.aueb.android.barista.server.test_utils.ConnectionTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -882,9 +1130,11 @@
       <item itemvalue="JUnit.testCOnnection" />
       <item itemvalue="JUnit.ConnectionTest" />
       <item itemvalue="Application.HttpServerManager" />
+      <item itemvalue="JUnit.ConnectionTest (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ConnectionTest (1)" />
         <item itemvalue="Application.HttpServerManager" />
         <item itemvalue="JUnit.ConnectionTest" />
         <item itemvalue="JUnit.testCOnnection" />
@@ -914,9 +1164,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="testCOnnection - 2018.10.21 at 15h 53m 10s.xml">
-      <configuration name="testCOnnection" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="testCOnnection - 2018.10.21 at 15h 55m 15s.xml">
       <configuration name="testCOnnection" configurationId="JUnit" />
     </history-entry>
@@ -944,6 +1191,9 @@
     <history-entry file="ConnectionTest - 2018.10.21 at 16h 33m 18s.xml">
       <configuration name="ConnectionTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ConnectionTest_(1) - 2018.10.23 at 22h 13m 27s.xml">
+      <configuration name="ConnectionTest (1)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -958,7 +1208,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24496645" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25167784" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -973,7 +1223,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932885" weight="0.329429" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49463087" visible="true" weight="0.23572475" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49463087" visible="true" weight="0.13616398" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50201344" side_tool="true" weight="0.329429" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.49731544" weight="0.329429" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49798658" weight="0.329429" />
@@ -1030,13 +1280,6 @@
     <entry file="file://$PROJECT_DIR$/src/resources/META-INF/gr.aueb.tsiskos.buttler.plugin.properties" />
     <entry file="file://$PROJECT_DIR$/butler-test-cconsumer/build.gradle" />
     <entry file="file://$PROJECT_DIR$/butler-test-cconsumer/settings.gradle" />
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1068,72 +1311,82 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/server/test_utils/DebugExceptionManager.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/server/ServiceControllerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/WEB-INF/web.xml" />
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="85" selection-start-line="30" selection-start-column="85" selection-end-line="30" selection-end-column="85" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/server/test_utils/ConnectionTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="65" column="63" selection-start-line="65" selection-start-column="63" selection-end-line="65" selection-end-column="63" />
+        <state relative-caret-position="85">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/gradle-plugins/gr.aueb.tsiskos.barista-plugin.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/WebServiceController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="265">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#781#782#0" expanded="true" />
+            <element signature="e#827#828#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/TestDispacherServerTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="42" column="80" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/TestDispacherServerTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="18">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/BaristaPlugin.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-699">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/HttpServerManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/core/BaristaPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-141">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/WebServiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="22" column="89" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="89" />
+        <state relative-caret-position="288">
+          <caret line="67" column="7" lean-forward="true" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />

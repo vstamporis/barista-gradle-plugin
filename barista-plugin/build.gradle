@@ -3,7 +3,7 @@ plugins {
     id 'maven'  // needed to install the plugin in the local maven repository 
 }
 
-group 'gr.aueb.tsiskos'
+group 'gr.aueb.android'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

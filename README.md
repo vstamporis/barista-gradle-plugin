@@ -2,7 +2,7 @@ Barista - A gradle plugin for android testing
 
 Project name: barista-plugin
 Author: Tsiskomichelis Stelios - 2018 
-Email: stsiskomichelis@aueb.gr
+Email: stsiskomixelis@aueb.gr
 
 0.  Overview
 

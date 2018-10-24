@@ -1,5 +1,5 @@
 
-apply plugin: 'gr.aueb.tsiskos.barista-plugin'
+apply plugin: 'gr.aueb.android.barista-plugin'
 
 
 buildscript {
@@ -8,6 +8,6 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'gr.aueb.tsiskos:barista-plugin:1.0-SNAPSHOT'
+        classpath 'gr.aueb.android:barista-plugin:1.0-SNAPSHOT'
     }
 }
