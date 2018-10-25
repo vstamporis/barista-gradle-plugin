@@ -2,43 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1e86a36-87e7-43f6-8192-c9a6d82b570a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../barista-plugin/src/main/resources/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barista-plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/core/BaristaPlugin$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/core/BaristaPlugin$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/core/BaristaPlugin$3$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/core/BaristaPlugin$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/core/BaristaPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/core/TestDispacherServerTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/server/HttpServerManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/classes/server/WebServiceController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/production/resources/META-INF/gradle-plugins/gr.aueb.tsiskos.barista-plugin.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/out/test/classes/server/test_utils/ConnectionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/src/main/java/core/BaristaPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/src/main/java/gr/aueb/android/barista/core/BaristaPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/src/main/java/core/TestDispacherServerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/src/main/java/gr/aueb/android/barista/core/TestDispacherServerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/src/main/java/server/HttpServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/src/main/java/server/WebServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/src/main/java/gr/aueb/android/barista/server/WebServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/src/main/resources/META-INF/gradle-plugins/gr.aueb.tsiskos.barista-plugin.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barista-plugin/src/test/java/server/test_utils/ConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barista-plugin/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -58,7 +22,7 @@
     <session id="-645024635">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.6" value="1" />
