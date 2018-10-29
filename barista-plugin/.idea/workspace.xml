@@ -2,32 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd8c57ee-c92d-4f47-9a7f-4193f6d9c269" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/core/BaristaPlugin$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/core/BaristaPlugin$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/core/BaristaPlugin$3$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/core/BaristaPlugin$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/core/BaristaPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/core/TestDispacherServerTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/server/HttpServerManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/gr/aueb/android/barista/server/WebServiceController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/gr/aueb/android/barista/server/test_utils/ConnectionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/barista-plugin-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/poms/pom-default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/gr.aueb.android.barista.server.test_utils.ConnectionTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/base-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/js/report.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/gr.aueb.android.barista.server.test_utils.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-gr.aueb.android.barista.server.test_utils.ConnectionTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consumer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../consumer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/TestDispacherServerTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/server/HttpServerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/server/WebServiceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/gr/aueb/android/barista/server/test_utils/ConnectionTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -302,7 +286,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+              <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -667,7 +651,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-320" />
     <option name="y" value="120" />
     <option name="width" value="1940" />
@@ -1009,7 +993,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540467696478" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540815099332" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../consumer" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -1184,9 +1168,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2785235" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2785235" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1201,7 +1185,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932885" weight="0.329429" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49463087" visible="true" weight="0.41434845" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49463087" visible="true" weight="0.41434845" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50201344" side_tool="true" weight="0.329429" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.49731544" weight="0.329429" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49798658" weight="0.329429" />
@@ -1357,7 +1341,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/HttpServerManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
