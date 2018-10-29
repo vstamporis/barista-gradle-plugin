@@ -31,6 +31,13 @@ public class WebServiceController{
         return GREETING_MSG;
     }
 
+    @GET
+    @Path("status2")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String sayHello2(){
+        return GREETING_MSG;
+    }
+
     /**
      * Self-destruct service
      */

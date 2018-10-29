@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/consumer.iml" filepath="$PROJECT_DIR$/consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/http-client.iml" filepath="$PROJECT_DIR$/.idea/modules/http-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/http-client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/http-client_main.iml" group="http-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/http-client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/http-client_test.iml" group="http-client" />
     </modules>
   </component>
 </project>

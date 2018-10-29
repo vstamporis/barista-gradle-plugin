@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gr.aueb.android.barista.server.test_utils.ConnectionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-10-25T11:09:59" hostname="CATHLP124" time="1.41">
+  <properties/>
+  <testcase name="testServiceFunctionality" classname="gr.aueb.android.barista.server.test_utils.ConnectionTest" time="1.316"/>
+  <testcase name="testConnection" classname="gr.aueb.android.barista.server.test_utils.ConnectionTest" time="0.093"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Oct 25, 2018 2:09:59 PM org.glassfish.jersey.test.grizzly.GrizzlyTestContainerFactory$GrizzlyTestContainer <init>
+INFO: Creating GrizzlyTestContainer configured at the base URI http://localhost:9998/
+Oct 25, 2018 2:10:01 PM org.glassfish.grizzly.http.server.NetworkListener start
+INFO: Started listener bound to [localhost:9998]
+Oct 25, 2018 2:10:01 PM org.glassfish.grizzly.http.server.HttpServer start
+INFO: [HttpServer] Started.
+Oct 25, 2018 2:10:01 PM org.glassfish.grizzly.http.server.NetworkListener shutdownNow
+INFO: Stopped listener bound to [localhost:9998]
+Oct 25, 2018 2:10:01 PM org.glassfish.jersey.test.grizzly.GrizzlyTestContainerFactory$GrizzlyTestContainer <init>
+INFO: Creating GrizzlyTestContainer configured at the base URI http://localhost:9998/
+Oct 25, 2018 2:10:01 PM org.glassfish.grizzly.http.server.NetworkListener start
+INFO: Started listener bound to [localhost:9998]
+Oct 25, 2018 2:10:01 PM org.glassfish.grizzly.http.server.HttpServer start
+INFO: [HttpServer-1] Started.
+Oct 25, 2018 2:10:01 PM org.glassfish.grizzly.http.server.NetworkListener shutdownNow
+INFO: Stopped listener bound to [localhost:9998]
+]]></system-err>
+</testsuite>

@@ -46,8 +46,14 @@ A gradle plugin for Android testing
 2.  How it works
     
         - Workflow
-            1. Barista plugin task checks if target project is Android
-            2. If
+            1. Barista plugin task checks if target project is Android. Check based on imported plugins and packages
+            2. If it is an Android Project, check in the gradle task graph if there is a task named "assembleDebugAndroidTest"
+               This indicates that a test is about to takee place (find more ddocumentation).
+
+            3. 
+            4.
+            5.
+            
         - How android emulator communicates with the host machine http server    
             AVD emulators : 10.0.2.2 (https://developer.android.com/studio/run/emulator-networking)
             Many factors can affect the communication between the emulator and the host machine such as a local firewall.
@@ -56,6 +62,9 @@ A gradle plugin for Android testing
             Genymotion  emulators: 10.0.3.2 (Found in stackoverflow commnets https://stackoverflow.com/questions/6760585/accessing-localhostport-from-android-emulator)
             Not yet tested. 
             TO SEARCH: Is Genymotion a popular choise for android testing among devs?
+        
+KNOWN ISSUES
+    
             
             
      
