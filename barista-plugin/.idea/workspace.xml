@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd8c57ee-c92d-4f47-9a7f-4193f6d9c269" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$3$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/BaristaPlugin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/core/TestDispacherServerTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/server/HttpServerManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/gr/aueb/android/barista/server/WebServiceController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/META-INF/gradle-plugins/gr.aueb.android.barista-plugin.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/gr/aueb/android/barista/server/test_utils/ConnectionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -236,7 +227,7 @@
         <counts>
           <entry key="gradle" value="2" />
           <entry key="gradlew" value="1" />
-          <entry key="java" value="12" />
+          <entry key="java" value="13" />
           <entry key="md" value="1" />
           <entry key="name" value="1" />
           <entry key="properties" value="2" />
@@ -246,7 +237,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="2" />
-          <entry key="JAVA" value="12" />
+          <entry key="JAVA" value="13" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="Properties" value="2" />
           <entry key="XML" value="4" />
@@ -269,15 +260,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/WebServiceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
+            <state relative-caret-position="229">
               <caret line="49" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-90">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -651,7 +651,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-320" />
     <option name="y" value="120" />
     <option name="width" value="1940" />
@@ -993,7 +993,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540815099332" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540815715736" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../consumer" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -1127,9 +1127,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="testCOnnection - 2018.10.21 at 16h 17m 19s.xml">
-      <configuration name="testCOnnection" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="testCOnnection - 2018.10.21 at 16h 18m 20s.xml">
       <configuration name="testCOnnection" configurationId="JUnit" />
     </history-entry>
@@ -1157,6 +1154,9 @@
     <history-entry file="ConnectionTest_(1) - 2018.10.25 at 13h 20m 36s.xml">
       <configuration name="ConnectionTest (1)" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ConnectionTest_(1) - 2018.10.29 at 14h 11m 46s.xml">
+      <configuration name="ConnectionTest (1)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1168,7 +1168,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2785235" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1179,13 +1180,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932885" weight="0.38799414" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8865772" weight="0.37920937" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8865772" visible="true" weight="0.37920937" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932885" weight="0.329429" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49463087" visible="true" weight="0.41434845" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49463087" weight="0.41434845" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50201344" side_tool="true" weight="0.329429" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.49731544" weight="0.329429" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49798658" weight="0.329429" />
@@ -1298,13 +1299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradlew">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1351,12 +1345,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gr/aueb/android/barista/server/WebServiceController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
+        <state relative-caret-position="229">
           <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/gr/aueb/android/barista/server/test_utils/ConnectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>

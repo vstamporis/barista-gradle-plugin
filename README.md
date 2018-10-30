@@ -9,6 +9,7 @@ A gradle plugin for Android testing
 0.  Overview
     
 1. How to use
+
     a) Clone the project from the repository
     b) Install the plugin to the local maven repository using the command 'gradle build install'
     c) At any android project use the follwing .gradle configurations:
@@ -63,7 +64,10 @@ A gradle plugin for Android testing
             Not yet tested. 
             TO SEARCH: Is Genymotion a popular choise for android testing among devs?
         
-KNOWN ISSUES
+
+ISSUES
+    1. Retrofit Configuration
+        Client side must use 
     
             
             
