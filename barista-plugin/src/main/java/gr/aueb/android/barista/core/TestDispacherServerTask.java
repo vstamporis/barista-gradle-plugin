@@ -20,27 +20,18 @@ public class TestDispacherServerTask extends DefaultTask {
 
     private String serverURL = DEFAULT_SERVER_URL;
 
-    @Input
-    public String getServerURL(){
-        return serverURL;
-    }
-
-    public void setServerURL(String serverURL){
-        this.serverURL = serverURL;
-    }
-
     @TaskAction
     public void deployServer(){
 
         getProject().getLogger().log(LogLevel.LIFECYCLE,this.getPath());
         //getProject().getLogger().log(LogLevel.);
-        System.out.println("Deploying Server at: "+HttpServerManager.BASE_URI);
+        System.out.println("Deploying Server at: "+HttpServerManager.getBaseUri());
         HttpServerManager.startServer();
     }
 
     @TaskAction
     public void stopServer(){
-        System.out.println("Shuting down Server at: "+HttpServerManager.BASE_URI);
+        System.out.println("Shuting down Server at: "+HttpServerManager.getBaseUri());
         HttpServerManager.stopServer();
     }
 

@@ -11,10 +11,12 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
+    jcenter()
+    google()
 }
 
 dependencies {
-
+    compileOnly "com.android.tools.build:gradle:3.2.1"
     compile gradleApi() // Use gradle API to create the gradle plugin
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
@@ -29,5 +31,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2
     compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.27'
+    
+    
 
 }

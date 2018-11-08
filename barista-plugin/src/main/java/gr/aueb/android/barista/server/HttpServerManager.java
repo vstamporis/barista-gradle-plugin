@@ -21,7 +21,9 @@ public class HttpServerManager {
 
     // Base URI the Grizzly HTTP server will listen on
     //TODO Server URL must be specified from the plugin extension configuration input
-    public static String BASE_URI = "http://localhost:8040/barista/";
+    // todo better coding style
+    private static String BASE_URI = "http://localhost:8040/barista/";
+
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -45,4 +47,13 @@ public class HttpServerManager {
         serverInstance.shutdownNow();
     }
 
+    public static String getBaseUri() {
+        return BASE_URI;
+    }
+
+    // todo possible control
+    public static void setPort(int port) {
+
+        BASE_URI = "http://localhost:"+port+"/barista/";
+    }
 }
