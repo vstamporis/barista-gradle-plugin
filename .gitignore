@@ -1,0 +1,6 @@
+barista-plugin/.gradle/
+barista-plugin/build/
+barista-plugin/.idea/
+consumer/.idea/
+barista-plugin/out/
+barista-plugin/gradle/
