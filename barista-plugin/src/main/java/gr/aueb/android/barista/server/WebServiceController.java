@@ -10,9 +10,7 @@
 package gr.aueb.android.barista.server;
 
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
@@ -38,6 +36,13 @@ public class WebServiceController{
         return GREETING_MSG;
     }
 
+    @POST
+    @Path("echo")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+    public String echoMessage(String originalMsg){
+        return "ECHOING: "+originalMsg;
+    }
     /**
      * Self-destruct service
      */
