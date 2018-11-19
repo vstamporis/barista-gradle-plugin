@@ -9,15 +9,21 @@
  */
 package gr.aueb.android.barista.core;
 
-public class BaristaConfigurationExtension {
-    //default port value
-    private int port = 8040;
+import java.io.Serializable;
 
-    public int getPort() {
+public class BaristaConfigurationExtension implements Serializable {
+    //default port value
+    private Integer port = 8040;
+
+    public Integer getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String toString(){
+        return "Port:"+port.toString();
     }
 }
