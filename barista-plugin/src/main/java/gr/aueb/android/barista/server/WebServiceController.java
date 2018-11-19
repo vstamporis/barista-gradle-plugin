@@ -22,6 +22,11 @@ public class WebServiceController{
     @Context
     UriInfo uriInfo;
 
+    /**
+     * Returns a response that contains the default greeting message as a plain text (text/plain)
+     * DEBUG-ONLY
+     * @return
+     */
     @GET
     @Path("status")
     @Produces(MediaType.TEXT_PLAIN)
@@ -29,6 +34,11 @@ public class WebServiceController{
         return GREETING_MSG;
     }
 
+    /**
+     * Returns a response that contains the default greeting message as a JSON Object
+     * DEBUG-ONLY
+     * @return
+     */
     @GET
     @Path("status2")
     @Produces(MediaType.APPLICATION_JSON)
@@ -36,6 +46,12 @@ public class WebServiceController{
         return GREETING_MSG;
     }
 
+    /**
+     * Echoes the submited data. Assumes is plain text or JSONed String.
+     * DEBUG-ONLY
+     * @param originalMsg
+     * @return
+     */
     @POST
     @Path("echo")
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,8 +59,10 @@ public class WebServiceController{
     public String echoMessage(String originalMsg){
         return "ECHOING: "+originalMsg;
     }
+
     /**
-     * Self-destruct service
+     * Self-destruct service. Shuts down the server.
+     * DEBUG-ONLY
      */
     @GET
     @Path("kill")
