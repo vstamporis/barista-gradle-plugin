@@ -16,21 +16,22 @@ repositories {
 }
 
 dependencies {
-    compileOnly "com.android.tools.build:gradle:3.2.1"
+    //todo commented because of seriliztion bug
+    implementation "com.android.tools.build:gradle:3.2.1"
     compile gradleApi() // Use gradle API to create the gradle plugin
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     // handles jersey dependency issues
-    compile 'org.glassfish.jersey:jersey-bom:2.27'
+    implementation 'org.glassfish.jersey:jersey-bom:2.27'
 
     // https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-grizzly2-http
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '2.27'
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '2.27'
 
     // https://mvnrepository.com/artifact/org.glassfish.jersey.test-framework.providers/jersey-test-framework-provider-grizzly2
     testCompile group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-grizzly2', version: '2.27'
 
     // https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2
-    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.27'
+    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.27'
     
     
 
