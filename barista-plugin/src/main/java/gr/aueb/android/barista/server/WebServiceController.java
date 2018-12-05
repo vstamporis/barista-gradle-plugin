@@ -10,6 +10,8 @@
 package gr.aueb.android.barista.server;
 
 
+import org.gradle.internal.impldep.com.beust.jcommander.Parameter;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -31,7 +33,8 @@ public class WebServiceController{
     @Path("status")
     @Produces(MediaType.TEXT_PLAIN)
     public String sayHello(){
-        return GREETING_MSG;
+
+       return GREETING_MSG;
     }
 
     /**
@@ -70,5 +73,21 @@ public class WebServiceController{
         HttpServerManager.stopServer();
     }
 
+
+    @GET
+    @Path("/setDimension")
+    public void setDimension(@QueryParam("height") String height,@QueryParam("width") String width){
+        ADBClient adb = new ADBClient();
+        System.out.println("Resizing screen to : "+height+"x"+width);
+        int h = Integer.parseInt(height);
+        int w = Integer.parseInt(width);
+        adb.changeDimension(w,h);
+    }
+
+    @GET
+    @Path("/reset")
+    public void resetDimension(){
+
+    }
 
 }

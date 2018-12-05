@@ -150,7 +150,8 @@ public class BaristaPlugin implements Plugin<Project> {
         System.out.println("[BARISTA] : Hook Server Stop Task");
 
         Task targetTask = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
-        targetTask.doLast(new Action<Task>() {
+
+        targetTask.doLast("shutDownServer",new Action<Task>() {
 
             @Override
             public void execute(Task task) {

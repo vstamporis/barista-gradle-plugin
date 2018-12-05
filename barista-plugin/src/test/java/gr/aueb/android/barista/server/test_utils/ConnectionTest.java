@@ -45,4 +45,19 @@ public class ConnectionTest extends JerseyTest {
         assertNotNull(response);
         assertEquals(WebServiceController.GREETING_MSG,response);
     }
+
+    @Test
+    public void testChangeDimension(){
+        String height = "500";
+        String width = "600";
+        Response r = target("/setDimension")
+                .queryParam("height",height)
+                .queryParam("width",width).request().get();
+    }
+
+
+    @Test
+    public void resetDimension(){
+
+    }
 }
