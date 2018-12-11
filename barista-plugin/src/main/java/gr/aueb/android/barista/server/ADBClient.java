@@ -14,22 +14,33 @@ package gr.aueb.android.barista.server;
  *                 2. https://www.baeldung.com/run-shell-command-in-java
  */
 
+
+
+import org.apache.logging.log4j.Level;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.logging.Logger;
+
+
 
 public class ADBClient {
 
     private final static Logger LOGGER = Logger.getLogger(ADBClient.class.getName());
+
     private String shell;
     Process process;
+    ArrayList<String> connectedDeviceIDs; // list to strore connected devices names for adb -s use
 
     public ADBClient(){
-
-        determineOs();
-
+        determineOs();  // determine the OS of the host machine
     }
 
     /*
+        todo NOT CURENTLY USED
         Determines the operating system of the host machine and sets the appropriate shell program
         Windows => cmd.exe
         Linux Based => shell
@@ -48,20 +59,64 @@ public class ADBClient {
 
     }
 
-    public boolean changeDimension(int width, int height){
+    public  ArrayList<String> listDevices(){
+        ArrayList<String> result = new ArrayList<>();
         try {
-            Process p = Runtime.getRuntime().exec("adb shell wm size "+height+"x"+width);
+            Process p = Runtime.getRuntime().exec("adb devices"); // list connected devices
+
+            BufferedReader stdOut =  new BufferedReader(new InputStreamReader(p.getInputStream())); // get the output stream
+
+            String line = null;
+            stdOut.readLine(); // eat the first row
+
+            while((line = stdOut.readLine()) != null){          //parse lines of output stream
+                                                                // expected output is 'emulator-xxxx device'.
+                String deviceId = line.split("\t")[0];    // get only 'emulator-xxxx' part
+                System.out.println(deviceId);
+                result.add(deviceId);                           // store the device id
+            }
+
+            return result;
+
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public boolean changeDimension(int width, int height){
+        try {
+            ArrayList<String> deviceSelector = this.listDevices(); //
+            if(deviceSelector != null && deviceSelector.size() > 1) {
+                for(String device : deviceSelector){
+                    Process p = Runtime.getRuntime().exec("adb -s "+device+" shell wm size " + height + "x" + width);
+                }
+            }
+            else{
+                Process p = Runtime.getRuntime().exec("adb shell wm size " + height + "x" + width);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
         return true;
     }
 
     public boolean resetDimension(){
         try {
-            Process p = Runtime.getRuntime().exec("adb shell wm sizereset");
+            ArrayList<String> deviceSelector = this.listDevices(); //
+            if(deviceSelector != null && deviceSelector.size() > 1) {
+                for(String device : deviceSelector){
+                    Process p = Runtime.getRuntime().exec("adb -s "+device+" shell wm size reset");
+                }
+            }
+            else{
+                Process p = Runtime.getRuntime().exec("adb shell wm size reset");
+            }
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
         return true;
     }
