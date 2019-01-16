@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Logger;
 
 
@@ -30,13 +31,19 @@ import java.util.logging.Logger;
 public class ADBClient {
 
     private final static Logger LOGGER = Logger.getLogger(ADBClient.class.getName());
+    private final static int UID =  new Random().nextInt(1000);
 
     private String shell;
     Process process;
     ArrayList<String> connectedDeviceIDs; // list to strore connected devices names for adb -s use
 
+    //todo Remove running test counting functionality from this object.
+    private static int activeTargetsTesting = 0;
+
     public ADBClient(){
         determineOs();  // determine the OS of the host machine
+        activeTargetsTesting = listDevices().size();
+        LOGGER.info("Total Tests: "+activeTargetsTesting);
     }
 
     /*
@@ -70,10 +77,12 @@ public class ADBClient {
             stdOut.readLine(); // eat the first row
 
             while((line = stdOut.readLine()) != null){          //parse lines of output stream
-                                                                // expected output is 'emulator-xxxx device'.
-                String deviceId = line.split("\t")[0];    // get only 'emulator-xxxx' part
-                System.out.println(deviceId);
-                result.add(deviceId);                           // store the device id
+                if(!line.isEmpty()) {                                      // expected output is 'emulator-xxxx device'.
+                    String deviceId = line.split("\t")[0];    // get only 'emulator-xxxx' part
+//                    System.out.println(deviceId);
+//                    System.out.println("[BARISTA-PLUGIN]: ADDING DEVICE: '"+deviceId+"' ");
+                    result.add(deviceId);
+                }// store the device id
             }
 
             return result;
@@ -83,6 +92,20 @@ public class ADBClient {
             return null;
         }
 
+    }
+
+    public static boolean hasActiveTestsRunning(){
+        System.out.println("[BARISTA-PLUGIN-"+UID+"]: Checking Active tests: "+activeTargetsTesting);
+        return (activeTargetsTesting > 0);
+    }
+
+    public static void testOnEmulatorFinished(){
+        System.out.println("[BARISTA-PLUGIN-"+UID+"] Decrease running tests By 1");
+        activeTargetsTesting --;
+    }
+
+    public static int getCountRunningTests(){
+        return activeTargetsTesting;
     }
 
     public boolean changeDimension(int width, int height){
