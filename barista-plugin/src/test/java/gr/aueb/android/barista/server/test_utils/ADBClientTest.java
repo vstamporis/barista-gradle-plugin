@@ -9,7 +9,7 @@
  */
 package gr.aueb.android.barista.server.test_utils;
 
-import gr.aueb.android.barista.server.ADBClient;
+import gr.aueb.android.barista.emulator.adb.ADBClient;
 import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -31,6 +31,11 @@ public class ADBClientTest {
     public void testResizeScreen(){
         ADBClient adbClient = new ADBClient();
         assertTrue(adbClient.changeDimension(500,600));
+        assertTrue(adbClient.resetDimension());
+    }
+
+    public void testResetScreen(){
+        ADBClient adbClient = new ADBClient();
         assertTrue(adbClient.resetDimension());
     }
 

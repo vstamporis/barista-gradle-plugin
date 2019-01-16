@@ -9,15 +9,19 @@
  */
 package gr.aueb.android.barista.server;
 
+import gr.aueb.android.barista.emulator.adb.ADBClient;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import java.net.URI;
+import java.util.logging.Logger;
 
 public class HttpServerManager {
 
     private static HttpServer serverInstance;
+
+    private final static Logger LOGGER = Logger.getLogger(HttpServerManager.class.getName());
 
     // Base URI the HTTP server will listen on
     //TODO Server URL must be specified from the plugin extension configuration input
@@ -46,10 +50,18 @@ public class HttpServerManager {
     }
 
     /**
-     * Shut doen the server
+     *
      */
     public static void stopServer(){
-        serverInstance.shutdownNow();
+        System.out.println("[BARISTA-PLUGIN]: Signal to kill Server. Current tests:"+ ADBClient.getCountRunningTests());
+        ADBClient.testOnEmulatorFinished();
+        if(!ADBClient.hasActiveTestsRunning()) {
+            System.out.println("[BARISTA-PLUGIN]:Last Test finished. Stoping Server");
+            serverInstance.shutdownNow();
+            resetDevice();
+        }else{
+            System.out.println("[BARISTA-PLUGIN]:Test finished. Remaining: "+ADBClient.getCountRunningTests());
+        }
     }
 
     /**
@@ -69,5 +81,10 @@ public class HttpServerManager {
     public static void setPort(int port) {
         // todo possible control
         BASE_URI = "http://localhost:"+port+"/barista/";
+    }
+
+    private static void resetDevice(){
+        ADBClient adb = new ADBClient();
+        adb.resetDimension();
     }
 }

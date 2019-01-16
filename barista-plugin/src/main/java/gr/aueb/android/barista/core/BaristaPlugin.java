@@ -8,31 +8,14 @@
  * Description:
  */
 package gr.aueb.android.barista.core;
-//todo use gradle properties to inject variables to  BuildConfig.
-import com.android.build.gradle.AndroidConfig;
-import com.android.build.gradle.BaseExtension;
-import com.android.build.gradle.LibraryExtension;
-import com.android.build.gradle.api.AndroidArtifactVariant;
+
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
-import com.android.builder.model.ClassField;
-import com.google.wireless.android.sdk.stats.AndroidView;
 import gr.aueb.android.barista.server.HttpServerManager;
-import groovy.lang.Closure;
-import org.glassfish.grizzly.utils.ArraySet;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
-import org.gradle.api.artifacts.Configuration;
-import org.gradle.api.artifacts.ConfigurationContainer;
 import org.gradle.api.logging.LogLevel;
-import org.gradle.api.tasks.TaskState;
-import com.android.build.gradle.api.BaseVariant;
-
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 public class BaristaPlugin implements Plugin<Project> {
 
@@ -42,10 +25,8 @@ public class BaristaPlugin implements Plugin<Project> {
     // the android task that runs the android instrumented tests of the project
     //todo try this task for all cases 1 & 2
     private String CONNECTED_ANDROID_TEST = "connectedDebugAndroidTest";
-
-
+    
     private final String ANDROID_EXTENSION_NAME = "android";
-
 
     private Project project;
 
@@ -55,10 +36,24 @@ public class BaristaPlugin implements Plugin<Project> {
         // load the configuration extension
         project.getExtensions().create("baristaSettings", BaristaConfigurationExtension.class);
 
+        project.getTasks().create("stopBaristaServer", new Action<Task>() {
+            @Override
+            public void execute(Task task) {
+
+                project.getLogger().log(LogLevel.ERROR,"Build Failed. Closing Barista server");
+                try {
+                    HttpServerManager.stopServer();
+                }catch (NullPointerException e){
+                    project.getLogger().log(LogLevel.ERROR,"Null Pointer Exeption");
+                }
+            }
+        });
         // check if target project is an android project
         if(isAndroidProject()){
 
             System.out.println("[BARISTA-PLUGIN] This is an Android Project");
+
+
 
             project.afterEvaluate(new Action<Project>() {
 
@@ -66,6 +61,8 @@ public class BaristaPlugin implements Plugin<Project> {
                 public void execute(Project project) {
                     // check if task assembleDebugAndroidTest is about to be executed
                     Task targetTask = project.getTasks().findByPath(ASSEMBLE_DEBUG_ANDROID_TEST);
+
+                    targetTask.finalizedBy("stopBaristaServer");
 
                     // if no tests are runnig do nothing
                     if(targetTask == null ){
@@ -78,11 +75,12 @@ public class BaristaPlugin implements Plugin<Project> {
                         // inject port configuration for barista http client
                         hookPortConfiguration();
 
-                        // deploy the server when ready to run conneced tests
+                        // deploy the server when ready to run connected tests
                         deployDispatcherServer(targetTask);
 
                         // stop server when connected android tests finishes
                         hookServerStopTask();
+
                     }
                 }
             });
@@ -203,7 +201,7 @@ public class BaristaPlugin implements Plugin<Project> {
     }
 
     /**
-     * DEBUG-ONLY
+     * todo DEBUG-ONLY
      */
     private void scanProject(){
         int projectNum = project.getAllprojects().size();

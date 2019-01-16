@@ -7,7 +7,7 @@
  * Role:
  * Description:
  */
-package gr.aueb.android.barista.server;
+package gr.aueb.android.barista.emulator.adb;
 
 /**
  *  using articles 1.  https://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html
@@ -16,12 +16,9 @@ package gr.aueb.android.barista.server;
 
 
 
-import org.apache.logging.log4j.Level;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;

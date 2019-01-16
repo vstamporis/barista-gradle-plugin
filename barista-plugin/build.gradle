@@ -21,6 +21,8 @@ dependencies {
     compile gradleApi() // Use gradle API to create the gradle plugin
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    //implementation
+
     // handles jersey dependency issues
     implementation 'org.glassfish.jersey:jersey-bom:2.27'
 

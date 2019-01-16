@@ -10,20 +10,25 @@
 package gr.aueb.android.barista.server;
 
 
-import org.gradle.internal.impldep.com.beust.jcommander.Parameter;
+import gr.aueb.android.barista.emulator.adb.ADBClient;
+import org.glassfish.grizzly.http.server.Request;
+
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-
+// todo check jersey multithreading thread
 @Path("/")
 public class WebServiceController{
 
     public final static String GREETING_MSG = "Hello World from Jersey Servlet Container";
+
     @Context
     UriInfo uriInfo;
 
+    @Context
+    Request request;
     /**
      * Returns a response that contains the default greeting message as a plain text (text/plain)
      * DEBUG-ONLY
@@ -33,7 +38,9 @@ public class WebServiceController{
     @Path("status")
     @Produces(MediaType.TEXT_PLAIN)
     public String sayHello(){
-
+        System.out.println("ADDR: "+request.getRemoteAddr());
+        System.out.println("HST: "+request.getRemoteHost());
+        System.out.println("PORT: "+request.getRemotePort());
        return GREETING_MSG;
     }
 
@@ -87,7 +94,8 @@ public class WebServiceController{
     @GET
     @Path("/reset")
     public void resetDimension(){
-
+        ADBClient adb = new ADBClient();
+        adb.resetDimension();
     }
 
 }
