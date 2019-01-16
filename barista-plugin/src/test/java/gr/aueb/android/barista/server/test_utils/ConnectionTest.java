@@ -58,6 +58,6 @@ public class ConnectionTest extends JerseyTest {
 
     @Test
     public void resetDimension(){
-
+        Response r = target("/reset").request().get();
     }
 }

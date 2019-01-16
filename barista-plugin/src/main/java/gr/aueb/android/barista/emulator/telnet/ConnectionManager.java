@@ -1,4 +1,8 @@
-package gr.aueb.barrista.emulator.telnet;
+package gr.aueb.android.barista.emulator.telnet;
+/**
+ * Cloned From  https://github.com/bzafiris/barrista.git
+ */
+import gr.aueb.android.barista.emulator.EmulatorException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,7 +10,6 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import gr.aueb.barrista.emulator.EmulatorException;
 
 public class ConnectionManager {
 

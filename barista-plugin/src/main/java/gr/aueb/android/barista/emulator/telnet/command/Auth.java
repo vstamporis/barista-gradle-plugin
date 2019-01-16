@@ -1,5 +1,8 @@
-package gr.aueb.barrista.emulator.telnet.command;
+package gr.aueb.android.barista.emulator.telnet.command;
 
+/**
+ * Cloned From  https://github.com/bzafiris/barrista.git
+ */
 public class Auth implements TelnetCommand {
 
 	public static final String AUTH = "auth";

@@ -1,4 +1,9 @@
-package gr.aueb.barrista.emulator.telnet;
+package gr.aueb.android.barista.emulator.telnet;
+/**
+ * Cloned From  https://github.com/bzafiris/barrista.git
+ */
+import gr.aueb.android.barista.emulator.telnet.command.Auth;
+import gr.aueb.android.barista.emulator.telnet.command.TelnetCommand;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,8 +15,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.Socket;
 
-import gr.aueb.barrista.emulator.telnet.command.Auth;
-import gr.aueb.barrista.emulator.telnet.command.TelnetCommand;
+
 
 public class TelnetConnection {
 

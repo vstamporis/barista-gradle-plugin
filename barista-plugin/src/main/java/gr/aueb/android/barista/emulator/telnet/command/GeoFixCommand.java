@@ -1,7 +1,9 @@
-package gr.aueb.barrista.emulator.telnet.command;
+package gr.aueb.android.barista.emulator.telnet.command;
 
-import gr.aueb.barrista.dto.GeoFixDto;
 
+/**
+ * Cloned From  https://github.com/bzafiris/barrista.git
+ */
 public class GeoFixCommand implements TelnetCommand {
 
 	public static final String GEO_FIX = "geo fix";
@@ -32,7 +34,7 @@ public class GeoFixCommand implements TelnetCommand {
 		.append(Double.toString(latitude))
 		.append("\r\n");
 		
-		String command = buffer.toString().replace('.', ',');
+		String command = buffer.toString();//.replace('.', ',');
 		return command;
 	}
 	
