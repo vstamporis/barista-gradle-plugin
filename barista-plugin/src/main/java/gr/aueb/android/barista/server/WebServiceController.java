@@ -31,28 +31,35 @@ public class WebServiceController{
     Request request;
     /**
      * Returns a response that contains the default greeting message as a plain text (text/plain)
-     * DEBUG-ONLY
+     * todo DEBUG-ONLY
      * @return
      */
     @GET
     @Path("status")
     @Produces(MediaType.TEXT_PLAIN)
     public String sayHello(){
+
         System.out.println("ADDR: "+request.getRemoteAddr());
-        System.out.println("HST: "+request.getRemoteHost());
         System.out.println("PORT: "+request.getRemotePort());
-       return GREETING_MSG;
+        System.out.println("LOCAL PORT: "+request.getLocalPort());
+
+
+
+        return GREETING_MSG;
     }
 
     /**
      * Returns a response that contains the default greeting message as a JSON Object
-     * DEBUG-ONLY
+     * todo DEBUG-ONLY
      * @return
      */
     @GET
     @Path("status2")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayHello2(){
+        System.out.println("ADDR: "+request.getRemoteAddr());
+        System.out.println("PORT: "+request.getRemotePort());
+        System.out.println("LOCAL PORT: "+request.getLocalPort());
         return GREETING_MSG;
     }
 
@@ -67,6 +74,9 @@ public class WebServiceController{
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public String echoMessage(String originalMsg){
+        System.out.println("ADDR: "+request.getRemoteAddr());
+        System.out.println("PORT: "+request.getRemotePort());
+        System.out.println("LOCAL PORT: "+request.getLocalPort());
         return "ECHOING: "+originalMsg;
     }
 
@@ -83,19 +93,51 @@ public class WebServiceController{
 
     @GET
     @Path("/setDimension")
-    public void setDimension(@QueryParam("height") String height,@QueryParam("width") String width){
-        ADBClient adb = new ADBClient();
-        System.out.println("Resizing screen to : "+height+"x"+width);
-        int h = Integer.parseInt(height);
-        int w = Integer.parseInt(width);
-        adb.changeDimension(w,h);
+    public void setDimension(@QueryParam("token") String token,
+                             @QueryParam("height") String height,
+                             @QueryParam("width") String width){
+
+
+        ADBClient adbClient = ADBClient.getInstance();
+        String emulatorID = adbClient.verifyToken(token);
+
+        if(emulatorID != null){
+            System.out.println("Resizing screen to : "+height+"x"+width);
+            int h = Integer.parseInt(height);
+            int w = Integer.parseInt(width);
+            adbClient.changeDimension(emulatorID,w,h);
+        }
+
     }
 
     @GET
     @Path("/reset")
-    public void resetDimension(){
-        ADBClient adb = new ADBClient();
-        adb.resetDimension();
+    public void resetDimension(@QueryParam("token") String token){
+        if (token != null) {
+            ADBClient adbClient = ADBClient.getInstance();
+
+            String emulatorID = adbClient.verifyToken(token);
+            adbClient.resetDimension(emulatorID);
+        }
+
+
+    }
+
+    @GET
+    @Path("/geofix")
+    //todo curently emulatorID and port are staticaly provided
+    public void setGeoFix(@QueryParam("token") String token,
+                          @QueryParam("lat") double latitude,
+                          @QueryParam("longt") double longtitude){
+
+        ADBClient client = ADBClient.getInstance();
+        String emulatorID = client.verifyToken(token);
+
+        if(emulatorID != null) {
+            int emulatorPort = Integer.parseInt(emulatorID.split("-")[1]);
+            HttpServerManager.executeGeoFix(latitude, longtitude, emulatorID, emulatorPort);
+        }
+
     }
 
 }
