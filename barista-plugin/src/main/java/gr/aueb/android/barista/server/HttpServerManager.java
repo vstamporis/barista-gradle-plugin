@@ -9,11 +9,17 @@
  */
 package gr.aueb.android.barista.server;
 
+import gr.aueb.android.barista.emulator.EmulatorException;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
+import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
+import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
+import gr.aueb.android.barista.emulator.telnet.command.GeoFixCommand;
+import gr.aueb.android.barista.emulator.telnet.command.Help;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import java.io.File;
 import java.net.URI;
 import java.util.logging.Logger;
 
@@ -27,7 +33,6 @@ public class HttpServerManager {
     //TODO Server URL must be specified from the plugin extension configuration input
     // todo better coding style
     private static String BASE_URI = "http://localhost:8040/barista/";
-
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -53,14 +58,19 @@ public class HttpServerManager {
      *
      */
     public static void stopServer(){
-        System.out.println("[BARISTA-PLUGIN]: Signal to kill Server. Current tests:"+ ADBClient.getCountRunningTests());
-        ADBClient.testOnEmulatorFinished();
-        if(!ADBClient.hasActiveTestsRunning()) {
+
+        ADBClient adbClient = ADBClient.getInstance();
+
+        System.out.println("[BARISTA-PLUGIN]: Signal to kill Server. Current tests:"+ adbClient.getCountRunningTests());
+        //todo change test check role
+
+        adbClient.testOnEmulatorFinished();
+        if(!adbClient.hasActiveTestsRunning()) {
             System.out.println("[BARISTA-PLUGIN]:Last Test finished. Stoping Server");
             serverInstance.shutdownNow();
-            resetDevice();
+            //resetDevice();
         }else{
-            System.out.println("[BARISTA-PLUGIN]:Test finished. Remaining: "+ADBClient.getCountRunningTests());
+            System.out.println("[BARISTA-PLUGIN]:Test finished. Remaining: "+adbClient.getCountRunningTests());
         }
     }
 
@@ -72,8 +82,6 @@ public class HttpServerManager {
         return BASE_URI;
     }
 
-
-
     /**
      * Set the listening port of the server. Default is 8040
      * @param port the listening port number (ex: 9090 )
@@ -83,8 +91,30 @@ public class HttpServerManager {
         BASE_URI = "http://localhost:"+port+"/barista/";
     }
 
-    private static void resetDevice(){
-        ADBClient adb = new ADBClient();
-        adb.resetDimension();
+    private static void resetDevice(String deviceId){
+        ADBClient adb = ADBClient.getInstance();
+        adb.resetDimension(deviceId);
+    }
+
+
+    public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
+        System.out.println("[BARISTA-PLUGIN] Executing geofix on "+emulatorID+" port: "+emulatorPort);
+        String homeDirectory = System.getProperty("user.home");
+        if (homeDirectory == null){
+            System.out.println("[BARISTA-PLUGIN] Please set the home variable");
+            return false;
+        }
+
+        ConnectionManager connectionManager = ConnectionManager.createInstance(homeDirectory + File.separatorChar + ".emulator_console_auth_token");
+        // FIXME: By Default connects to a single emulator. Must find a way to identify the emulator that issues a request
+        TelnetConnection telnetConnection  = null;
+        try {
+            telnetConnection = connectionManager.connect(emulatorID, "localhost", emulatorPort);
+        } catch (EmulatorException e) {
+            e.printStackTrace();
+        }
+
+
+       return  telnetConnection.command(new GeoFixCommand(lat, longt));
     }
 }
