@@ -7,7 +7,7 @@
  * Role:
  * Description:
  */
-package gr.aueb.android.barista.server.test_utils;
+package gr.aueb.android.barista.emulator.telnet;
 
 import gr.aueb.android.barista.emulator.EmulatorException;
 import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
@@ -28,7 +28,7 @@ public class TelnetTest {
      */
     @Test
     public void testTelnetConnection() throws EmulatorException {
-        // Read emulator console auth token
+               // Read emulator console auth token
         String homeDirectory = System.getProperty("user.home");
         if (homeDirectory == null){
             System.out.println("Please set the home variable");
@@ -42,8 +42,6 @@ public class TelnetTest {
         // test connection
         assertTrue(telnetConnection.command(new Help()));
         assertTrue(telnetConnection.command(new GeoFixCommand(69.52, 44.32)));
-
-
 
     }
 

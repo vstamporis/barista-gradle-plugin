@@ -8,6 +8,7 @@
  * Description:
  */
 package gr.aueb.android.barista.server.test_utils;
+import gr.aueb.android.barista.emulator.adb.ADBClient;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
@@ -21,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 
-public class ConnectionTest extends JerseyTest {
+public class WebServiceControllerTest extends JerseyTest {
 
 
     @Override
@@ -48,9 +49,15 @@ public class ConnectionTest extends JerseyTest {
 
     @Test
     public void testChangeDimension(){
+
+        ADBClient adbClient = ADBClient.getInstance();
+        String token = adbClient.getTokenMap().keySet().iterator().next();
+
         String height = "500";
         String width = "600";
+
         Response r = target("/setDimension")
+                .queryParam("token",token)
                 .queryParam("height",height)
                 .queryParam("width",width).request().get();
     }
@@ -58,6 +65,27 @@ public class ConnectionTest extends JerseyTest {
 
     @Test
     public void resetDimension(){
-        Response r = target("/reset").request().get();
+        ADBClient adbClient = ADBClient.getInstance();
+        String token = adbClient.getTokenMap().keySet().iterator().next();
+        Response r = target("/reset")
+                .queryParam("token",token)
+                .request().get();
+    }
+
+    @Test
+    public void setGeoFix(){
+        double longt = 55.78851;
+        double lat = 77.223456;
+
+        ADBClient adbClient = ADBClient.getInstance();
+        String token = adbClient.getTokenMap().keySet().iterator().next();
+        System.out.println("Geofixing device :"+adbClient.verifyToken(token));
+
+        target("/geofix")
+                .queryParam("token",token)
+                .queryParam("lat",lat)
+                .queryParam("longt",longt)
+                .request().get();
+
     }
 }
