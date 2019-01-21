@@ -11,6 +11,7 @@ package gr.aueb.android.barista.core;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.server.HttpServerManager;
+import gr.aueb.android.barista.utilities.BaristaLoger;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -88,7 +89,7 @@ public class BaristaPlugin implements Plugin<Project> {
         }
 
         else{    // If the target project is NOT an android project, do nothing
-            System.out.println("This is not an Android Project");
+            BaristaLoger.print("This is not an Android Project");
         }
 
 
@@ -129,7 +130,7 @@ public class BaristaPlugin implements Plugin<Project> {
                 }
 
                 //start the server on localhost
-                System.out.println("[BARISTA]: Starting Server on "+ HttpServerManager.getBaseUri());
+                BaristaLoger.print("Starting Server on "+ HttpServerManager.getBaseUri());
                 HttpServerManager.startServer();
             }
         });
@@ -145,7 +146,7 @@ public class BaristaPlugin implements Plugin<Project> {
      */
     private void hookServerStopTask(){
 
-        System.out.println("[BARISTA] : Hook Server Stop Task");
+        BaristaLoger.print("Hooking task for stopping server");
 
         Task targetTask = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
 
@@ -153,7 +154,7 @@ public class BaristaPlugin implements Plugin<Project> {
 
             @Override
             public void execute(Task task) {
-                System.out.println("[BARISTA]: Closing Server");
+                BaristaLoger.print("Closing Server");
                 HttpServerManager.stopServer();
             }
         });
@@ -173,15 +174,14 @@ public class BaristaPlugin implements Plugin<Project> {
 
     /**
      * Function that returns the android extension of the android project.
-     *
+     * This will expose the confidurations given by the developer inside the android gradle.build block
      * @return
      */
     private BaseAppModuleExtension getAndroidExtension(){
         Object o = project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);
 
-        System.out.println("[BARISTA-PLUGIN]: Android Extension Class Name: "+o.getClass().getName());
+        BaristaLoger.print("Loading android module extension: "+o.getClass().getName());
         if(o instanceof com.android.build.gradle.internal.dsl.BaseAppModuleExtension){
-            System.out.println("[BARISTA-PLUGIN]: INSTACE OF BaseAppModuleExtension");
             return (BaseAppModuleExtension) project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);
         }
 
@@ -196,8 +196,9 @@ public class BaristaPlugin implements Plugin<Project> {
      */
     private Integer getProvidedPort(){
         BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
-        System.out.println("[BARISTA]: Found Port >> "+settings.getPort() );
-        return settings.getPort();
+        int port = settings.getPort();
+        BaristaLoger.print("Loaded given configuration for port "+port);
+        return port;
     }
 
     /**
@@ -205,7 +206,7 @@ public class BaristaPlugin implements Plugin<Project> {
      */
     private void scanProject(){
         int projectNum = project.getAllprojects().size();
-        System.out.println("[BARISTA-PLUGIN] Number of Projects: "+projectNum);
+        BaristaLoger.print("Number of Projects: "+projectNum);
 
     }
 

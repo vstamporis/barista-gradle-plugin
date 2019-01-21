@@ -83,7 +83,7 @@ public class ADBClient {
             UUID deviceToken = UUID.randomUUID();
             //map the token to the device
             emulatorTokens.put(deviceToken.toString(), emulatorID);
-            System.out.println("[BARISTA-PLUGIN] Giving device " + emulatorID + ", token: " + deviceToken);
+            BaristaLoger.print("Giving device " + emulatorID + ", token: " + deviceToken);
 
             //generate file. The file will be stored at 'C:\Users\s.tsisko\Documents\barista-gradle-plugin\barista-plugin'
             String tokenFileName = "barista-token.txt";
@@ -99,35 +99,17 @@ public class ADBClient {
             }
 
             //push the file to the emulator
-            this.pushFile(emulatorID,tokenFileName,"/storage/emulated/0");
+            this.pushFile(emulatorID,tokenFileName,this.DEFAULT_EMULATOR_STORAGE_PATH);
 
             //delete the file from local storage
-
             File f = new File(tokenFileName);
             if(!f.delete()){
-                System.out.println("[BARISTA-PLUGIN] Could not delete properly temporary token file. My cause conflict later");
+                BaristaLoger.print("Could not delete properly temporary token file. My cause conflict later");
             }
 
+
         }
 
-    }
-    /*
-        todo NOT CURENTLY USED
-        Determines the operating system of the host machine and sets the appropriate shell program
-        Windows => cmd.exe
-        Linux Based => shell
-     */
-    private  void determineOs(){
-        // find the operating system of the host machine
-        String hostOsName = System.getProperty("os.name").toLowerCase();
-        if(hostOsName.startsWith("windows")){
-            LOGGER.info("Detected Windows operating system. Setting default shell to 'cmd.exe'");
-            this.shell = "cmd.exe";
-        }
-        else{
-            LOGGER.info("Detected Linux based operating system. Setting default shell to 'sh'");
-            this.shell = "sh";
-        }
     }
 
     public  ArrayList<String> listDevices(){
@@ -186,7 +168,7 @@ public class ADBClient {
     public boolean resetDimension(String deviceID){
 
         try {
-            System.out.println("[BARISTA-PLUGIN] Reseting device "+deviceID);
+            BaristaLoger.print("Reseting screen size for device "+deviceID);
             Process p = Runtime.getRuntime().exec("adb -s "+deviceID+" shell wm size reset");
             return true;
         } catch (IOException e) {
@@ -205,8 +187,8 @@ public class ADBClient {
      * @return
      */
     public boolean pushFile(String emulatorID, String filePath, String destination){
-
-        System.out.println("[BARISTA-PLUGIN] Executed: "+"adb -s "+emulatorID+" push "+filePath+" "+destination);
+        BaristaLoger.print("Pushing access token to device:"+ emulatorID);
+        BaristaLoger.print("Executing: "+"adb -s "+emulatorID+" push "+filePath+" "+destination);
         ProcessBuilder pb = new ProcessBuilder("adb", "-s", emulatorID,"push",filePath,destination);
        // pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
         //todo maybe handle the error output and return false values in case of error

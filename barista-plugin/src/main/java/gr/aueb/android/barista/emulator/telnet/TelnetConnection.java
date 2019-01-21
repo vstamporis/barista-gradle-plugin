@@ -4,6 +4,7 @@ package gr.aueb.android.barista.emulator.telnet;
  */
 import gr.aueb.android.barista.emulator.telnet.command.Auth;
 import gr.aueb.android.barista.emulator.telnet.command.TelnetCommand;
+import gr.aueb.android.barista.utilities.BaristaLoger;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -75,14 +76,14 @@ public class TelnetConnection {
 			return false;
 		}
 
-		System.out.println(port + "> Executing: " + telnetCommand);
+		BaristaLoger.print(port + "> Executing: " + telnetCommand);
 
 		try {
 			socketWriter.write(telnetCommand.toString());
 			socketWriter.flush();
 
 			for (String line = socketReader.readLine(); line != null; line = socketReader.readLine()) {
-				System.out.println("Response: " + line);
+				BaristaLoger.print("Response: " + line);
 				if (line.trim().equals("OK")){
 					return true;
 				}

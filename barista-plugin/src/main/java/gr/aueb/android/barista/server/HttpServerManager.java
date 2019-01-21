@@ -91,17 +91,11 @@ public class HttpServerManager {
         BASE_URI = "http://localhost:"+port+"/barista/";
     }
 
-    private static void resetDevice(String deviceId){
-        ADBClient adb = ADBClient.getInstance();
-        adb.resetDimension(deviceId);
-    }
-
-
     public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
-        System.out.println("[BARISTA-PLUGIN] Executing geofix on "+emulatorID+" port: "+emulatorPort);
+        BaristaLoger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
         String homeDirectory = System.getProperty("user.home");
         if (homeDirectory == null){
-            System.out.println("[BARISTA-PLUGIN] Please set the home variable");
+            BaristaLoger.print("Please set the home variable");
             return false;
         }
 
