@@ -37,24 +37,22 @@ public class BaristaPlugin implements Plugin<Project> {
         // load the configuration extension
         project.getExtensions().create("baristaSettings", BaristaConfigurationExtension.class);
 
-        project.getTasks().create("stopBaristaServer", new Action<Task>() {
-            @Override
-            public void execute(Task task) {
-
-                project.getLogger().log(LogLevel.ERROR,"Build Failed. Closing Barista server");
-                try {
-                    HttpServerManager.stopServer();
-                }catch (NullPointerException e){
-                    project.getLogger().log(LogLevel.ERROR,"Null Pointer Exeption");
-                }
-            }
-        });
+//        project.getTasks().create("stopBaristaServer", new Action<Task>() {
+//            @Override
+//            public void execute(Task task) {
+//
+//                project.getLogger().log(LogLevel.ERROR,"Build Failed. Closing Barista server");
+//                try {
+//                    HttpServerManager.stopServer();
+//                }catch (NullPointerException e){
+//                    project.getLogger().log(LogLevel.ERROR,"Null Pointer Exeption");
+//                }
+//            }
+//        });
         // check if target project is an android project
         if(isAndroidProject()){
 
-            System.out.println("[BARISTA-PLUGIN] This is an Android Project");
-
-
+            BaristaLoger.print("This is an Android Project");
 
             project.afterEvaluate(new Action<Project>() {
 
@@ -63,7 +61,7 @@ public class BaristaPlugin implements Plugin<Project> {
                     // check if task assembleDebugAndroidTest is about to be executed
                     Task targetTask = project.getTasks().findByPath(ASSEMBLE_DEBUG_ANDROID_TEST);
 
-                    targetTask.finalizedBy("stopBaristaServer");
+                   // targetTask.finalizedBy("stopBaristaServer");
 
                     // if no tests are runnig do nothing
                     if(targetTask == null ){
