@@ -15,6 +15,9 @@ import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 import gr.aueb.android.barista.server.HttpServerManager;
 
+/**
+ * todo NOT USED
+ */
 public class TestDispacherServerTask extends DefaultTask {
     private final String DEFAULT_SERVER_URL = "http://localhost:8080";
 

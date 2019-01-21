@@ -39,12 +39,6 @@ public class WebServiceController{
     @Produces(MediaType.TEXT_PLAIN)
     public String sayHello(){
 
-        System.out.println("ADDR: "+request.getRemoteAddr());
-        System.out.println("PORT: "+request.getRemotePort());
-        System.out.println("LOCAL PORT: "+request.getLocalPort());
-
-
-
         return GREETING_MSG;
     }
 
@@ -57,9 +51,6 @@ public class WebServiceController{
     @Path("status2")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayHello2(){
-        System.out.println("ADDR: "+request.getRemoteAddr());
-        System.out.println("PORT: "+request.getRemotePort());
-        System.out.println("LOCAL PORT: "+request.getLocalPort());
         return GREETING_MSG;
     }
 
@@ -74,9 +65,6 @@ public class WebServiceController{
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public String echoMessage(String originalMsg){
-        System.out.println("ADDR: "+request.getRemoteAddr());
-        System.out.println("PORT: "+request.getRemotePort());
-        System.out.println("LOCAL PORT: "+request.getLocalPort());
         return "ECHOING: "+originalMsg;
     }
 
@@ -102,7 +90,6 @@ public class WebServiceController{
         String emulatorID = adbClient.verifyToken(token);
 
         if(emulatorID != null){
-            System.out.println("Resizing screen to : "+height+"x"+width);
             int h = Integer.parseInt(height);
             int w = Integer.parseInt(width);
             adbClient.changeDimension(emulatorID,w,h);
@@ -115,7 +102,6 @@ public class WebServiceController{
     public void resetDimension(@QueryParam("token") String token){
         if (token != null) {
             ADBClient adbClient = ADBClient.getInstance();
-
             String emulatorID = adbClient.verifyToken(token);
             adbClient.resetDimension(emulatorID);
         }
