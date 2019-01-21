@@ -10,11 +10,12 @@
 package gr.aueb.android.barista.server;
 
 import gr.aueb.android.barista.emulator.EmulatorException;
+import gr.aueb.android.barista.emulator.TestMonitor;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
 import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
 import gr.aueb.android.barista.emulator.telnet.command.GeoFixCommand;
-import gr.aueb.android.barista.emulator.telnet.command.Help;
+import gr.aueb.android.barista.utilities.BaristaLoger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -27,10 +28,8 @@ public class HttpServerManager {
 
     private static HttpServer serverInstance;
 
-    private final static Logger LOGGER = Logger.getLogger(HttpServerManager.class.getName());
-
     // Base URI the HTTP server will listen on
-    //TODO Server URL must be specified from the plugin extension configuration input
+    // TODO Server URL must be specified from the plugin extension configuration input
     // todo better coding style
     private static String BASE_URI = "http://localhost:8040/barista/";
 
@@ -48,9 +47,12 @@ public class HttpServerManager {
             // if for any reason server instance is running (not null) then shut down
             serverInstance.shutdownNow();
         }
-
+        ADBClient client = ADBClient.getInstance();
+        // initialize TestMonitor
+        TestMonitor.setRunningTests(client.listDevices().size());
         // create and start a new instance of grizzly http server exposing the Jersey application at BASE_URI
         serverInstance =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+
 
     }
 
@@ -61,16 +63,18 @@ public class HttpServerManager {
 
         ADBClient adbClient = ADBClient.getInstance();
 
-        System.out.println("[BARISTA-PLUGIN]: Signal to kill Server. Current tests:"+ adbClient.getCountRunningTests());
+        BaristaLoger.print("Signal to kill Server. Current tests:"+ TestMonitor.getRuningTests());
         //todo change test check role
 
-        adbClient.testOnEmulatorFinished();
-        if(!adbClient.hasActiveTestsRunning()) {
-            System.out.println("[BARISTA-PLUGIN]:Last Test finished. Stoping Server");
+
+        TestMonitor.testFinished();
+
+        if(! TestMonitor.hasActiveTests()) {
+            BaristaLoger.print("Last Test finished. Stoping Server");
             serverInstance.shutdownNow();
             //resetDevice();
         }else{
-            System.out.println("[BARISTA-PLUGIN]:Test finished. Remaining: "+adbClient.getCountRunningTests());
+            BaristaLoger.print("Test finished. Remaining: "+TestMonitor.getRuningTests());
         }
     }
 

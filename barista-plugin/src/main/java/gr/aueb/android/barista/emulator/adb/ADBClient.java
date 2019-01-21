@@ -16,37 +16,37 @@ package gr.aueb.android.barista.emulator.adb;
 
 
 
+import gr.aueb.android.barista.utilities.BaristaLoger;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Random;
 import java.util.UUID;
-import java.util.logging.Logger;
+
 
 
 
 public class ADBClient {
 
-    private final static Logger LOGGER = Logger.getLogger(ADBClient.class.getName());
-    private final static int UID =  new Random().nextInt(1000);
     private static ADBClient INSTANCE = null;
-    private String shell;
-    Process process;
+
+    private final String DEFAULT_EMULATOR_STORAGE_PATH = "/storage/emulated/0";
 
     ArrayList<String> connectedDeviceIDs; // list to strore connected devices names for adb -s use
 
     Hashtable<String,String> emulatorTokens;
 
     //todo Remove running test counting functionality from this object.
-    private static int activeTargetsTesting = 0;
+    //private int activeTargetsTesting = 0;
 
     private ADBClient(){
         // determineOs();  // determine the OS of the host machine
+        BaristaLoger.print("Initializing ADB client");
+
         connectedDeviceIDs = new ArrayList<>();
         connectedDeviceIDs = listDevices();
         emulatorTokens = new  Hashtable<String,String>();
-        activeTargetsTesting = connectedDeviceIDs.size();
-        System.out.println( "[BARISTA-PLUGIN] Total devices: "+activeTargetsTesting);
+       // activeTargetsTesting = connectedDeviceIDs.size();
 
         //for each device generate and publish a key.
         // Publish means pushing it to the device storage to be accesed by the client
@@ -74,7 +74,7 @@ public class ADBClient {
     /**
      * Generates a file containing the device token of the emulatorID
      * @param emulatorID
-     * @return The created file
+     *
      */
     private void generateDeviceToken(String emulatorID){
 
@@ -138,24 +138,24 @@ public class ADBClient {
 
     }
 
-    public boolean hasActiveTestsRunning(){
-        System.out.println("[BARISTA-PLUGIN-"+UID+"]: Checking Active tests: "+activeTargetsTesting);
-        return (activeTargetsTesting > 0);
-    }
-
-    public void testOnEmulatorFinished(){
-        System.out.println("[BARISTA-PLUGIN-"+UID+"] Decrease running tests By 1");
-        activeTargetsTesting --;
-    }
-
-    public int getCountRunningTests(){
-        return activeTargetsTesting;
-    }
+//    public boolean hasActiveTestsRunning(){
+//        BaristaLoger.print("Active tests running: "+activeTargetsTesting);
+//        return (activeTargetsTesting > 0);
+//    }
+//
+//    public void testOnEmulatorFinished(){
+//        BaristaLoger.print("Decrease running tests by 1");
+//        activeTargetsTesting --;
+//    }
+//
+//    public int getCountRunningTests(){
+//        return activeTargetsTesting;
+//    }
 
     public boolean changeDimension(String emulatorID, int width, int height){
 
         try {
-            System.out.println("[BARISTA-PLUGIN] Executing resize to "+emulatorID);
+            BaristaLoger.print("Resizing "+emulatorID+" to "+width+"x"+height);
             Process p = Runtime.getRuntime().exec("adb -s "+emulatorID+" shell wm size " + height + "x" + width);
             return true;
         } catch (IOException e) {
