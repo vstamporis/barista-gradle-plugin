@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */
+@Deprecated
 @XmlRootElement
 public class GeoFixDto {
 	

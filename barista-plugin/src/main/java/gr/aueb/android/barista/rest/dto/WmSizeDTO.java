@@ -1,9 +1,11 @@
 package gr.aueb.android.barista.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import gr.aueb.android.barista.core.model.WmSize;
+import gr.aueb.android.barista.rest.mapper.CommandMapper;
 
 @JsonTypeName("WmSize")
-public class WmSizeDTO extends CommandDTO {
+public class WmSizeDTO extends CommandDTO<WmSize> {
 
     int width;
     int height;
@@ -12,6 +14,11 @@ public class WmSizeDTO extends CommandDTO {
 
     public WmSizeDTO(){
 
+    }
+
+    @Override
+    public WmSize toDomainObject() {
+        return CommandMapper.INSTANCE.fromWmSizeDTO(this);
     }
 
     public WmSizeDTO(String sessionToken, int width, int height, boolean reset, String unit) {

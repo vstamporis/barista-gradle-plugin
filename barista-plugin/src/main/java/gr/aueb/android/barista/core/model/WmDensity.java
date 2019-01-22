@@ -1,6 +1,6 @@
 package gr.aueb.android.barista.core.model;
 
-public class WmDensity extends AbstractCommand {
+public class WmDensity extends AbstractAdbCommand {
 
     private int density;
 

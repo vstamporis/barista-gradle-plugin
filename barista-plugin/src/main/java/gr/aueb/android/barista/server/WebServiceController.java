@@ -10,14 +10,24 @@
 package gr.aueb.android.barista.server;
 
 
+import gr.aueb.android.barista.core.executor.CommandException;
+import gr.aueb.android.barista.core.executor.CommandExecutor;
+import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
+import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
+import gr.aueb.android.barista.rest.dto.CommandDTO;
+import gr.aueb.android.barista.rest.mapper.CommandListMapper;
 import org.glassfish.grizzly.http.server.Request;
 
 
+import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.util.List;
+
 // todo check jersey multithreading thread
 @Path("/")
 public class WebServiceController{
@@ -123,6 +133,23 @@ public class WebServiceController{
             int emulatorPort = Integer.parseInt(emulatorID.split("-")[1]);
             HttpServerManager.executeGeoFix(latitude, longtitude, emulatorID, emulatorPort);
         }
+
+    }
+
+    @POST
+    @Path("/execute")
+    public Response executeCommands(List<CommandDTO> commands){
+
+        List<Command> commandList = CommandListMapper.fromCommandDTOList(commands);
+        CommandExecutor executor = CommandExecutorFactory.getInstance();
+
+        try {
+            executor.executeCommands(commandList);
+        } catch (CommandException e){
+            // return error response
+        }
+
+        return Response.ok().build();
 
     }
 

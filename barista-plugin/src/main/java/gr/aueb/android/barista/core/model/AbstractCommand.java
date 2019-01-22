@@ -1,6 +1,8 @@
 package gr.aueb.android.barista.core.model;
 
 
+import gr.aueb.android.barista.core.executor.CommandExecutor;
+
 public abstract class AbstractCommand implements Command{
 
     public AbstractCommand(){
@@ -20,4 +22,9 @@ public abstract class AbstractCommand implements Command{
 
     @Override
     public abstract String getCommandString();
+
+    @Override
+    public void accept(CommandExecutor executor) {
+
+    }
 }

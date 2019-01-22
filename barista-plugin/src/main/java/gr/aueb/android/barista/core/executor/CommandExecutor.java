@@ -1,6 +1,8 @@
-package gr.aueb.android.barista.emulator;
+package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
+
+import java.util.List;
 
 public interface CommandExecutor {
 
@@ -8,4 +10,5 @@ public interface CommandExecutor {
 
     void executeTelnetCommand(Command command);
 
+    void executeCommands(List<Command> commandList);
 }
