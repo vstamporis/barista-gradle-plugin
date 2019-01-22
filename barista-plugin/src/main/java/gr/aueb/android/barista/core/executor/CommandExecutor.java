@@ -11,4 +11,6 @@ public interface CommandExecutor {
     void executeTelnetCommand(Command command);
 
     void executeCommands(List<Command> commandList);
+
+    void executeCommand(Command cmd);
 }

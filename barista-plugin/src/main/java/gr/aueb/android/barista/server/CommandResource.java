@@ -136,7 +136,8 @@ public class CommandResource {
     }
 
     @POST
-    @Path("/execute")
+    @Path("executeAll")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response executeCommands(List<CommandDTO> commands){
 
         List<Command> commandList = CommandListMapper.fromCommandDTOList(commands);
@@ -151,5 +152,24 @@ public class CommandResource {
         return Response.ok().build();
 
     }
+
+    @POST
+    @Path("execute")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response executeCommand(CommandDTO command){
+
+        CommandExecutor executor = CommandExecutorFactory.getCommandExecutor();
+        Command cmd = command.toDomainObject();
+
+        try {
+            executor.executeCommand(cmd);
+        } catch (CommandException e){
+            // return error response
+        }
+
+        return Response.ok().build();
+
+    }
+
 
 }

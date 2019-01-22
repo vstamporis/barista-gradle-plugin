@@ -12,6 +12,11 @@ public class WmDensityDTO extends CommandDTO<WmDensity> {
     public WmDensityDTO() {
     }
 
+    public WmDensityDTO(String sessionToken, int density) {
+        super(sessionToken);
+        this.density = density;
+    }
+
     @Override
     public WmDensity toDomainObject() {
         return CommandMapper.INSTANCE.fromWmDensityDTO(this);

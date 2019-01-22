@@ -34,6 +34,11 @@ public class CommandExecutorImpl implements CommandExecutor {
         }
     }
 
+    @Override
+    public void executeCommand(Command cmd) {
+        cmd.accept(this);
+    }
+
     public void setAdbCommandClient(CommandClient adbCommandClient) {
         this.adbCommandClient = adbCommandClient;
     }

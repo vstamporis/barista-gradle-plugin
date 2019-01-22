@@ -22,7 +22,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.File;
 import java.net.URI;
-import java.util.logging.Logger;
 
 public class HttpServerManager {
 
@@ -54,6 +53,10 @@ public class HttpServerManager {
         serverInstance =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
 
 
+    }
+
+    public static ResourceConfig createApp() {
+        return new BaristaApplication();
     }
 
     /**
