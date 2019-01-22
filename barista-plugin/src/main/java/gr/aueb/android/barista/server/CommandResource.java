@@ -20,7 +20,6 @@ import gr.aueb.android.barista.rest.mapper.CommandListMapper;
 import org.glassfish.grizzly.http.server.Request;
 
 
-import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -30,7 +29,7 @@ import java.util.List;
 
 // todo check jersey multithreading thread
 @Path("/")
-public class WebServiceController{
+public class CommandResource {
 
     public final static String GREETING_MSG = "Hello World from Jersey Servlet Container";
 
@@ -141,7 +140,7 @@ public class WebServiceController{
     public Response executeCommands(List<CommandDTO> commands){
 
         List<Command> commandList = CommandListMapper.fromCommandDTOList(commands);
-        CommandExecutor executor = CommandExecutorFactory.getInstance();
+        CommandExecutor executor = CommandExecutorFactory.getCommandExecutor();
 
         try {
             executor.executeCommands(commandList);

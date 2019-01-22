@@ -6,6 +6,10 @@ import java.util.List;
 
 public class CommandExecutorImpl implements CommandExecutor {
 
+    CommandClient adbCommandClient;
+    CommandClient telnetCommandClient;
+
+
     @Override
     public void executeAdbCommand(Command command) {
         // find emulator by command.getSessionId()
@@ -28,5 +32,13 @@ public class CommandExecutorImpl implements CommandExecutor {
         for(Command cmd: commandList){
             cmd.accept(this);
         }
+    }
+
+    public void setAdbCommandClient(CommandClient adbCommandClient) {
+        this.adbCommandClient = adbCommandClient;
+    }
+
+    public void setTelnetCommandClient(CommandClient telnetCommandClient) {
+        this.telnetCommandClient = telnetCommandClient;
     }
 }

@@ -4,9 +4,10 @@ public class CommandExecutorFactory {
 
     private static CommandExecutor theInstance;
 
-    public static CommandExecutor getInstance(){
+    public static CommandExecutor getCommandExecutor(){
         if (theInstance == null){
             theInstance = new CommandExecutorImpl();
+
         }
         return theInstance;
     }
