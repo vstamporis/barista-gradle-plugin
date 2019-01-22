@@ -41,11 +41,23 @@ public class ADBClientTest {
     @Test
     public void testPushFile(){
 
-        ArrayList<String> l = adbClient.listDevices();
+        ArrayList<String> l = adbClient.getConnectedDevices();
         System.out.println("Pushing at emulator: "+l.get(0));
         boolean result = adbClient.pushFile(l.get(0),"key.txt","sdcard");
         assertTrue(result);
     }
+
+    @Test
+    public void testGetSize(){
+        ArrayList<String> l = adbClient.getConnectedDevices();
+        adbClient.resetDimension(l.get(0));
+        adbClient.changeDimension(l.get(0),500,600);
+        SizeDto currentSize = adbClient.getOverrideSize(l.get(0));
+        assertEquals(500,currentSize.getWidth());
+        assertEquals(600,currentSize.getHeight());
+
+    }
+
 
 
 }

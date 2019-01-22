@@ -11,12 +11,14 @@ package gr.aueb.android.barista.server;
 
 
 import gr.aueb.android.barista.emulator.adb.ADBClient;
+import gr.aueb.android.barista.emulator.adb.SizeDto;
 import org.glassfish.grizzly.http.server.Request;
 
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 // todo check jersey multithreading thread
 @Path("/")
@@ -81,7 +83,7 @@ public class WebServiceController{
 
     @GET
     @Path("/setDimension")
-    public void setDimension(@QueryParam("token") String token,
+    public Response setDimension(@QueryParam("token") String token,
                              @QueryParam("height") String height,
                              @QueryParam("width") String width){
 
@@ -93,26 +95,26 @@ public class WebServiceController{
             int h = Integer.parseInt(height);
             int w = Integer.parseInt(width);
             adbClient.changeDimension(emulatorID,w,h);
+            return Response.ok().build();
         }
-
+        return Response.serverError().build();
     }
 
     @GET
     @Path("/reset")
-    public void resetDimension(@QueryParam("token") String token){
+    public Response resetDimension(@QueryParam("token") String token){
         if (token != null) {
             ADBClient adbClient = ADBClient.getInstance();
             String emulatorID = adbClient.verifyToken(token);
             adbClient.resetDimension(emulatorID);
+            return Response.ok().build();
         }
-
-
+        return Response.serverError().build();
     }
 
     @GET
     @Path("/geofix")
-    //todo curently emulatorID and port are staticaly provided
-    public void setGeoFix(@QueryParam("token") String token,
+    public Response setGeoFix(@QueryParam("token") String token,
                           @QueryParam("lat") double latitude,
                           @QueryParam("longt") double longtitude){
 
@@ -122,8 +124,27 @@ public class WebServiceController{
         if(emulatorID != null) {
             int emulatorPort = Integer.parseInt(emulatorID.split("-")[1]);
             HttpServerManager.executeGeoFix(latitude, longtitude, emulatorID, emulatorPort);
+            return Response.ok().build();
         }
 
+        return Response.serverError().build();
+
+    }
+
+    @GET
+    @Path("/actualSize")
+    @Produces({MediaType.APPLICATION_JSON})
+    public SizeDto getOverrideSize(@QueryParam("token") String token){
+
+        ADBClient client = ADBClient.getInstance();
+        String emulatorID = client.verifyToken(token);
+
+        if(emulatorID != null) {
+            SizeDto size = client.getOverrideSize(emulatorID);
+            return size;
+        }
+
+        return null;
     }
 
 }

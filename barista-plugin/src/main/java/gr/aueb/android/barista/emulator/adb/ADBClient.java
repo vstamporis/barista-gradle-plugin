@@ -210,7 +210,59 @@ public class ADBClient {
         return true;
     }
 
+    /**
+     * Returns the <token,emulator> map containing the mapings of given tokens to connected emulators.
+     * @return  The map
+     */
     public Hashtable<String,String> getTokenMap(){
         return this.emulatorTokens;
+    }
+
+    /**
+     * Returns the Override size as returned from the 'adb -s [emulatorId] shell wm size'.
+     * Mainly used for testing purposes.
+     * @param emulatorID The emulatorId
+     * @return A SizeDto @See SizeDto.If not overided size is found null is returned.
+     *          The SizeDto instance will contain only width and height properties
+     */
+    public SizeDto getOverrideSize(String emulatorID){
+        BaristaLogger.print("Calling getActualSize");
+        try {
+            SizeDto currentScreen = new SizeDto();
+
+            // build command
+            ProcessBuilder pb = new ProcessBuilder("adb", "-s", emulatorID,"shell","wm","size");
+
+            //execute command
+            Process p = pb.start();
+
+            //read the output
+            BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line ="";
+            while( (line = output.readLine()) !=null){
+
+                // parse lines like 'Override size: ...'
+                if(line.matches("Override size:(.*)")){
+
+                    // get only the WxH part
+                    String sizeString = line.split(" ")[2];
+                    //exract width (first number, left of x)
+                    int width = Integer.parseInt(sizeString.split("x")[0]);
+                    //exract width (second number, right of x)
+                    int height = Integer.parseInt(sizeString.split("x")[1]);
+                    currentScreen.setWidth(width);
+                    currentScreen.setHeight(height);
+
+                }
+            }
+            BaristaLogger.print("RETURNING: "+currentScreen.getWidth()+"x"+currentScreen.getHeight());
+            return currentScreen;
+        } catch (IOException e) {
+            e.printStackTrace();
+            //todo delete
+            BaristaLogger.print("NO EMULATOR FOUND");
+            return null;
+        }
+
     }
 }

@@ -9,12 +9,14 @@
  */
 package gr.aueb.android.barista.server.test_utils;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
+import gr.aueb.android.barista.emulator.adb.SizeDto;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 import gr.aueb.android.barista.server.WebServiceController;
 
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -86,6 +88,33 @@ public class WebServiceControllerTest extends JerseyTest {
                 .queryParam("lat",lat)
                 .queryParam("longt",longt)
                 .request().get();
+
+    }
+
+    @Test
+    public void getOverridenSizeTest(){
+
+        ADBClient adbClient = ADBClient.getInstance();
+        String token = adbClient.getTokenMap().keySet().iterator().next();
+        adbClient.resetDimension(adbClient.verifyToken(token));
+
+        String height = "500";
+        String width = "600";
+
+        Response re = target("/setDimension")
+                .queryParam("token",token)
+                .queryParam("height",height)
+                .queryParam("width",width).request().get();
+
+        SizeDto r = target("/actualSize")
+                .queryParam("token",token)
+                .request()
+                .accept(MediaType.APPLICATION_JSON)
+                .get(SizeDto.class);
+
+        assertEquals(600,r.getWidth());
+        assertEquals(500,r.getHeight());
+
 
     }
 }
