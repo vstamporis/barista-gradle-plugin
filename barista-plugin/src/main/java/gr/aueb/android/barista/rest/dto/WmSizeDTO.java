@@ -3,7 +3,7 @@ package gr.aueb.android.barista.rest.dto;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("WmSize")
-public class WmSizeDTO extends Command {
+public class WmSizeDTO extends CommandDTO {
 
     int width;
     int height;

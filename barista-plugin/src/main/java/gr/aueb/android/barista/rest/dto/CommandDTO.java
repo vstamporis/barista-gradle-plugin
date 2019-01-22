@@ -13,17 +13,17 @@ import gr.aueb.android.barista.core.model.WmSize;
  */
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.PROPERTY, property="type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = GeoFix.class),
-        @JsonSubTypes.Type(value = WmSize.class),
-        @JsonSubTypes.Type(value = WmDensity.class),
+        @JsonSubTypes.Type(value = GeoFixDTO.class),
+        @JsonSubTypes.Type(value = WmSizeDTO.class),
+        @JsonSubTypes.Type(value = WmDensityDTO.class),
 })
-public abstract class Command {
+public abstract class CommandDTO {
 
-    public Command(){
+    public CommandDTO(){
 
     }
 
-    public Command(String sessionToken) {
+    public CommandDTO(String sessionToken) {
         this.sessionToken = sessionToken;
     }
 

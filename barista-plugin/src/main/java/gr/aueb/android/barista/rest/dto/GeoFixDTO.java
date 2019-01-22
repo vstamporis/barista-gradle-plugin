@@ -3,7 +3,7 @@ package gr.aueb.android.barista.rest.dto;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("GeoFix")
-public class GeoFixDTO extends Command {
+public class GeoFixDTO extends CommandDTO {
 
     private double latitude;
     private double longitude;

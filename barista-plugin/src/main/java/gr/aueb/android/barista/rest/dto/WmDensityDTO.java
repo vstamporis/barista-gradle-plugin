@@ -3,7 +3,7 @@ package gr.aueb.android.barista.rest.dto;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("WmDensity")
-public class WmDensityDTO extends Command {
+public class WmDensityDTO extends CommandDTO {
 
     private int density;
 
