@@ -11,7 +11,7 @@ package gr.aueb.android.barista.core;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.server.HttpServerManager;
-import gr.aueb.android.barista.utilities.BaristaLoger;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -37,22 +37,10 @@ public class BaristaPlugin implements Plugin<Project> {
         // load the configuration extension
         project.getExtensions().create("baristaSettings", BaristaConfigurationExtension.class);
 
-//        project.getTasks().create("stopBaristaServer", new Action<Task>() {
-//            @Override
-//            public void execute(Task task) {
-//
-//                project.getLogger().log(LogLevel.ERROR,"Build Failed. Closing Barista server");
-//                try {
-//                    HttpServerManager.stopServer();
-//                }catch (NullPointerException e){
-//                    project.getLogger().log(LogLevel.ERROR,"Null Pointer Exeption");
-//                }
-//            }
-//        });
         // check if target project is an android project
         if(isAndroidProject()){
 
-            BaristaLoger.print("This is an Android Project");
+            BaristaLogger.print("This is an Android Project");
 
             project.afterEvaluate(new Action<Project>() {
 
@@ -87,7 +75,7 @@ public class BaristaPlugin implements Plugin<Project> {
         }
 
         else{    // If the target project is NOT an android project, do nothing
-            BaristaLoger.print("This is not an Android Project");
+            BaristaLogger.print("This is not an Android Project");
         }
 
 
@@ -128,7 +116,7 @@ public class BaristaPlugin implements Plugin<Project> {
                 }
 
                 //start the server on localhost
-                BaristaLoger.print("Starting Server on "+ HttpServerManager.getBaseUri());
+                BaristaLogger.print("Starting Server on "+ HttpServerManager.getBaseUri());
                 HttpServerManager.startServer();
             }
         });
@@ -144,7 +132,7 @@ public class BaristaPlugin implements Plugin<Project> {
      */
     private void hookServerStopTask(){
 
-        BaristaLoger.print("Hooking task for stopping server");
+        BaristaLogger.print("Hooking task for stopping server");
 
         Task targetTask = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
 
@@ -152,11 +140,10 @@ public class BaristaPlugin implements Plugin<Project> {
 
             @Override
             public void execute(Task task) {
-                BaristaLoger.print("Closing Server");
+                BaristaLogger.print("Closing Server");
                 HttpServerManager.stopServer();
             }
         });
-
 
     }
 
@@ -178,7 +165,7 @@ public class BaristaPlugin implements Plugin<Project> {
     private BaseAppModuleExtension getAndroidExtension(){
         Object o = project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);
 
-        BaristaLoger.print("Loading android module extension: "+o.getClass().getName());
+        BaristaLogger.print("Loading android module extension: "+o.getClass().getName());
         if(o instanceof com.android.build.gradle.internal.dsl.BaseAppModuleExtension){
             return (BaseAppModuleExtension) project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);
         }
@@ -195,7 +182,7 @@ public class BaristaPlugin implements Plugin<Project> {
     private Integer getProvidedPort(){
         BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
         int port = settings.getPort();
-        BaristaLoger.print("Loaded given configuration for port "+port);
+        BaristaLogger.print("Loaded given configuration for port "+port);
         return port;
     }
 
@@ -204,8 +191,7 @@ public class BaristaPlugin implements Plugin<Project> {
      */
     private void scanProject(){
         int projectNum = project.getAllprojects().size();
-        BaristaLoger.print("Number of Projects: "+projectNum);
-
+        BaristaLogger.print("Number of Projects: "+projectNum);
     }
 
 }
