@@ -15,7 +15,7 @@ import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
 import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
 import gr.aueb.android.barista.emulator.telnet.command.GeoFixCommand;
-import gr.aueb.android.barista.utilities.BaristaLoger;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -49,7 +49,7 @@ public class HttpServerManager {
         }
         ADBClient client = ADBClient.getInstance();
         // initialize TestMonitor
-        TestMonitor.setRunningTests(client.listDevices().size());
+        TestMonitor.setRunningTests(client.getConnectedDevices().size());
         // create and start a new instance of grizzly http server exposing the Jersey application at BASE_URI
         serverInstance =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
 
@@ -63,18 +63,18 @@ public class HttpServerManager {
 
         ADBClient adbClient = ADBClient.getInstance();
 
-        BaristaLoger.print("Signal to kill Server. Current tests:"+ TestMonitor.getRuningTests());
+        BaristaLogger.print("Signal to kill Server. Current tests:"+ TestMonitor.getRuningTests());
         //todo change test check role
 
 
         TestMonitor.testFinished();
 
         if(! TestMonitor.hasActiveTests()) {
-            BaristaLoger.print("Last Test finished. Stoping Server");
+            BaristaLogger.print("Last Test finished. Stoping Server");
             serverInstance.shutdownNow();
             //resetDevice();
         }else{
-            BaristaLoger.print("Test finished. Remaining: "+TestMonitor.getRuningTests());
+            BaristaLogger.print("Test finished. Remaining: "+TestMonitor.getRuningTests());
         }
     }
 
@@ -96,10 +96,10 @@ public class HttpServerManager {
     }
 
     public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
-        BaristaLoger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
+        BaristaLogger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
         String homeDirectory = System.getProperty("user.home");
         if (homeDirectory == null){
-            BaristaLoger.print("Please set the home variable");
+            BaristaLogger.print("Please set the home variable");
             return false;
         }
 

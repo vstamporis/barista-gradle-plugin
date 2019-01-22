@@ -15,8 +15,7 @@ package gr.aueb.android.barista.emulator.adb;
  */
 
 
-
-import gr.aueb.android.barista.utilities.BaristaLoger;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -32,25 +31,22 @@ public class ADBClient {
 
     private final String DEFAULT_EMULATOR_STORAGE_PATH = "/storage/emulated/0";
 
-    ArrayList<String> connectedDeviceIDs; // list to strore connected devices names for adb -s use
+    ArrayList<String> connectedDevices; // list to strore connected devices names for adb -s use
 
     Hashtable<String,String> emulatorTokens;
 
-    //todo Remove running test counting functionality from this object.
-    //private int activeTargetsTesting = 0;
-
     private ADBClient(){
-        // determineOs();  // determine the OS of the host machine
-        BaristaLoger.print("Initializing ADB client");
 
-        connectedDeviceIDs = new ArrayList<>();
-        connectedDeviceIDs = listDevices();
-        emulatorTokens = new  Hashtable<String,String>();
-       // activeTargetsTesting = connectedDeviceIDs.size();
+        BaristaLogger.print("Initializing ADB client");
+
+        //todo check if null and throw exception
+        connectedDevices = getConnectedDevices();
+
+        emulatorTokens = new  Hashtable<>();
 
         //for each device generate and publish a key.
         // Publish means pushing it to the device storage to be accesed by the client
-        for (String device: connectedDeviceIDs) {
+        for (String device: connectedDevices) {
             generateDeviceToken(device);
         }
     }
@@ -78,12 +74,12 @@ public class ADBClient {
      */
     private void generateDeviceToken(String emulatorID){
 
-        if(this.connectedDeviceIDs.contains(emulatorID)) {
+        if(this.connectedDevices.contains(emulatorID)) {
             // generate a unique ID
             UUID deviceToken = UUID.randomUUID();
             //map the token to the device
             emulatorTokens.put(deviceToken.toString(), emulatorID);
-            BaristaLoger.print("Giving device " + emulatorID + ", token: " + deviceToken);
+            BaristaLogger.print("Giving device " + emulatorID + ", token: " + deviceToken);
 
             //generate file. The file will be stored at 'C:\Users\s.tsisko\Documents\barista-gradle-plugin\barista-plugin'
             String tokenFileName = "barista-token.txt";
@@ -104,7 +100,7 @@ public class ADBClient {
             //delete the file from local storage
             File f = new File(tokenFileName);
             if(!f.delete()){
-                BaristaLoger.print("Could not delete properly temporary token file. My cause conflict later");
+                BaristaLogger.print("Could not delete properly temporary token file. My cause conflict later");
             }
 
 
@@ -112,7 +108,11 @@ public class ADBClient {
 
     }
 
-    public  ArrayList<String> listDevices(){
+    /**
+     * Runs the adb devices command to list all devices. Then forms an ArrayList containing the devices ids retrieved
+     * @return The list containing all the ids of the connected devices in String format
+     */
+    public  ArrayList<String> getConnectedDevices(){
         ArrayList<String> result = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("adb devices"); // list connected devices
@@ -138,25 +138,19 @@ public class ADBClient {
 
     }
 
-//    public boolean hasActiveTestsRunning(){
-//        BaristaLoger.print("Active tests running: "+activeTargetsTesting);
-//        return (activeTargetsTesting > 0);
-//    }
-//
-//    public void testOnEmulatorFinished(){
-//        BaristaLoger.print("Decrease running tests by 1");
-//        activeTargetsTesting --;
-//    }
-//
-//    public int getCountRunningTests(){
-//        return activeTargetsTesting;
-//    }
-
+    /**
+     * Runs the 'adb -s [device-id] wm size WxH' command which changes the device screen dimensions.
+     * @param emulatorID    The emulator-id of the targeted device to resize
+     * @param width The desired width
+     * @param height The desired height
+     * @return  Returns true if command is executed sucesfully. NOTICE true doesn't mean that resize is successful but
+     * no exceptions occurred.
+     */
     public boolean changeDimension(String emulatorID, int width, int height){
 
         try {
-            BaristaLoger.print("Resizing "+emulatorID+" to "+width+"x"+height);
-            Process p = Runtime.getRuntime().exec("adb -s "+emulatorID+" shell wm size " + height + "x" + width);
+            BaristaLogger.print("Resizing "+emulatorID+" to "+width+"x"+height);
+            Process p = Runtime.getRuntime().exec("adb -s "+emulatorID+" shell wm size " + width + "x" + height);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -165,10 +159,16 @@ public class ADBClient {
 
     }
 
+    /**
+     * Runs the 'adb -s [deviceID] shell wm size reset' command which resets the screen to its original size
+     * @param deviceID The emulator-id of the targeted device to resize
+     * @return Returns true if command is executed successfully. NOTICE true doesn't mean that reset is successful but
+     *        no exceptions occurred.
+     */
     public boolean resetDimension(String deviceID){
 
         try {
-            BaristaLoger.print("Reseting screen size for device "+deviceID);
+            BaristaLogger.print("Reseting screen size for device "+deviceID);
             Process p = Runtime.getRuntime().exec("adb -s "+deviceID+" shell wm size reset");
             return true;
         } catch (IOException e) {
@@ -187,8 +187,8 @@ public class ADBClient {
      * @return
      */
     public boolean pushFile(String emulatorID, String filePath, String destination){
-        BaristaLoger.print("Pushing access token to device:"+ emulatorID);
-        BaristaLoger.print("Executing: "+"adb -s "+emulatorID+" push "+filePath+" "+destination);
+        BaristaLogger.print("Pushing access token to device:"+ emulatorID);
+        BaristaLogger.print("Executing: "+"adb -s "+emulatorID+" push "+filePath+" "+destination);
         ProcessBuilder pb = new ProcessBuilder("adb", "-s", emulatorID,"push",filePath,destination);
        // pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
         //todo maybe handle the error output and return false values in case of error

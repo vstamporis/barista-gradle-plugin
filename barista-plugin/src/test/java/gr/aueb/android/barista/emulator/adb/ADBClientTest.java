@@ -11,6 +11,8 @@ package gr.aueb.android.barista.emulator.adb;
 
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -22,7 +24,7 @@ public class ADBClientTest {
 
     @Test
     public void testDeviceList(){
-        ArrayList<String> l = adbClient.listDevices();
+        ArrayList<String> l = adbClient.getConnectedDevices();
         assertNotNull(l);
     }
 
