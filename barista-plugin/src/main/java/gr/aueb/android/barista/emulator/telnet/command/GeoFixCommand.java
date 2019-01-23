@@ -4,6 +4,7 @@ package gr.aueb.android.barista.emulator.telnet.command;
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */
+@Deprecated
 public class GeoFixCommand implements TelnetCommand {
 
 	public static final String GEO_FIX = "geo fix";

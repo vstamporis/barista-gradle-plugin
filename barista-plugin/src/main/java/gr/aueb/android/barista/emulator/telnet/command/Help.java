@@ -2,6 +2,7 @@ package gr.aueb.android.barista.emulator.telnet.command;
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */
+@Deprecated
 public class Help implements TelnetCommand {
 
 	public static final String HELP = "help";

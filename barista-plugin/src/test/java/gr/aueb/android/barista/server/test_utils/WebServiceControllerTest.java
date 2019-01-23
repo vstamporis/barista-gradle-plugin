@@ -13,7 +13,7 @@ import gr.aueb.android.barista.emulator.adb.SizeDto;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
-import gr.aueb.android.barista.server.WebServiceController;
+import gr.aueb.android.barista.server.CommandResource;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
@@ -30,7 +30,7 @@ public class WebServiceControllerTest extends JerseyTest {
     @Override
     protected Application configure() {
 
-        return new ResourceConfig(WebServiceController.class);
+        return new ResourceConfig(CommandResource.class);
 
     }
 
@@ -46,7 +46,7 @@ public class WebServiceControllerTest extends JerseyTest {
     public void testServiceFunctionality(){
         String response =  target("status").request().get(String.class);
         assertNotNull(response);
-        assertEquals(WebServiceController.GREETING_MSG,response);
+        assertEquals(CommandResource.GREETING_MSG,response);
     }
 
     @Test
