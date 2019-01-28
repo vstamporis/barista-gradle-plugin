@@ -9,7 +9,8 @@
  */
 package gr.aueb.android.barista.emulator.adb;
 
-import gr.aueb.android.barista.emulator.adb.ADBClient;
+
+import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -52,7 +53,7 @@ public class ADBClientTest {
         ArrayList<String> l = adbClient.getConnectedDevices();
         adbClient.resetDimension(l.get(0));
         adbClient.changeDimension(l.get(0),500,600);
-        SizeDto currentSize = adbClient.getOverrideSize(l.get(0));
+        WmSizeDTO currentSize = adbClient.getOverrideSize(l.get(0));
         assertEquals(500,currentSize.getWidth());
         assertEquals(600,currentSize.getHeight());
 

@@ -9,14 +9,11 @@
  */
 package gr.aueb.android.barista.core.executor;
 
-import gr.aueb.android.barista.core.model.AbstractTelnetCommand;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.EmulatorException;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
 import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
-import gr.aueb.android.barista.emulator.telnet.command.GeoFixCommand;
-import gr.aueb.android.barista.server.HttpServerManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.io.File;

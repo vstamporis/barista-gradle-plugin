@@ -17,8 +17,10 @@ import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 
 import gr.aueb.android.barista.rest.dto.CommandDTO;
+import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import gr.aueb.android.barista.rest.mapper.CommandListMapper;
 
+import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.glassfish.grizzly.http.server.Request;
 
 
@@ -121,35 +123,35 @@ public class CommandResource {
         return Response.serverError().build();
     }
 
-    @GET
-    @Path("/geofix")
-    public Response setGeoFix(@QueryParam("token") String token,
-                          @QueryParam("lat") double latitude,
-                          @QueryParam("longt") double longtitude){
-
-        ADBClient client = ADBClient.getInstance();
-        String emulatorID = client.verifyToken(token);
-
-        if(emulatorID != null) {
-            int emulatorPort = Integer.parseInt(emulatorID.split("-")[1]);
-            HttpServerManager.executeGeoFix(latitude, longtitude, emulatorID, emulatorPort);
-            return Response.ok().build();
-        }
-
-        return Response.serverError().build();
-
-    }
+//    @GET
+//    @Path("/geofix")
+//    public Response setGeoFix(@QueryParam("token") String token,
+//                          @QueryParam("lat") double latitude,
+//                          @QueryParam("longt") double longtitude){
+//
+//        ADBClient client = ADBClient.getInstance();
+//        String emulatorID = client.verifyToken(token);
+//
+//        if(emulatorID != null) {
+//            int emulatorPort = Integer.parseInt(emulatorID.split("-")[1]);
+//            HttpServerManager.executeGeoFix(latitude, longtitude, emulatorID, emulatorPort);
+//            return Response.ok().build();
+//        }
+//
+//        return Response.serverError().build();
+//
+//    }
 
     @GET
     @Path("/actualSize")
     @Produces({MediaType.APPLICATION_JSON})
-    public SizeDto getOverrideSize(@QueryParam("token") String token){
+    public WmSizeDTO getOverrideSize(@QueryParam("token") String token){
 
         ADBClient client = ADBClient.getInstance();
         String emulatorID = client.verifyToken(token);
 
         if(emulatorID != null) {
-            SizeDto size = client.getOverrideSize(emulatorID);
+            WmSizeDTO size = client.getOverrideSize(emulatorID);
             return size;
         }
 
@@ -181,6 +183,7 @@ public class CommandResource {
 
         CommandExecutor executor = CommandExecutorFactory.getCommandExecutor();
         Command cmd = command.toDomainObject();
+        BaristaLogger.print("Command arrived: "+cmd.getCommandString());
 
         try {
             executor.executeCommand(cmd);

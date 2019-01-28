@@ -9,7 +9,7 @@
  */
 package gr.aueb.android.barista.server.test_utils;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
-import gr.aueb.android.barista.emulator.adb.SizeDto;
+import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
@@ -106,11 +106,11 @@ public class WebServiceControllerTest extends JerseyTest {
                 .queryParam("height",height)
                 .queryParam("width",width).request().get();
 
-        SizeDto r = target("/actualSize")
+        WmSizeDTO r = target("/actualSize")
                 .queryParam("token",token)
                 .request()
                 .accept(MediaType.APPLICATION_JSON)
-                .get(SizeDto.class);
+                .get(WmSizeDTO.class);
 
         assertEquals(600,r.getWidth());
         assertEquals(500,r.getHeight());

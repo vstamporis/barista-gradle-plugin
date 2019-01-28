@@ -1,7 +1,9 @@
 package gr.aueb.android.barista.rest.impl;
 
+import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.model.Command;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,17 @@ public class CommandExecutorImplStub implements CommandExecutor {
 
     @Override
     public void executeAdbCommand(Command command) {
+        BaristaLogger.print("EXECUTOR-STUB: executing ADB command");
+        String commandStr = command.getCommandString();
+        String sessionToken = command.getSessionToken();
 
+        String finalADBCommand = "adb -s "+sessionToken+" "+commandStr;
+        BaristaLogger.print(finalADBCommand);
     }
 
     @Override
     public void executeTelnetCommand(Command command) {
-
+        BaristaLogger.print("EXECUTOR-STUB: executing Telnet command");
     }
 
     @Override
@@ -27,6 +34,18 @@ public class CommandExecutorImplStub implements CommandExecutor {
 
     @Override
     public void executeCommand(Command cmd) {
+        BaristaLogger.print("EXECUTOR STUB - exxecute command: "+cmd.getCommandString());
         commands.add(cmd);
+        cmd.accept(this);
+    }
+
+    @Override
+    public void setAdbCommandClient(CommandClient adbCommandClient) {
+
+    }
+
+    @Override
+    public void setTelnetCommandClient(CommandClient adbCommandClient) {
+
     }
 }
