@@ -98,24 +98,24 @@ public class HttpServerManager {
         BASE_URI = "http://localhost:"+port+"/barista/";
     }
 
-    public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
-        BaristaLogger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
-        String homeDirectory = System.getProperty("user.home");
-        if (homeDirectory == null){
-            BaristaLogger.print("Please set the home variable");
-            return false;
-        }
-
-        ConnectionManager connectionManager = ConnectionManager.createInstance(homeDirectory + File.separatorChar + ".emulator_console_auth_token");
-        // FIXME: By Default connects to a single emulator. Must find a way to identify the emulator that issues a request
-        TelnetConnection telnetConnection  = null;
-        try {
-            telnetConnection = connectionManager.connect(emulatorID, "localhost", emulatorPort);
-        } catch (EmulatorException e) {
-            e.printStackTrace();
-        }
-
-
-       return  telnetConnection.command(new GeoFixCommand(lat, longt));
-    }
+//    public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
+//        BaristaLogger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
+//        String homeDirectory = System.getProperty("user.home");
+//        if (homeDirectory == null){
+//            BaristaLogger.print("Please set the home variable");
+//            return false;
+//        }
+//
+//        ConnectionManager connectionManager = ConnectionManager.createInstance(homeDirectory + File.separatorChar + ".emulator_console_auth_token");
+//        // FIXME: By Default connects to a single emulator. Must find a way to identify the emulator that issues a request
+//        TelnetConnection telnetConnection  = null;
+//        try {
+//            telnetConnection = connectionManager.connect(emulatorID, "localhost", emulatorPort);
+//        } catch (EmulatorException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//       return  telnetConnection.command(new GeoFixCommand(lat, longt));
+//    }
 }
