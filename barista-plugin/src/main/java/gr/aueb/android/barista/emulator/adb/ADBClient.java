@@ -15,6 +15,7 @@ package gr.aueb.android.barista.emulator.adb;
  */
 
 
+import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.io.*;
@@ -222,13 +223,13 @@ public class ADBClient {
      * Returns the Override size as returned from the 'adb -s [emulatorId] shell wm size'.
      * Mainly used for testing purposes.
      * @param emulatorID The emulatorId
-     * @return A SizeDto @See SizeDto.If not overided size is found null is returned.
+     * @return A WmSizeDTO {@See WmSizeDTO.If not overided size is found null is returned.
      *          The SizeDto instance will contain only width and height properties
      */
-    public SizeDto getOverrideSize(String emulatorID){
+    public WmSizeDTO getOverrideSize(String emulatorID){
         BaristaLogger.print("Calling getActualSize");
         try {
-            SizeDto currentScreen = new SizeDto();
+            WmSizeDTO currentScreen = new WmSizeDTO();
 
             // build command
             ProcessBuilder pb = new ProcessBuilder("adb", "-s", emulatorID,"shell","wm","size");
