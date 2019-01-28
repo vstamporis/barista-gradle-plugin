@@ -1,27 +1,46 @@
 package gr.aueb.android.barista.core.model;
 
-public class WmSize extends AbstractCommand {
+public class WmSize extends AbstractAdbCommand {
 
     int width;
     int height;
+
     boolean reset;
     DimensionUnit unit = DimensionUnit.PIXEL;
+    public static final String WM_SIZE = "shell wm size";
 
     public WmSize(){
 
     }
 
-    @Override
-    public String getCommandString() {
-        return null;
-    }
 
+    /**
+     *
+     * @param sessionToken
+     * @param width
+     * @param height
+     * @param reset
+     * @param unit
+     */
     public WmSize(String sessionToken, int width, int height, boolean reset, DimensionUnit unit) {
         super(sessionToken);
         this.width = width;
         this.height = height;
         this.reset = reset;
         this.unit = unit;
+    }
+
+    @Override
+    public String getCommandString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(WM_SIZE)
+                .append(" ")
+                .append(Integer.toString(width))
+                .append("x")
+                .append(Integer.toString(height));
+
+        String command = buffer.toString();
+        return command;
     }
 
     public int getWidth() {

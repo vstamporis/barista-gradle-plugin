@@ -7,6 +7,16 @@ public class WmDensity extends AbstractAdbCommand {
     public WmDensity() {
     }
 
+    /**
+     *
+     * @param sessionToken
+     * @param density
+     */
+    public WmDensity(String sessionToken, int density) {
+        super(sessionToken);
+        this.density = density;
+    }
+
     @Override
     public String getCommandString() {
         return null;

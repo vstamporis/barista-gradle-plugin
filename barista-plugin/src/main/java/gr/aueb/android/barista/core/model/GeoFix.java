@@ -25,6 +25,12 @@ public class GeoFix extends AbstractTelnetCommand {
         return command;
     }
 
+    /**
+     *
+     * @param sessionToken
+     * @param latitude
+     * @param longitude
+     */
     public GeoFix(String sessionToken, double latitude, double longitude) {
         super(sessionToken);
         this.latitude = latitude;

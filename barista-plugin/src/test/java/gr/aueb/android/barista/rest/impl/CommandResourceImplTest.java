@@ -61,7 +61,9 @@ public class CommandResourceImplTest extends JerseyTest {
         Entity entity = Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE);
         System.out.println(entity.getEntity());
 
-        Response response = target("/execute").request().post(Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE));
+        Response response = target("/execute")
+                            .request()
+                            .post(Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE));
         assertThat(response.getStatus(), is(equalTo(200)));
         assertThat(commandExecutorImplStub.commands.size(), is(equalTo(1)));
 
@@ -77,9 +79,12 @@ public class CommandResourceImplTest extends JerseyTest {
         commandList.add(new WmSizeDTO("2", 2048, 1560, false, DimensionUnit.PIXEL.toString()));
         commandList.add(new WmDensityDTO("2", 320));
 
-        Response response = target("/executeAll").request().post(Entity.entity(new GenericEntity<List<CommandDTO>>(commandList){}, MediaType.APPLICATION_JSON_TYPE));
+        Response response = target("/executeAll")
+                            .request()
+                            .post(Entity.entity(new GenericEntity<List<CommandDTO>>(commandList){}, MediaType.APPLICATION_JSON_TYPE));
         assertThat(response.getStatus(), is(equalTo(200)));
         assertThat(commandExecutorImplStub.commands.size(), is(equalTo(4)));
+
 
     }
 }
