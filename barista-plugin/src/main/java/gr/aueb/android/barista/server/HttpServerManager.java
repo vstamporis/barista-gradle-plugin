@@ -9,12 +9,8 @@
  */
 package gr.aueb.android.barista.server;
 
-import gr.aueb.android.barista.emulator.EmulatorException;
 import gr.aueb.android.barista.emulator.TestMonitor;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
-import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
-import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
-import gr.aueb.android.barista.emulator.telnet.command.GeoFixCommand;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -39,18 +35,23 @@ public class HttpServerManager {
     public static void  startServer() {
 
         // create a resource config that scans for JAX-RS resources and providers in server package
-        final ResourceConfig rc = new ResourceConfig().packages("gr/aueb/android/barista/server");
+        //final ResourceConfig rc = new ResourceConfig().packages("gr/aueb/android/barista/server");
+        final ResourceConfig baristaConfiguration = new BaristaApplication();
 
         //todo propably unreached code
         if(serverInstance !=null){
             // if for any reason server instance is running (not null) then shut down
             serverInstance.shutdownNow();
         }
+        // first initialization of ADBClient where emulators are recognized
+        //todo must migrate the role of device manager to another class
         ADBClient client = ADBClient.getInstance();
+
         // initialize TestMonitor
         TestMonitor.setRunningTests(client.getConnectedDevices().size());
+
         // create and start a new instance of grizzly http server exposing the Jersey application at BASE_URI
-        serverInstance =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+        serverInstance =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), baristaConfiguration);
 
 
     }
