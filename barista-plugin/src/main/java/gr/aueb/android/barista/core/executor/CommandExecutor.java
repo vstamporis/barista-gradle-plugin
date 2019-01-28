@@ -13,4 +13,8 @@ public interface CommandExecutor {
     void executeCommands(List<Command> commandList);
 
     void executeCommand(Command cmd);
+
+    void setAdbCommandClient(CommandClient adbCommandClient);
+
+    void setTelnetCommandClient(CommandClient adbCommandClient);
 }
