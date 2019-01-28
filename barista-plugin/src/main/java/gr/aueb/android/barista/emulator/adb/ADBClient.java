@@ -152,6 +152,11 @@ public class ADBClient {
         try {
             BaristaLogger.print("Resizing "+emulatorID+" to "+width+"x"+height);
             Process p = Runtime.getRuntime().exec("adb -s "+emulatorID+" shell wm size " + width + "x" + height);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -171,6 +176,11 @@ public class ADBClient {
         try {
             BaristaLogger.print("Reseting screen size for device "+deviceID);
             Process p = Runtime.getRuntime().exec("adb -s "+deviceID+" shell wm size reset");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -191,6 +201,7 @@ public class ADBClient {
         BaristaLogger.print("Pushing access token to device:"+ emulatorID);
         BaristaLogger.print("Executing: "+"adb -s "+emulatorID+" push "+filePath+" "+destination);
         ProcessBuilder pb = new ProcessBuilder("adb", "-s", emulatorID,"push",filePath,destination);
+
        // pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
         //todo maybe handle the error output and return false values in case of error
         pb.redirectError(ProcessBuilder.Redirect.INHERIT);
