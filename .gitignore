@@ -4,3 +4,5 @@ barista-plugin/.idea/
 consumer/.idea/
 barista-plugin/out/
 barista-plugin/gradle/
+.gradle/
+.idea/
