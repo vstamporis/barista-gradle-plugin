@@ -20,15 +20,18 @@ import gr.aueb.android.barista.core.model.WmSize;
 })
 public abstract class CommandDTO<T extends Command> {
 
+
+
     public CommandDTO(){
 
     }
+
+    private String sessionToken;
 
     public CommandDTO(String sessionToken) {
         this.sessionToken = sessionToken;
     }
 
-    private String sessionToken;
 
     public String getSessionToken() {
         return sessionToken;

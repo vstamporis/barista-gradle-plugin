@@ -21,10 +21,15 @@ public abstract class AbstractCommand implements Command{
     }
 
     @Override
+    public  void setSessionToken(String sessionToken){ this.sessionToken = sessionToken;}
+
+    @Override
     public abstract String getCommandString();
 
     @Override
     public void accept(CommandExecutor executor) {
 
     }
+
+
 }

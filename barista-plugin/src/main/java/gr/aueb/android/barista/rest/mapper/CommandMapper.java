@@ -6,7 +6,10 @@ import gr.aueb.android.barista.core.model.WmSize;
 import gr.aueb.android.barista.rest.dto.GeoFixDTO;
 import gr.aueb.android.barista.rest.dto.WmDensityDTO;
 import gr.aueb.android.barista.rest.dto.WmSizeDTO;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -17,6 +20,7 @@ public interface CommandMapper {
     GeoFix fromGeoFixDTO(GeoFixDTO geoFixDTO);
 
     WmSize fromWmSizeDTO(WmSizeDTO wmSizeDTO);
+
 
     WmDensity fromWmDensityDTO(WmDensityDTO wmDensityDTO);
 

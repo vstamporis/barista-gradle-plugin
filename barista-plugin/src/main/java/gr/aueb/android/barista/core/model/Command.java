@@ -12,5 +12,7 @@ public interface Command {
 
     String getCommandString();
 
+    void setSessionToken(String sessionToken);
+
     void accept(CommandExecutor executor);
 }
