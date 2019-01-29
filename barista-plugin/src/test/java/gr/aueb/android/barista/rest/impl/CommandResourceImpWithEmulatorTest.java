@@ -1,6 +1,7 @@
 package gr.aueb.android.barista.rest.impl;
 
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
+import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
@@ -28,9 +29,14 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class CommandResourceImplTest extends JerseyTest {
+public class CommandResourceImpWithEmulatorTest extends JerseyTest {
 
     private static EmulatorManager emulator;
+
+    @BeforeClass
+    public static void initialize(){
+        emulator = EmulatorManager.getManager();
+    }
 
     @Override
     protected Application configure() {
@@ -46,21 +52,21 @@ public class CommandResourceImplTest extends JerseyTest {
         config.register(new JacksonFeature()).register(MyObjectMapperProvider.class);
     }
 
-    CommandExecutorImplStub commandExecutorImplStub;
+    CommandExecutorImpl commandExecutorImpl;
 
     @Before
     public void setup(){
 
-        commandExecutorImplStub = new CommandExecutorImplStub();
-        // Configure CommandExecutorImpl
-        CommandExecutorFactory.setStub(commandExecutorImplStub);
+        commandExecutorImpl = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
 
     }
 
     @Test
     public void executeSingleCommand(){
 
-        CommandDTO commandDTO = new WmSizeDTO("1", 1280, 800, false, DimensionUnit.DPI.toString());
+        String token = EmulatorManager.getManager().getTokenMap().keys().nextElement();
+
+        CommandDTO commandDTO = new WmSizeDTO(token, 1280, 800, false, DimensionUnit.DPI.toString());
 
         Entity entity = Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE);
         System.out.println(entity.getEntity());
@@ -69,29 +75,12 @@ public class CommandResourceImplTest extends JerseyTest {
                             .request()
                             .post(Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE));
         assertThat(response.getStatus(), is(equalTo(200)));
-        assertThat(commandExecutorImplStub.commands.size(), is(equalTo(1)));
 
-
-    }
-
-
-
-    @Test
-    public void executeCommandList(){
-
-        CommandDTO commandDTO = new WmSizeDTO("1", 1280, 800, false, DimensionUnit.DPI.toString());
-        List<CommandDTO> commandList = new ArrayList<>();
-        commandList.add(new WmSizeDTO("1", 1280, 800, false, DimensionUnit.DPI.toString()));
-        commandList.add(new WmDensityDTO("1", 240));
-        commandList.add(new WmSizeDTO("2", 2048, 1560, false, DimensionUnit.PIXEL.toString()));
-        commandList.add(new WmDensityDTO("2", 320));
-
-        Response response = target("/executeAll")
-                            .request()
-                            .post(Entity.entity(new GenericEntity<List<CommandDTO>>(commandList){}, MediaType.APPLICATION_JSON_TYPE));
-        assertThat(response.getStatus(), is(equalTo(200)));
-        assertThat(commandExecutorImplStub.commands.size(), is(equalTo(4)));
-
+        WmSizeDTO realSize = emulator.getOverrideSize(emulator.verifyToken(token));
+        assertThat(realSize.getHeight(),is(equalTo(800)));
 
     }
+
+
+
 }
