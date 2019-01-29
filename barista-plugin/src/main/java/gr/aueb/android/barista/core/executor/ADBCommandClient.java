@@ -10,6 +10,7 @@
 package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
@@ -26,7 +27,7 @@ public class ADBCommandClient implements CommandClient {
         // find emulator by command.getSessionId()
         String token = cmd.getSessionToken();
         String strCommand = cmd.getCommandString();
-        String deviceId = ADBClient.getInstance().verifyToken(token);
+        String deviceId = EmulatorManager.getManager().verifyToken(token);
         // execute command
         BaristaLogger.print("Must execute ADB command: "+strCommand+" for emulator: "+deviceId);
 

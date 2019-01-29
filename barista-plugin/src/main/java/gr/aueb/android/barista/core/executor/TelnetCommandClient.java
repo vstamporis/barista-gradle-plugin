@@ -11,6 +11,7 @@ package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.EmulatorException;
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
 import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
@@ -20,10 +21,11 @@ import java.io.File;
 
 public class TelnetCommandClient implements CommandClient {
 
+
     @Override
     public void executeCommand(Command cmd) {
 
-        ADBClient client = ADBClient.getInstance();
+        EmulatorManager client = EmulatorManager.getManager();
         String emulatorID = client.verifyToken(cmd.getSessionToken());
 
         if (emulatorID != null) {
@@ -46,25 +48,5 @@ public class TelnetCommandClient implements CommandClient {
             telnetConnection.command(cmd);
         }
 
-//    public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
-//        BaristaLogger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
-//        String homeDirectory = System.getProperty("user.home");
-//        if (homeDirectory == null){
-//            BaristaLogger.print("Please set the home variable");
-//            return false;
-//        }
-//
-//        ConnectionManager connectionManager = ConnectionManager.createInstance(homeDirectory + File.separatorChar + ".emulator_console_auth_token");
-//        // FIXME: By Default connects to a single emulator. Must find a way to identify the emulator that issues a request
-//        TelnetConnection telnetConnection  = null;
-//        try {
-//            telnetConnection = connectionManager.connect(emulatorID, "localhost", emulatorPort);
-//        } catch (EmulatorException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        return  telnetConnection.command(new GeoFixCommand(lat, longt));
-//    }
     }
 }

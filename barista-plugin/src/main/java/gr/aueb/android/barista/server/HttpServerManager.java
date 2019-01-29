@@ -9,14 +9,12 @@
  */
 package gr.aueb.android.barista.server;
 
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.TestMonitor;
-import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-
-import java.io.File;
 import java.net.URI;
 
 public class HttpServerManager {
@@ -45,7 +43,7 @@ public class HttpServerManager {
         }
         // first initialization of ADBClient where emulators are recognized
         //todo must migrate the role of device manager to another class
-        ADBClient client = ADBClient.getInstance();
+        EmulatorManager client = EmulatorManager.getManager();
 
         // initialize TestMonitor
         TestMonitor.setRunningTests(client.getConnectedDevices().size());
@@ -65,18 +63,14 @@ public class HttpServerManager {
      */
     public static void stopServer(){
 
-        ADBClient adbClient = ADBClient.getInstance();
-
         BaristaLogger.print("Signal to kill Server. Current tests:"+ TestMonitor.getRuningTests());
         //todo change test check role
-
 
         TestMonitor.testFinished();
 
         if(! TestMonitor.hasActiveTests()) {
             BaristaLogger.print("Last Test finished. Stoping Server");
             serverInstance.shutdownNow();
-            //resetDevice();
         }else{
             BaristaLogger.print("Test finished. Remaining: "+TestMonitor.getRuningTests());
         }
@@ -99,24 +93,5 @@ public class HttpServerManager {
         BASE_URI = "http://localhost:"+port+"/barista/";
     }
 
-//    public static boolean executeGeoFix(double lat, double longt, String emulatorID, int emulatorPort){
-//        BaristaLogger.print("Executing geofix on "+emulatorID+" port: "+emulatorPort);
-//        String homeDirectory = System.getProperty("user.home");
-//        if (homeDirectory == null){
-//            BaristaLogger.print("Please set the home variable");
-//            return false;
-//        }
-//
-//        ConnectionManager connectionManager = ConnectionManager.createInstance(homeDirectory + File.separatorChar + ".emulator_console_auth_token");
-//        // FIXME: By Default connects to a single emulator. Must find a way to identify the emulator that issues a request
-//        TelnetConnection telnetConnection  = null;
-//        try {
-//            telnetConnection = connectionManager.connect(emulatorID, "localhost", emulatorPort);
-//        } catch (EmulatorException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//       return  telnetConnection.command(new GeoFixCommand(lat, longt));
-//    }
+
 }

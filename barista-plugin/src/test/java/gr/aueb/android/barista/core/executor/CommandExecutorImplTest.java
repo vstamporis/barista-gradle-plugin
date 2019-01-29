@@ -5,6 +5,7 @@ import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.core.model.GeoFix;
 import gr.aueb.android.barista.core.model.WmSize;
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,7 +24,7 @@ public class CommandExecutorImplTest {
     @Test
     public void executeAdbCommand() {
 
-        String  token = ADBClient.getInstance().getTokenMap().keySet().iterator().next();
+        String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
 
         Command c = new WmSize(token,500,600,false, DimensionUnit.PIXEL);
         executor.executeAdbCommand(c);
@@ -32,8 +33,7 @@ public class CommandExecutorImplTest {
 
     @Test
     public void executeTelnetCommand() {
-        String  token = ADBClient.getInstance().getTokenMap().keySet().iterator().next();
-
+        String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
         Command c = new GeoFix(token, 62.5000, 79.000);
         executor.executeTelnetCommand(c);
     }
