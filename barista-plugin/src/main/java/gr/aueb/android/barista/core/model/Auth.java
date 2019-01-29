@@ -1,6 +1,6 @@
 package gr.aueb.android.barista.core.model;
 
-import gr.aueb.android.barista.emulator.telnet.command.TelnetCommand;
+
 
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git

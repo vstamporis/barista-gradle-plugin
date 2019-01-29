@@ -14,6 +14,7 @@ import gr.aueb.android.barista.core.executor.CommandException;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.model.Command;
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 
 import gr.aueb.android.barista.rest.dto.CommandDTO;
@@ -50,6 +51,7 @@ public class CommandResource {
     @GET
     @Path("status")
     @Produces(MediaType.TEXT_PLAIN)
+    @Deprecated
     public String sayHello(){
 
         return GREETING_MSG;
@@ -60,26 +62,28 @@ public class CommandResource {
      * todo DEBUG-ONLY
      * @return
      */
-    @GET
-    @Path("status2")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String sayHello2(){
-        return GREETING_MSG;
-    }
-
-    /**
-     * Echoes the submited data. Assumes is plain text or JSONed String.
-     * DEBUG-ONLY
-     * @param originalMsg
-     * @return
-     */
-    @POST
-    @Path("echo")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-    public String echoMessage(String originalMsg){
-        return "ECHOING: "+originalMsg;
-    }
+//    @GET
+//    @Path("status2")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Deprecated
+//    public String sayHello2(){
+//        return GREETING_MSG;
+//    }
+//
+//    /**
+//     * Echoes the submited data. Assumes is plain text or JSONed String.
+//     * DEBUG-ONLY
+//     * @param originalMsg
+//     * @return
+//     */
+//    @POST
+//    @Path("echo")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+//    @Deprecated
+//    public String echoMessage(String originalMsg){
+//        return "ECHOING: "+originalMsg;
+//    }
 
     /**
      * Self-destruct service. Shuts down the server.
@@ -91,37 +95,39 @@ public class CommandResource {
         HttpServerManager.stopServer();
     }
 
+//
+//    @GET
+//    @Path("/setDimension")
+//    @Deprecated
+//    public Response setDimension(@QueryParam("token") String token,
+//                             @QueryParam("height") String height,
+//                             @QueryParam("width") String width){
+//
+//
+//        ADBClient adbClient = ADBClient.getInstance();
+//        String emulatorID = adbClient.verifyToken(token);
+//
+//        if(emulatorID != null){
+//            int h = Integer.parseInt(height);
+//            int w = Integer.parseInt(width);
+//            adbClient.changeDimension(emulatorID,w,h);
+//            return Response.ok().build();
+//        }
+//        return Response.serverError().build();
+//    }
 
-    @GET
-    @Path("/setDimension")
-    public Response setDimension(@QueryParam("token") String token,
-                             @QueryParam("height") String height,
-                             @QueryParam("width") String width){
-
-
-        ADBClient adbClient = ADBClient.getInstance();
-        String emulatorID = adbClient.verifyToken(token);
-
-        if(emulatorID != null){
-            int h = Integer.parseInt(height);
-            int w = Integer.parseInt(width);
-            adbClient.changeDimension(emulatorID,w,h);
-            return Response.ok().build();
-        }
-        return Response.serverError().build();
-    }
-
-    @GET
-    @Path("/reset")
-    public Response resetDimension(@QueryParam("token") String token){
-        if (token != null) {
-            ADBClient adbClient = ADBClient.getInstance();
-            String emulatorID = adbClient.verifyToken(token);
-            adbClient.resetDimension(emulatorID);
-            return Response.ok().build();
-        }
-        return Response.serverError().build();
-    }
+//    @GET
+//    @Path("/reset")
+//    @Deprecated
+//    public Response resetDimension(@QueryParam("token") String token){
+//        if (token != null) {
+//            ADBClient adbClient = ADBClient.getInstance();
+//            String emulatorID = adbClient.verifyToken(token);
+//            adbClient.resetDimension(emulatorID);
+//            return Response.ok().build();
+//        }
+//        return Response.serverError().build();
+//    }
 
 //    @GET
 //    @Path("/geofix")
@@ -147,7 +153,7 @@ public class CommandResource {
     @Produces({MediaType.APPLICATION_JSON})
     public WmSizeDTO getOverrideSize(@QueryParam("token") String token){
 
-        ADBClient client = ADBClient.getInstance();
+        EmulatorManager client = EmulatorManager.getManager();
         String emulatorID = client.verifyToken(token);
 
         if(emulatorID != null) {

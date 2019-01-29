@@ -12,14 +12,13 @@ package gr.aueb.android.barista.emulator.telnet;
 import gr.aueb.android.barista.emulator.EmulatorException;
 import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
 import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
-import gr.aueb.android.barista.emulator.telnet.command.GeoFixCommand;
-import gr.aueb.android.barista.emulator.telnet.command.Help;
+
 import org.junit.Test;
 
 import java.io.File;
 
 import static org.junit.Assert.assertTrue;
-
+@Deprecated
 public class TelnetTest {
 
     /**
