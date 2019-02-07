@@ -1,11 +1,12 @@
 package gr.aueb.android.barista.rest.impl;
 
+
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
-import gr.aueb.android.barista.rest.dto.WmDensityDTO;
+import gr.aueb.android.barista.rest.dto.GeoFixDTO;
 import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import gr.aueb.android.barista.server.BaristaApplication;
 import gr.aueb.android.barista.server.MyObjectMapperProvider;
@@ -62,7 +63,7 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
     }
 
     @Test
-    public void executeSingleCommand(){
+    public void executeSetSizeCommandWithREST(){
 
         String token = EmulatorManager.getManager().getTokenMap().keys().nextElement();
 
@@ -78,6 +79,23 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
 
         WmSizeDTO realSize = emulator.getOverrideSize(emulator.verifyToken(token));
         assertThat(realSize.getHeight(),is(equalTo(800)));
+
+    }
+
+    @Test
+    public void executeGeoFixCommandWithREST(){
+
+        String token = EmulatorManager.getManager().getTokenMap().keys().nextElement();
+        CommandDTO geofix = new GeoFixDTO(token,62.888888, 102.42999);
+
+
+        Entity entity = Entity.entity(geofix, MediaType.APPLICATION_JSON_TYPE);
+        System.out.println(entity.getEntity());
+
+        Response response = target("/execute")
+                .request()
+                .post(Entity.entity(geofix, MediaType.APPLICATION_JSON_TYPE));
+        assertThat(response.getStatus(), is(equalTo(200)));
 
     }
 
