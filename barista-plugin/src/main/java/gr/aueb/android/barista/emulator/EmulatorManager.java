@@ -49,6 +49,14 @@ public class EmulatorManager {
     }
 
     /**
+     * Instatiates again the emulator manager in order to refresh and re - assign tokens to the devices
+     *
+     */
+    public static void revalidate() {
+        INSTANCE = new EmulatorManager();
+    }
+
+    /**
      * Returns the emulator-id based on the token provided
      * @return The emulator-id or null
      */
