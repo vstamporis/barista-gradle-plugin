@@ -43,7 +43,6 @@ public class EmulatorManager {
 
     public static EmulatorManager getManager(){
         if(INSTANCE == null){
-            BaristaLogger.print("Creating Emulator Managar");
             INSTANCE = new EmulatorManager();
         }
         return INSTANCE;
@@ -63,7 +62,6 @@ public class EmulatorManager {
      * @return The list containing all the ids of the connected devices in String format
      */
     public ArrayList<String> getConnectedDevices(){
-        BaristaLogger.print("Geting all connected devices");
         ArrayList<String> result = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("adb devices"); // list connected devices
@@ -76,7 +74,6 @@ public class EmulatorManager {
             while((line = stdOut.readLine()) != null){          //parse lines of output stream
                 if(!line.isEmpty()) {                                      // expected output is 'emulator-xxxx device'.
                     String deviceId = line.split("\t")[0];    // get only 'emulator-xxxx' part
-                    BaristaLogger.print("Device found: "+deviceId);
                     result.add(deviceId);
                 }
             }
@@ -84,7 +81,6 @@ public class EmulatorManager {
             return result;
 
         } catch (IOException e) {
-            BaristaLogger.print("Error listing connected devices.");
             e.printStackTrace();
             return null;
         }
@@ -97,7 +93,6 @@ public class EmulatorManager {
      *
      */
     private void generateDeviceToken(String emulatorID){
-
 
         if(this.connectedDevices.contains(emulatorID)) {
             // generate a unique ID
@@ -116,8 +111,6 @@ public class EmulatorManager {
                 printWriter.close();
 
             } catch (IOException e) {
-                BaristaLogger.print("Error generating session token file on host machine. "+e.getMessage());
-
                 e.printStackTrace();
             }
 
@@ -161,7 +154,6 @@ public class EmulatorManager {
                 ;;
             }
         } catch (IOException e) {
-            BaristaLogger.print("Error trying to push session token to target device. "+e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -223,10 +215,6 @@ public class EmulatorManager {
             return null;
         }
 
-    }
-
-    public static void revalidate(){
-        INSTANCE = new EmulatorManager();
     }
 
 }
