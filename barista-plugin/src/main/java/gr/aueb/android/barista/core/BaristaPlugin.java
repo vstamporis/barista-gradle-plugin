@@ -63,8 +63,9 @@ public class BaristaPlugin implements Plugin<Project> {
                         hookPortConfiguration();
 
                         // deploy the server when ready to run connected tests
+                        BaristaLogger.print("Deploying Server");
                         deployDispatcherServer(targetTask);
-
+                        BaristaLogger.print("Server Deployed");
                         // stop server when connected android tests finishes
                         hookServerStopTask();
 
@@ -101,17 +102,19 @@ public class BaristaPlugin implements Plugin<Project> {
 
     private void deployDispatcherServer(Task targetTask){
 
-        targetTask.doLast(new Action<Task>() {
+        targetTask.doLast("startServer",new Action<Task>() {
+
             @Override
             public void execute(Task task) {
-
+                BaristaLogger.print("LETS START");
+                BaristaLogger.print("Trying to start Server on "+ HttpServerManager.getBaseUri());
                 // load the provided extension settings
                 BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
-
 
                 if(settings != null){   // if settings are provided
 
                     // configure server to run on the provided listening port
+                    BaristaLogger.print("Setting listening port to "+settings.getPort() );
                     HttpServerManager.setPort(settings.getPort());
                 }
 
@@ -120,6 +123,8 @@ public class BaristaPlugin implements Plugin<Project> {
                 HttpServerManager.startServer();
             }
         });
+
+
     }
 
     // Jersey server should be automaticaly shut down when connectedAndroidTest task is completed
@@ -159,7 +164,7 @@ public class BaristaPlugin implements Plugin<Project> {
 
     /**
      * Function that returns the android extension of the android project.
-     * This will expose the confidurations given by the developer inside the android gradle.build block
+     * This will expose the configurations given by the developer inside the android gradle.build block
      * @return
      */
     private BaseAppModuleExtension getAndroidExtension(){
