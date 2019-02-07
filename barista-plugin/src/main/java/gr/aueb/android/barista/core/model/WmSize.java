@@ -1,5 +1,7 @@
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.core.executor.CommandClient;
+
 public class WmSize extends AbstractAdbCommand {
 
     int width;
@@ -41,6 +43,14 @@ public class WmSize extends AbstractAdbCommand {
 
         String command = buffer.toString();
         return command;
+    }
+
+    @Override
+    public boolean isCompleted(CommandClient client){
+        WmGetSize getSize = new WmGetSize(this.getSessionToken());
+        client.executeCommand(getSize);
+
+        return false;
     }
 
     public int getWidth() {

@@ -14,17 +14,22 @@ import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ADBCommandClient implements CommandClient {
 
     private final String ADB_COMMAND = "adb";
 
+    //todo use interface for result - for size now
     @Override
     public void executeCommand(Command cmd) {
         // find emulator by command.getSessionId()
+
         String token = cmd.getSessionToken();
         String strCommand = cmd.getCommandString();
         String deviceId = EmulatorManager.getManager().verifyToken(token);
@@ -48,6 +53,13 @@ public class ADBCommandClient implements CommandClient {
             pb.command(commandList);
             Process p = pb.start();
             p.waitFor();
+            //read the output
+            BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            Stream<String> resultStream = output.lines();
+            cmd.parseResult(resultStream);
+
+            output.close();
+
         } catch (IOException e) {
             BaristaLogger.print("Exception occured: "+e.getMessage());
             e.printStackTrace();

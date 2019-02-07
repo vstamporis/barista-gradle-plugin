@@ -1,7 +1,10 @@
 package gr.aueb.android.barista.core.model;
 
 
+import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
+
+import java.util.stream.Stream;
 
 public abstract class AbstractCommand implements Command{
 
@@ -28,6 +31,16 @@ public abstract class AbstractCommand implements Command{
 
     @Override
     public void accept(CommandExecutor executor) {
+
+    }
+
+    @Override
+    public boolean isCompleted(CommandClient client) {
+        return true;
+    }
+
+    @Override
+    public void parseResult(Stream<String> resultLines) {
 
     }
 
