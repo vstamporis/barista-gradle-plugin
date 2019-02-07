@@ -3,15 +3,15 @@
  * Created On: 28/1/2019
  * Project: barista-plugin
  * <p>
- * ClassName: WmResize
+ * ClassName: WmReset
  * Role:
  * Description:
  */
 package gr.aueb.android.barista.core.model;
 
-public class WmResize extends AbstractAdbCommand {
+public class WmReset extends AbstractAdbCommand {
 
-    public WmResize(String sessionToken){
+    public WmReset(String sessionToken){
         super(sessionToken);
     }
 
