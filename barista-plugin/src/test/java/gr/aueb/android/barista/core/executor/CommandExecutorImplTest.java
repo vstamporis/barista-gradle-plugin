@@ -1,12 +1,10 @@
 package gr.aueb.android.barista.core.executor;
 
-import gr.aueb.android.barista.DataHelper;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.core.model.GeoFix;
 import gr.aueb.android.barista.core.model.WmSize;
 import gr.aueb.android.barista.emulator.EmulatorManager;
-import gr.aueb.android.barista.emulator.adb.ADBClient;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

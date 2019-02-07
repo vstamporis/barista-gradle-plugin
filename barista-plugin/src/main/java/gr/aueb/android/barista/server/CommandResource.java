@@ -51,7 +51,6 @@ public class CommandResource {
     @GET
     @Path("status")
     @Produces(MediaType.TEXT_PLAIN)
-    @Deprecated
     public String sayHello(){
 
         return GREETING_MSG;
@@ -95,39 +94,39 @@ public class CommandResource {
         HttpServerManager.stopServer();
     }
 
-//
-//    @GET
-//    @Path("/setDimension")
-//    @Deprecated
-//    public Response setDimension(@QueryParam("token") String token,
-//                             @QueryParam("height") String height,
-//                             @QueryParam("width") String width){
-//
-//
-//        ADBClient adbClient = ADBClient.getInstance();
-//        String emulatorID = adbClient.verifyToken(token);
-//
-//        if(emulatorID != null){
-//            int h = Integer.parseInt(height);
-//            int w = Integer.parseInt(width);
-//            adbClient.changeDimension(emulatorID,w,h);
-//            return Response.ok().build();
-//        }
-//        return Response.serverError().build();
-//    }
 
-//    @GET
-//    @Path("/reset")
-//    @Deprecated
-//    public Response resetDimension(@QueryParam("token") String token){
-//        if (token != null) {
-//            ADBClient adbClient = ADBClient.getInstance();
-//            String emulatorID = adbClient.verifyToken(token);
-//            adbClient.resetDimension(emulatorID);
-//            return Response.ok().build();
-//        }
-//        return Response.serverError().build();
-//    }
+    @GET
+    @Path("/setDimension")
+    @Deprecated
+    public Response setDimension(@QueryParam("token") String token,
+                             @QueryParam("height") String height,
+                             @QueryParam("width") String width){
+
+
+        ADBClient adbClient = ADBClient.getInstance();
+        String emulatorID = adbClient.verifyToken(token);
+
+        if(emulatorID != null){
+            int h = Integer.parseInt(height);
+            int w = Integer.parseInt(width);
+            adbClient.changeDimension(emulatorID,w,h);
+            return Response.ok().build();
+        }
+        return Response.serverError().build();
+    }
+
+    @GET
+    @Path("/reset")
+    @Deprecated
+    public Response resetDimension(@QueryParam("token") String token){
+        if (token != null) {
+            ADBClient adbClient = ADBClient.getInstance();
+            String emulatorID = adbClient.verifyToken(token);
+            adbClient.resetDimension(emulatorID);
+            return Response.ok().build();
+        }
+        return Response.serverError().build();
+    }
 
 //    @GET
 //    @Path("/geofix")
@@ -165,7 +164,7 @@ public class CommandResource {
     }
 
     @POST
-    @Path("executeAll")
+    @Path("/executeAll")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response executeCommands(List<CommandDTO> commands){
 
@@ -183,7 +182,7 @@ public class CommandResource {
     }
 
     @POST
-    @Path("execute")
+    @Path("/execute")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response executeCommand(CommandDTO command){
 

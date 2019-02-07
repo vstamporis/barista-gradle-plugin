@@ -1,6 +1,7 @@
 package gr.aueb.android.barista.rest.impl;
 
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
+import gr.aueb.android.barista.core.executor.CommandExecutorImplStub;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
@@ -13,7 +14,6 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;

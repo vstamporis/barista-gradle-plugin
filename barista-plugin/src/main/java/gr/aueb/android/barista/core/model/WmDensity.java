@@ -3,6 +3,7 @@ package gr.aueb.android.barista.core.model;
 public class WmDensity extends AbstractAdbCommand {
 
     private int density;
+    private static String WM_DENSITY = "shell wm density";
 
     public WmDensity() {
     }
@@ -18,8 +19,9 @@ public class WmDensity extends AbstractAdbCommand {
     }
 
     @Override
-    public String getCommandString() {
+    public String getCommandString(){
         return null;
+
     }
 
     public int getDensity() {

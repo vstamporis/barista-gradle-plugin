@@ -10,8 +10,10 @@ import java.util.List;
 
 public class CommandExecutorImpl implements CommandExecutor {
 
+    //todo try COMMAND_TYPE approach 
     CommandClient adbCommandClient;
     CommandClient telnetCommandClient;
+
 
     @Override
     public void executeAdbCommand(Command command) {

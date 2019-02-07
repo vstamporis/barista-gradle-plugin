@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.rest.impl;
+package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CommandExecutorImplStub implements CommandExecutor {
 
-    List<Command> commands = new ArrayList<>();
+    public List<Command> commands = new ArrayList<>();
 
     @Override
     public void executeAdbCommand(Command command) {
