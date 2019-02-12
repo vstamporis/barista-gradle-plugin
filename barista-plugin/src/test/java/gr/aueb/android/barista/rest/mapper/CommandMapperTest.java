@@ -3,14 +3,8 @@ package gr.aueb.android.barista.rest.mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gr.aueb.android.barista.JsonDataHelper;
-import gr.aueb.android.barista.core.model.DimensionUnit;
-import gr.aueb.android.barista.core.model.GeoFix;
-import gr.aueb.android.barista.core.model.WmDensity;
-import gr.aueb.android.barista.core.model.WmSize;
-import gr.aueb.android.barista.rest.dto.CommandDTO;
-import gr.aueb.android.barista.rest.dto.GeoFixDTO;
-import gr.aueb.android.barista.rest.dto.WmDensityDTO;
-import gr.aueb.android.barista.rest.dto.WmSizeDTO;
+import gr.aueb.android.barista.core.model.*;
+import gr.aueb.android.barista.rest.dto.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,6 +23,7 @@ public class CommandMapperTest {
     WmSizeDTO wmSizeDTO;
     WmSizeDTO wmSizeDTO2;
     WmDensityDTO wmDensityDTO;
+    WmSizeResetDTO wmSizeResetDTO;
     private ObjectMapper objectMapper;
 
     @Before
@@ -39,6 +34,7 @@ public class CommandMapperTest {
         wmSizeDTO = (WmSizeDTO) objectMapper.readValue(JsonDataHelper.WM_SIZE_JSON, CommandDTO.class);
         wmSizeDTO2 = (WmSizeDTO) objectMapper.readValue(JsonDataHelper.WM_SIZE_JSON_2, CommandDTO.class);
         wmDensityDTO = (WmDensityDTO) objectMapper.readValue(JsonDataHelper.DENSITY_JSON, CommandDTO.class);
+        wmSizeResetDTO = (WmSizeResetDTO) objectMapper.readValue(JsonDataHelper.RESET_JSON, CommandDTO.class);
     }
 
     @Test
@@ -120,6 +116,16 @@ public class CommandMapperTest {
         assertThat(density,is(not(nullValue())));
         assertThat(density.getSessionToken(),is(equalTo(wmDensityDTO.getSessionToken())));
         assertThat(density.getDensity(),is(equalTo(wmDensityDTO.getDensity())));
+    }
+
+
+    @Test
+
+    public void testSizeReset(){
+        WmSizeReset reset = CommandMapper.INSTANCE.fromWmSizeResetDTO(wmSizeResetDTO);
+        assertThat(reset,is(not(nullValue())));
+        assertThat(reset.getSessionToken(),is(equalTo(wmSizeResetDTO.getSessionToken())));
+
     }
 
 }

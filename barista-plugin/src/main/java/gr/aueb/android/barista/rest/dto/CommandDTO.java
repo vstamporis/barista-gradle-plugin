@@ -2,10 +2,7 @@ package gr.aueb.android.barista.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.core.model.GeoFix;
-import gr.aueb.android.barista.core.model.WmDensity;
-import gr.aueb.android.barista.core.model.WmSize;
+import gr.aueb.android.barista.core.model.*;
 
 /**
  * Mapping with jackson
@@ -17,6 +14,7 @@ import gr.aueb.android.barista.core.model.WmSize;
         @JsonSubTypes.Type(value = GeoFixDTO.class),
         @JsonSubTypes.Type(value = WmSizeDTO.class),
         @JsonSubTypes.Type(value = WmDensityDTO.class),
+        @JsonSubTypes.Type(value = WmSizeResetDTO.class),
 })
 public abstract class CommandDTO<T extends Command> {
 

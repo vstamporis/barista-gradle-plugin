@@ -1,15 +1,13 @@
 package gr.aueb.android.barista.core.executor;
 
-import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.core.model.DimensionUnit;
-import gr.aueb.android.barista.core.model.GeoFix;
-import gr.aueb.android.barista.core.model.WmSize;
+import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+// FIXME this test case needs a running emulator to work
 public class CommandExecutorImplTest {
 
     private static CommandExecutorImpl executor;
@@ -34,6 +32,13 @@ public class CommandExecutorImplTest {
         String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
         Command c = new GeoFix(token, 62.5000, 79.000);
         executor.executeTelnetCommand(c);
+    }
+
+    @Test
+    public void executeSizeResetCommand(){
+        String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
+        Command c = new WmSizeReset(token);
+        executor.executeAdbCommand(c);
     }
 
     @Test

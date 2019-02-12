@@ -7,6 +7,7 @@ import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
 import gr.aueb.android.barista.rest.dto.WmDensityDTO;
 import gr.aueb.android.barista.rest.dto.WmSizeDTO;
+import gr.aueb.android.barista.rest.dto.WmSizeResetDTO;
 import gr.aueb.android.barista.server.BaristaApplication;
 import gr.aueb.android.barista.server.MyObjectMapperProvider;
 import org.glassfish.jersey.client.ClientConfig;
@@ -72,6 +73,16 @@ public class CommandResourceImplTest extends JerseyTest {
         assertThat(commandExecutorImplStub.commands.size(), is(equalTo(1)));
 
 
+    }
+
+    @Test
+    public void executeSizeReset(){
+        CommandDTO commandDTO = new WmSizeResetDTO("1");
+        Response response = target("/execute")
+                .request()
+                .post(Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE));
+        assertThat(response.getStatus(), is(equalTo(200)));
+        assertThat(commandExecutorImplStub.commands.size(), is(equalTo(1)));
     }
 
 

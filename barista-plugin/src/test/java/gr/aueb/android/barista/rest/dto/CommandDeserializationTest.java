@@ -17,9 +17,11 @@ public class CommandDeserializationTest {
 
     GeoFixDTO geoFix;
     WmSizeDTO wmSize;
+    WmSizeResetDTO wmSizeReset;
 
     String geoFixJson = "{\"type\":\"GeoFix\",\"sessionToken\":\"1\",\"latitude\":1.0,\"longitude\":2.0}";
     String wmSizeJson = "{\"type\":\"WmSize\",\"sessionToken\":\"2\",\"width\":1280,\"height\":800,\"reset\":false,\"unit\":\"DPI\"}";
+    String wmSizeResetJson = "{\"type\":\"WmSizeReset\",\"sessionToken\":\"3\"}";
 
     ObjectMapper objectMapper;
 
@@ -28,6 +30,7 @@ public class CommandDeserializationTest {
 
         geoFix = new GeoFixDTO("1", 1.0, 2.0);
         wmSize = new WmSizeDTO("2", 1280, 800, false, "DPI");
+        wmSizeReset = new WmSizeResetDTO("3");
 
         objectMapper = new ObjectMapper();
 
@@ -44,6 +47,10 @@ public class CommandDeserializationTest {
 
         CommandDTO wmSizeCommand = objectMapper.readValue(wmSizeJson, CommandDTO.class);
         assertThat(wmSizeCommand instanceof WmSizeDTO, is(true));
+
+        CommandDTO wmSizeResetCommand = objectMapper.readValue(wmSizeResetJson, CommandDTO.class);
+        assertThat(wmSizeCommand instanceof WmSizeDTO, is(true));
+
 
     }
 
