@@ -193,7 +193,7 @@ public class CommandResource {
         try {
             executor.executeCommand(cmd);
         } catch (CommandException e){
-            // return error response
+            e.printStackTrace();
         }
 
         return Response.ok().build();

@@ -57,7 +57,7 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
 
     @Before
     public void setup(){
-
+        // FIXME some times Class Cast exceptions is thrown. Must investigate
         commandExecutorImpl = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
 
     }

@@ -8,6 +8,7 @@ public class WmSize extends AbstractAdbCommand {
     int height;
 
     boolean reset;
+
     DimensionUnit unit = DimensionUnit.PIXEL;
     public static final String WM_SIZE = "shell wm size";
 
