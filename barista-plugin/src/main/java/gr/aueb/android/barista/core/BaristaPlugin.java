@@ -10,6 +10,7 @@
 package gr.aueb.android.barista.core;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.server.HttpServerManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.Action;
@@ -107,6 +108,9 @@ public class BaristaPlugin implements Plugin<Project> {
             @Override
             public void execute(Task task) {
                 BaristaLogger.print("LETS START");
+                BaristaLogger.print("Give necessary permissions to "+getApplicationID()+ " package");
+                // get the package name and give it to the
+                EmulatorManager.setPackageName(getApplicationID());
                 BaristaLogger.print("Trying to start Server on "+ HttpServerManager.getBaseUri());
                 // load the provided extension settings
                 BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
@@ -157,9 +161,16 @@ public class BaristaPlugin implements Plugin<Project> {
      */
     private void hookPortConfiguration(){
         BaseAppModuleExtension androidExtension= getAndroidExtension();
+
         if(androidExtension != null) {
             androidExtension.getDefaultConfig().buildConfigField("Integer","BARISTA_PORT",""+getProvidedPort()+"");
         }
+    }
+
+    //todo comments
+    private  String getApplicationID(){
+        BaseAppModuleExtension androidExtension= getAndroidExtension();
+        return androidExtension.getDefaultConfig().getApplicationId();
     }
 
     /**
@@ -168,8 +179,8 @@ public class BaristaPlugin implements Plugin<Project> {
      * @return
      */
     private BaseAppModuleExtension getAndroidExtension(){
-        Object o = project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);
 
+        Object o = project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);
         BaristaLogger.print("Loading android module extension: "+o.getClass().getName());
         if(o instanceof com.android.build.gradle.internal.dsl.BaseAppModuleExtension){
             return (BaseAppModuleExtension) project.getExtensions().findByName(this.ANDROID_EXTENSION_NAME);

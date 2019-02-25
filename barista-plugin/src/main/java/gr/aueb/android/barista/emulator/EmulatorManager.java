@@ -9,7 +9,6 @@
  */
 package gr.aueb.android.barista.emulator;
 
-import gr.aueb.android.barista.emulator.adb.ADBClient;
 import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
@@ -24,6 +23,7 @@ public class EmulatorManager {
     private final String DEFAULT_EMULATOR_STORAGE_PATH = "/storage/emulated/0";
     ArrayList<String> connectedDevices;
     Hashtable<String,String> emulatorTokens;
+    private static String packageName;
 
     private EmulatorManager(){
 
@@ -225,4 +225,43 @@ public class EmulatorManager {
 
     }
 
+    public void grantPermissions(){
+
+    }
+
+    public static void setPackageName(String applicationID) {
+        packageName = applicationID ;
+    }
+
+    public static String getPackageName() {
+        return  packageName;
+    }
+
+    public boolean setPermissions(String permissions) {
+
+        try {
+            for(String device: getConnectedDevices()){
+                // build command
+                ProcessBuilder pb = new ProcessBuilder("adb","-s",device, "shell", "pm", "grant", packageName, permissions);
+                pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+                //pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+                BaristaLogger.print("adb -s "+device+" shell pm grant "+packageName+" "+permissions);
+                //execute command
+                Process p = pb.start();
+                BaristaLogger.print("chekpoint 2");
+                //read the output
+                BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                output.lines().forEach( s -> System.out.println(s));
+            }
+
+
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            //todo delete
+            BaristaLogger.print("NO EMULATOR FOUND");
+            return false;
+        }
+
+    }
 }
