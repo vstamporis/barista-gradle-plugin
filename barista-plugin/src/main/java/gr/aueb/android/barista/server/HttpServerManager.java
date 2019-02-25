@@ -47,6 +47,7 @@ public class HttpServerManager {
         // first initialization of ADBClient where emulators are recognized
         //todo must migrate the role of device manager to another class
         EmulatorManager.getManager();
+
         //
         EmulatorManager.revalidate();
 
@@ -54,8 +55,13 @@ public class HttpServerManager {
         TestMonitor.setRunningTests(EmulatorManager.getManager().getConnectedDevices().size());
 
         // create and start a new instance of grizzly http server exposing the Jersey application at BASE_URI
-        serverInstance =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), baristaConfiguration);
+        try {
+            serverInstance = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), baristaConfiguration);
+        }
+        catch (Exception e ){
+            BaristaLogger.print("Failed to start server. Try "+BASE_URI+"/kill");
 
+        }
 
     }
 
@@ -81,6 +87,7 @@ public class HttpServerManager {
         }
     }
 
+
     /**
      * Get the base URI of the server
      * @return the string representation oth the server URI
@@ -99,4 +106,8 @@ public class HttpServerManager {
     }
 
 
+    public static void forceKillServer() {
+        BaristaLogger.print("Force Stop Server");
+        serverInstance.shutdownNow();
+    }
 }

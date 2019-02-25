@@ -150,7 +150,7 @@ public class BaristaPlugin implements Plugin<Project> {
             @Override
             public void execute(Task task) {
                 BaristaLogger.print("Closing Server");
-                HttpServerManager.stopServer();
+                HttpServerManager.forceKillServer();
             }
         });
 
