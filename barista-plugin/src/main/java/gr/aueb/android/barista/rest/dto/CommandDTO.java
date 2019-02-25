@@ -15,6 +15,7 @@ import gr.aueb.android.barista.core.model.*;
         @JsonSubTypes.Type(value = WmSizeDTO.class),
         @JsonSubTypes.Type(value = WmDensityDTO.class),
         @JsonSubTypes.Type(value = WmSizeResetDTO.class),
+        @JsonSubTypes.Type(value = PmGrantDTO.class)
 })
 public abstract class CommandDTO<T extends Command> {
 

@@ -1,13 +1,7 @@
 package gr.aueb.android.barista.rest.mapper;
 
-import gr.aueb.android.barista.core.model.GeoFix;
-import gr.aueb.android.barista.core.model.WmDensity;
-import gr.aueb.android.barista.core.model.WmSize;
-import gr.aueb.android.barista.core.model.WmSizeReset;
-import gr.aueb.android.barista.rest.dto.GeoFixDTO;
-import gr.aueb.android.barista.rest.dto.WmDensityDTO;
-import gr.aueb.android.barista.rest.dto.WmSizeDTO;
-import gr.aueb.android.barista.rest.dto.WmSizeResetDTO;
+import gr.aueb.android.barista.core.model.*;
+import gr.aueb.android.barista.rest.dto.*;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -26,5 +20,7 @@ public interface CommandMapper {
     WmDensity fromWmDensityDTO(WmDensityDTO wmDensityDTO);
 
     WmSizeReset fromWmSizeResetDTO(WmSizeResetDTO wmSizeResetDTO);
+
+    PmGrant fromPmGrantDTO(PmGrantDTO pmGrantDTO);
 
 }
