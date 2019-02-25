@@ -1,8 +1,5 @@
 package gr.aueb.android.barista.core.executor;
 
-import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.emulator.adb.ADBClient;
-
 public class CommandExecutorFactory {
 
     private static CommandExecutor theInstance;

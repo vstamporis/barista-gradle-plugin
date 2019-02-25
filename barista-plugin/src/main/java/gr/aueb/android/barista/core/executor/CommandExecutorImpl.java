@@ -1,11 +1,7 @@
 package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.emulator.adb.ADBClient;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommandExecutorImpl implements CommandExecutor {
