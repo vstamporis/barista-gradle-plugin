@@ -20,7 +20,6 @@ public class WmDensityDTO extends CommandDTO<WmDensity> {
     @Override
     public WmDensity toDomainObject() {
         return CommandMapper.INSTANCE.fromWmDensityDTO(this);
-
     }
 
     public int getDensity() {

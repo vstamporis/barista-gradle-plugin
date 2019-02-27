@@ -1,8 +1,8 @@
 package gr.aueb.android.barista.rest.impl;
 
 
+import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
-import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
@@ -20,11 +20,8 @@ import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -53,12 +50,12 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
         config.register(new JacksonFeature()).register(MyObjectMapperProvider.class);
     }
 
-    CommandExecutorImpl commandExecutorImpl;
+    CommandExecutor commandExecutorImpl;
 
     @Before
     public void setup(){
         // FIXME some times Class Cast exceptions is thrown. Must investigate
-        commandExecutorImpl = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
+        commandExecutorImpl =  CommandExecutorFactory.getCommandExecutor();
 
     }
 
@@ -99,6 +96,15 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
 
     }
 
+    @Test
+    public void executeActivate(){
+//        ADBClient.getInstance().setPackageName("com.example.stsisko.helloworldgradle");
+//             Response response = target("/activate")
+//                .request()
+//                .get();
+//        assertThat(response.getStatus(), is(equalTo(200)));
+
+    }
 
 
 }

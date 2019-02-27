@@ -76,7 +76,7 @@ public class TelnetConnection {
 			return false;
 		}
 
-		BaristaLogger.print(port + "> Executing: " + telnetCommand);
+		BaristaLogger.print(port + "> Executing: " + telnetCommand.toString());
 
 		try {
 			socketWriter.write(telnetCommand.getCommandString());

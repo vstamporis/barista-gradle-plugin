@@ -8,16 +8,7 @@
  * Description:
  */
 package gr.aueb.android.barista.server.test_utils;
-import gr.aueb.android.barista.emulator.adb.ADBClient;
-import gr.aueb.android.barista.rest.dto.WmSizeDTO;
-import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Test;
-import gr.aueb.android.barista.server.CommandResource;
-
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;

@@ -10,7 +10,7 @@
 package gr.aueb.android.barista.server;
 
 import gr.aueb.android.barista.emulator.EmulatorManager;
-import gr.aueb.android.barista.emulator.TestMonitor;
+import gr.aueb.android.barista.emulator.helpers.TestMonitor;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
