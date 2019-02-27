@@ -2,8 +2,10 @@ package gr.aueb.android.barista.rest.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gr.aueb.android.barista.JsonDataHelper;
+import gr.aueb.android.barista.helpers.ConstantValues;
+import gr.aueb.android.barista.helpers.JsonDataHelper;
 import gr.aueb.android.barista.core.model.*;
+import gr.aueb.android.barista.helpers.ModelDataHelper;
 import gr.aueb.android.barista.rest.dto.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,10 @@ public class CommandMapperTest {
     WmSizeDTO wmSizeDTO2;
     WmDensityDTO wmDensityDTO;
     WmSizeResetDTO wmSizeResetDTO;
+    PmGrantDTO grantDTO;
+    BatteryLevelDTO batteryLevelDTO;
+    BatteryChargeDTO batteryChargeDTO;
+
     private ObjectMapper objectMapper;
 
     @Before
@@ -35,6 +41,10 @@ public class CommandMapperTest {
         wmSizeDTO2 = (WmSizeDTO) objectMapper.readValue(JsonDataHelper.WM_SIZE_JSON_2, CommandDTO.class);
         wmDensityDTO = (WmDensityDTO) objectMapper.readValue(JsonDataHelper.DENSITY_JSON, CommandDTO.class);
         wmSizeResetDTO = (WmSizeResetDTO) objectMapper.readValue(JsonDataHelper.RESET_JSON, CommandDTO.class);
+        grantDTO = (PmGrantDTO) objectMapper.readValue(JsonDataHelper.GRANT_JSON, CommandDTO.class);
+        batteryLevelDTO = (BatteryLevelDTO) objectMapper.readValue(JsonDataHelper.BATTERY_LVL_JSON, CommandDTO.class);
+        batteryChargeDTO = (BatteryChargeDTO) objectMapper.readValue(JsonDataHelper.BATTERY_CHARGE_JSON,CommandDTO.class);
+
     }
 
     @Test
@@ -120,12 +130,36 @@ public class CommandMapperTest {
 
 
     @Test
-
     public void testSizeReset(){
         WmSizeReset reset = CommandMapper.INSTANCE.fromWmSizeResetDTO(wmSizeResetDTO);
         assertThat(reset,is(not(nullValue())));
         assertThat(reset.getSessionToken(),is(equalTo(wmSizeResetDTO.getSessionToken())));
 
+    }
+
+    @Test
+    public void testPmGrant(){
+        PmGrant  grant = CommandMapper.INSTANCE.fromPmGrantDTO(grantDTO);
+        assertThat(grant,is(not(nullValue())));
+        assertThat(grant.getPermission(),is(equalTo(ConstantValues.permission)));
+        assertThat(grant.getCommandString(),is(equalTo(ModelDataHelper.grantCommand.getCommandString())));
+
+    }
+
+    @Test
+    public void testBatteryLevel(){
+        BatteryLevel level = CommandMapper.INSTANCE.fromBatteryLevelDTO(batteryLevelDTO);
+        assertThat(level,is(not(nullValue())));
+        assertThat(level.getLevel(),is(equalTo(ConstantValues.level)));
+        assertThat(level.getCommandString(),is(equalTo(ModelDataHelper.batteryLevelCommand.getCommandString())));
+    }
+
+    @Test
+    public void testBatteryCharge(){
+        BatteryCharge charge = CommandMapper.INSTANCE.fromBatteryChargeDTO(batteryChargeDTO);
+        assertThat(charge,is(not(nullValue())));
+        assertThat(charge.isPlugged(),is(equalTo(ConstantValues.isPlugged)));
+        assertThat(charge.getCommandString(),is(equalTo(ModelDataHelper.batteryChargeCommand.getCommandString())));
     }
 
 }

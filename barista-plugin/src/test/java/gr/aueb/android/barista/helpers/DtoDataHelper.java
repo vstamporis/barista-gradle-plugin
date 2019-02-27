@@ -7,7 +7,7 @@
  * Role:
  * Description:
  */
-package gr.aueb.android.barista;
+package gr.aueb.android.barista.helpers;
 
 import gr.aueb.android.barista.rest.dto.GeoFixDTO;
 
