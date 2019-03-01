@@ -29,6 +29,8 @@ public class CommandMapperTest {
     PmGrantDTO grantDTO;
     BatteryLevelDTO batteryLevelDTO;
     BatteryChargeDTO batteryChargeDTO;
+    SvcWifiDTO wifiDTO;
+    SvcDataDTO dataDTO;
 
     private ObjectMapper objectMapper;
 
@@ -44,6 +46,8 @@ public class CommandMapperTest {
         grantDTO = (PmGrantDTO) objectMapper.readValue(JsonDataHelper.GRANT_JSON, CommandDTO.class);
         batteryLevelDTO = (BatteryLevelDTO) objectMapper.readValue(JsonDataHelper.BATTERY_LVL_JSON, CommandDTO.class);
         batteryChargeDTO = (BatteryChargeDTO) objectMapper.readValue(JsonDataHelper.BATTERY_CHARGE_JSON,CommandDTO.class);
+        wifiDTO = (SvcWifiDTO) objectMapper.readValue(JsonDataHelper.WIFI_JSON,CommandDTO.class);
+        dataDTO = (SvcDataDTO) objectMapper.readValue(JsonDataHelper.DATA_JSON,CommandDTO.class);
 
     }
 
@@ -130,7 +134,7 @@ public class CommandMapperTest {
 
 
     @Test
-    public void testSizeReset(){
+    public void testSizeResetConversion(){
         WmSizeReset reset = CommandMapper.INSTANCE.fromWmSizeResetDTO(wmSizeResetDTO);
         assertThat(reset,is(not(nullValue())));
         assertThat(reset.getSessionToken(),is(equalTo(wmSizeResetDTO.getSessionToken())));
@@ -138,7 +142,7 @@ public class CommandMapperTest {
     }
 
     @Test
-    public void testPmGrant(){
+    public void testPmGrantConversion(){
         PmGrant  grant = CommandMapper.INSTANCE.fromPmGrantDTO(grantDTO);
         assertThat(grant,is(not(nullValue())));
         assertThat(grant.getPermission(),is(equalTo(ConstantValues.permission)));
@@ -147,7 +151,7 @@ public class CommandMapperTest {
     }
 
     @Test
-    public void testBatteryLevel(){
+    public void testBatteryLevelConversion(){
         BatteryLevel level = CommandMapper.INSTANCE.fromBatteryLevelDTO(batteryLevelDTO);
         assertThat(level,is(not(nullValue())));
         assertThat(level.getLevel(),is(equalTo(ConstantValues.level)));
@@ -155,11 +159,27 @@ public class CommandMapperTest {
     }
 
     @Test
-    public void testBatteryCharge(){
+    public void testBatteryChargeConversion(){
         BatteryCharge charge = CommandMapper.INSTANCE.fromBatteryChargeDTO(batteryChargeDTO);
         assertThat(charge,is(not(nullValue())));
         assertThat(charge.isPlugged(),is(equalTo(ConstantValues.isPlugged)));
         assertThat(charge.getCommandString(),is(equalTo(ModelDataHelper.batteryChargeCommand.getCommandString())));
+    }
+
+    @Test
+    public void testWifiConversion(){
+        SvcWifi wifi = CommandMapper.INSTANCE.fromSvcWifiDTO(wifiDTO);
+        assertThat(wifi,is(not(nullValue())));
+        assertThat(wifi.isEnabled(),is(equalTo(ConstantValues.wifiEnable)));
+        assertThat(wifi.getCommandString(),is(equalTo(ModelDataHelper.wifiCommand.getCommandString())));
+    }
+
+    @Test
+    public void testDataConversion(){
+        SvcData data = CommandMapper.INSTANCE.fromSvcDataDTO(dataDTO);
+        assertThat(data,is(not(nullValue())));
+        assertThat(data.isEnabled(),is(equalTo(ConstantValues.dataEnable)));
+        assertThat(data.getCommandString(),is(equalTo(ModelDataHelper.dataCommand.getCommandString())));
     }
 
 }

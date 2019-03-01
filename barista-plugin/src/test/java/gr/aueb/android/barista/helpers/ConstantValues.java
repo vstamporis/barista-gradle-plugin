@@ -25,6 +25,8 @@ public class ConstantValues {
     public static final String permission = "android.permission.INTERNET";
     public static final int level = 40;
     public static final boolean isPlugged = false;
+    public static final boolean wifiEnable = false;
+    public static final boolean dataEnable = false;
 
 
 }

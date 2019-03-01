@@ -24,4 +24,7 @@ public interface CommandMapper {
 
     BatteryCharge fromBatteryChargeDTO(BatteryChargeDTO batteryChargeDTO);
 
+    SvcData fromSvcDataDTO(SvcDataDTO svcDataDTO);
+
+    SvcWifi fromSvcWifiDTO(SvcWifiDTO svcWifiDTO);
 }

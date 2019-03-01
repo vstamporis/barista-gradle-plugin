@@ -2,6 +2,7 @@ package gr.aueb.android.barista.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.*;
 
 /**
@@ -17,10 +18,11 @@ import gr.aueb.android.barista.core.model.*;
         @JsonSubTypes.Type(value = WmSizeResetDTO.class),
         @JsonSubTypes.Type(value = PmGrantDTO.class),
         @JsonSubTypes.Type(value = BatteryLevelDTO.class),
-        @JsonSubTypes.Type(value = BatteryChargeDTO.class)
+        @JsonSubTypes.Type(value = BatteryChargeDTO.class),
+        @JsonSubTypes.Type(value = SvcDataDTO.class),
+        @JsonSubTypes.Type(value = SvcWifiDTO.class)
 })
 public abstract class CommandDTO<T extends Command> {
-
 
 
     public CommandDTO(){
