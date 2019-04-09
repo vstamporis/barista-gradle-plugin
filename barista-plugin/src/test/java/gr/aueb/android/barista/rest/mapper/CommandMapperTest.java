@@ -54,17 +54,6 @@ public class CommandMapperTest {
     }
 
     @Test
-    /**
-     * test for JSON data
-     * "{
-     *      "type":"WmSize",
-     *      "sessionToken":"2",
-     *      "width":1280,
-     *      "height":800,
-     *      "reset":false,
-     *      "unit":"DPI"
-     *  }";
-     */
     public void testDtoSizeConversion(){
 
         WmSize wmSize = CommandMapper.INSTANCE.fromWmSizeDTO(wmSizeDTO);
@@ -73,20 +62,11 @@ public class CommandMapperTest {
         assertThat(wmSize.getHeight(),is(equalTo(wmSizeDTO.getHeight())));
         assertThat(wmSize.getWidth(),is(equalTo(wmSizeDTO.getWidth())));
         assertThat(wmSize.isReset(),is(equalTo(wmSizeDTO.isReset())));
-        //todo some bug happens here with string <DPI>
-        //assertThat(wmSize.getUnit(),is(equalTo(wmSizeDTO.getUnit())));
+        assertThat(wmSize.getCommandString(), is(equalTo(ModelDataHelper.sizeCommand.getCommandString())));
 
     }
 
-    /**
-     * {
-     * "type":"WmSize",
-     * "sessionToken":"8ba3eee6-51e6-4d8a-8e5f-1243746ad475",
-     * "height":600,"reset":false,
-     * "unit":"DPI",
-     * "width":500
-     * }
-     */
+
     @Test
     public void testDtoSizeConversion2(){
 
@@ -103,14 +83,6 @@ public class CommandMapperTest {
 
 
     @Test
-    /**
-     * Test for Json Data
-     * "{
-     *  "type":"GeoFix",
-     *  "sessionToken":"1",
-     *  "latitude":1.0,
-     *  "longitude":2.0}";
-     */
     public void testGeoFixConversion(){
         GeoFix geoFix = CommandMapper.INSTANCE.fromGeoFixDTO(geoFixDTO);
         assertThat(geoFix, is(not(nullValue())));
@@ -120,18 +92,12 @@ public class CommandMapperTest {
     }
 
     @Test
-    /**
-     * "{
-     *  "type":"WmDensity",
-     *  "sessionToken":"3",
-     *  "density":600"
-     *  }"
-     */
     public void testDensityConversion(){
         WmDensity density = CommandMapper.INSTANCE.fromWmDensityDTO(wmDensityDTO);
         assertThat(density,is(not(nullValue())));
         assertThat(density.getSessionToken(),is(equalTo(wmDensityDTO.getSessionToken())));
         assertThat(density.getDensity(),is(equalTo(wmDensityDTO.getDensity())));
+        assertThat(density.getCommandString(),is(equalTo(ModelDataHelper.densityCommand.getCommandString())));
     }
 
 
