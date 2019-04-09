@@ -18,5 +18,7 @@ public class ModelDataHelper {
     public static final BatteryCharge batteryChargeCommand = new BatteryCharge(ConstantValues.sessionToken,ConstantValues.isPlugged);
     public static final SvcWifi wifiCommand = new SvcWifi(ConstantValues.sessionToken, ConstantValues.wifiEnable);
     public static final SvcData dataCommand = new SvcData(ConstantValues.sessionToken, ConstantValues.dataEnable);
-
+    public static final PmRevoke revokeCommand = new PmRevoke(ConstantValues.sessionToken,ConstantValues.permission);
+    public static final WmDensity densityCommand = new WmDensity(ConstantValues.sessionToken, ConstantValues.density);
+    public static final WmSize sizeCommand = new WmSize(ConstantValues.sessionToken, ConstantValues.width, ConstantValues.height, false, null);
 }

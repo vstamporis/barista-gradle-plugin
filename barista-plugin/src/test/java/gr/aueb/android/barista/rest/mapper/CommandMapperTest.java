@@ -27,6 +27,7 @@ public class CommandMapperTest {
     WmDensityDTO wmDensityDTO;
     WmSizeResetDTO wmSizeResetDTO;
     PmGrantDTO grantDTO;
+    PmRevokeDTO revokeDTO;
     BatteryLevelDTO batteryLevelDTO;
     BatteryChargeDTO batteryChargeDTO;
     SvcWifiDTO wifiDTO;
@@ -44,6 +45,7 @@ public class CommandMapperTest {
         wmDensityDTO = (WmDensityDTO) objectMapper.readValue(JsonDataHelper.DENSITY_JSON, CommandDTO.class);
         wmSizeResetDTO = (WmSizeResetDTO) objectMapper.readValue(JsonDataHelper.RESET_JSON, CommandDTO.class);
         grantDTO = (PmGrantDTO) objectMapper.readValue(JsonDataHelper.GRANT_JSON, CommandDTO.class);
+        revokeDTO = (PmRevokeDTO) objectMapper.readValue(JsonDataHelper.REVOKE_JSON, CommandDTO.class);
         batteryLevelDTO = (BatteryLevelDTO) objectMapper.readValue(JsonDataHelper.BATTERY_LVL_JSON, CommandDTO.class);
         batteryChargeDTO = (BatteryChargeDTO) objectMapper.readValue(JsonDataHelper.BATTERY_CHARGE_JSON,CommandDTO.class);
         wifiDTO = (SvcWifiDTO) objectMapper.readValue(JsonDataHelper.WIFI_JSON,CommandDTO.class);
@@ -180,6 +182,14 @@ public class CommandMapperTest {
         assertThat(data,is(not(nullValue())));
         assertThat(data.isEnabled(),is(equalTo(ConstantValues.dataEnable)));
         assertThat(data.getCommandString(),is(equalTo(ModelDataHelper.dataCommand.getCommandString())));
+    }
+
+    @Test
+    public void testRevokePermisisonCOnversion(){
+        PmRevoke cmd = CommandMapper.INSTANCE.fromPmRevokeDTO(revokeDTO);
+        assertThat(cmd,is(not(nullValue())));
+        assertThat(cmd.getPermission(),is(equalTo(ConstantValues.permission)));
+        assertThat(cmd.getCommandString(),is(equalTo(ModelDataHelper.revokeCommand.getCommandString())));
     }
 
 }

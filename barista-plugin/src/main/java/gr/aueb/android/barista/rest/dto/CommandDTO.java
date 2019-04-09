@@ -20,7 +20,8 @@ import gr.aueb.android.barista.core.model.*;
         @JsonSubTypes.Type(value = BatteryLevelDTO.class),
         @JsonSubTypes.Type(value = BatteryChargeDTO.class),
         @JsonSubTypes.Type(value = SvcDataDTO.class),
-        @JsonSubTypes.Type(value = SvcWifiDTO.class)
+        @JsonSubTypes.Type(value = SvcWifiDTO.class),
+        @JsonSubTypes.Type(value = PmRevokeDTO.class)
 })
 public abstract class CommandDTO<T extends Command> {
 

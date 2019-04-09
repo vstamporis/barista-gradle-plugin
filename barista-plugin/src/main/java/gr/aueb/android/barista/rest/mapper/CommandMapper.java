@@ -20,6 +20,8 @@ public interface CommandMapper {
 
     PmGrant fromPmGrantDTO(PmGrantDTO pmGrantDTO);
 
+    PmRevoke fromPmRevokeDTO(PmRevokeDTO pmRevokeDTO);
+
     BatteryLevel fromBatteryLevelDTO(BatteryLevelDTO batteryLevelDTO);
 
     BatteryCharge fromBatteryChargeDTO(BatteryChargeDTO batteryChargeDTO);
@@ -27,4 +29,6 @@ public interface CommandMapper {
     SvcData fromSvcDataDTO(SvcDataDTO svcDataDTO);
 
     SvcWifi fromSvcWifiDTO(SvcWifiDTO svcWifiDTO);
+
+
 }
