@@ -10,8 +10,10 @@
 package gr.aueb.android.barista.core.model;
 
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
 public class SvcData extends AbstractAdbCommand {
-    private final String SVC_DATA = "shell svc data";
+
     private boolean enabled;
 
     public SvcData() {
@@ -34,7 +36,7 @@ public class SvcData extends AbstractAdbCommand {
     public String getCommandString() {
 
         StringBuffer buffer = new StringBuffer();
-        buffer.append(SVC_DATA).append(" ").append(((enabled)? "enable" : "disable"));
+        buffer.append(BaristaCommandPrefixes.SVC_DATA).append(" ").append(((enabled)? "enable" : "disable"));
         String command = buffer.toString();
         return command;
     }

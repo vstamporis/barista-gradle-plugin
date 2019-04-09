@@ -9,9 +9,10 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
 public class BatteryLevel extends AbstractAdbCommand {
     private int level;
-    private static final String DUMPSYS_BATTERY_LEVEL = "shell dumpsys battery set level ";
 
     public BatteryLevel() {
 
@@ -25,7 +26,7 @@ public class BatteryLevel extends AbstractAdbCommand {
     @Override
     public String getCommandString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(DUMPSYS_BATTERY_LEVEL)
+        buffer.append(BaristaCommandPrefixes.DUMPSYS_BATTERY_LEVEL)
                 .append(" ")
                 .append(Integer.toString(level));
 

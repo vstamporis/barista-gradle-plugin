@@ -1,8 +1,8 @@
 package gr.aueb.android.barista.core.model;
 
-public class GeoFix extends AbstractTelnetCommand {
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
-    public static final String GEO_FIX = "geo fix";
+public class GeoFix extends AbstractTelnetCommand {
 
     private double latitude;
     private double longitude;
@@ -14,7 +14,7 @@ public class GeoFix extends AbstractTelnetCommand {
     @Override
     public String getCommandString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(GEO_FIX)
+        buffer.append(BaristaCommandPrefixes.GEO_FIX)
                 .append(" ")
                 .append(Double.toString(longitude))
                 .append(" ")

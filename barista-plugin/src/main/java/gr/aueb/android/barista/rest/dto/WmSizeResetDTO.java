@@ -16,7 +16,6 @@ import gr.aueb.android.barista.rest.mapper.CommandMapper;
 @JsonTypeName("WmSizeReset")
 public class WmSizeResetDTO extends CommandDTO<WmSizeReset>{
 
-
     public WmSizeResetDTO(){
 
     }

@@ -1,9 +1,11 @@
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
 public class WmDensity extends AbstractAdbCommand {
 
     private int density;
-    private static String WM_DENSITY = "shell wm density";
+
 
     public WmDensity() {
     }
@@ -20,7 +22,10 @@ public class WmDensity extends AbstractAdbCommand {
 
     @Override
     public String getCommandString(){
-        return null;
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(BaristaCommandPrefixes.WM_DENSITY).append(" ").append(density);
+        String command = buffer.toString();
+        return command;
 
     }
 

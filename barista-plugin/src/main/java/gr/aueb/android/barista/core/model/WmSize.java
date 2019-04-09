@@ -1,6 +1,7 @@
 package gr.aueb.android.barista.core.model;
 
 import gr.aueb.android.barista.core.executor.CommandClient;
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 public class WmSize extends AbstractAdbCommand {
 
@@ -10,7 +11,7 @@ public class WmSize extends AbstractAdbCommand {
     boolean reset;
 
     DimensionUnit unit = DimensionUnit.PIXEL;
-    public static final String WM_SIZE = "shell wm size";
+
 
     public WmSize(){
 
@@ -36,7 +37,7 @@ public class WmSize extends AbstractAdbCommand {
     @Override
     public String getCommandString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(WM_SIZE)
+        buffer.append(BaristaCommandPrefixes.WM_SIZE)
                 .append(" ")
                 .append(Integer.toString(width))
                 .append("x")

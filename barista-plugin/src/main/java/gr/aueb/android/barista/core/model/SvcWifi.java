@@ -9,8 +9,10 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
 public class SvcWifi extends AbstractAdbCommand {
-    private final String SVC_WIFI = "shell svc wifi";
+
     private boolean enabled;
 
     public SvcWifi(){
@@ -33,7 +35,7 @@ public class SvcWifi extends AbstractAdbCommand {
     @Override
     public String getCommandString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(SVC_WIFI).append(" ").append(((enabled)? "enable" : "disable"));
+        buffer.append(BaristaCommandPrefixes.SVC_WIFI).append(" ").append(((enabled)? "enable" : "disable"));
         String command = buffer.toString();
         return command;
     }

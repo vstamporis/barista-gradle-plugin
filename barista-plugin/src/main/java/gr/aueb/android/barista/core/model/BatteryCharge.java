@@ -9,9 +9,10 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
 public class BatteryCharge extends AbstractAdbCommand {
     private boolean isPlugged;
-    private static final String DUMPSYS_BATTERY_LEVEL = "shell dumpsys battery set ac ";
 
     public BatteryCharge() {
 
@@ -26,7 +27,7 @@ public class BatteryCharge extends AbstractAdbCommand {
     public String getCommandString() {
 
         StringBuffer buffer = new StringBuffer();
-        buffer.append(DUMPSYS_BATTERY_LEVEL)
+        buffer.append(BaristaCommandPrefixes.DUMPSYS_CHARGE_STATUS)
                 .append(" ")
                 .append(((isPlugged)? "1" : "0"));
 

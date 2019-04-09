@@ -9,6 +9,8 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
 public class WmSizeReset extends AbstractAdbCommand {
 
     public WmSizeReset(){
@@ -21,6 +23,7 @@ public class WmSizeReset extends AbstractAdbCommand {
 
     @Override
     public String getCommandString() {
-       return "shell wm size reset";
+       return BaristaCommandPrefixes.WM_SIZE_RESET;
     }
+
 }
