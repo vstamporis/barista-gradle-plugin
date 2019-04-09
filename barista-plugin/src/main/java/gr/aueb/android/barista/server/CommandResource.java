@@ -49,8 +49,6 @@ public class CommandResource {
 
         EmulatorManager.getManager().setPermissions("android.permission.READ_EXTERNAL_STORAGE");
         EmulatorManager.getManager().setPermissions("android.permission.INTERNET");
-//      ADBClient.setPermissions("android.permission.READ_EXTERNAL_STORAGE");
-//      ADBClient.setPermissions("android.permission.INTERNET");
 
         return Response.ok().build();
 

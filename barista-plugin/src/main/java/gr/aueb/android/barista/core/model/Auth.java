@@ -1,13 +1,13 @@
 package gr.aueb.android.barista.core.model;
 
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */
 public class Auth extends AbstractTelnetCommand {
 
-	public static final String AUTH = "auth";
 	private String authToken;
 	
 	public Auth(String authToken) {
@@ -18,7 +18,7 @@ public class Auth extends AbstractTelnetCommand {
 	@Override
 	public String getCommandString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(AUTH)
+		buffer.append(BaristaCommandPrefixes.AUTH)
 				.append(" ")
 				.append(authToken)
 				.append("\r\n");
