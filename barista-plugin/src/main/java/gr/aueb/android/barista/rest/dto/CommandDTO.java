@@ -16,6 +16,7 @@ import gr.aueb.android.barista.core.model.*;
         @JsonSubTypes.Type(value = WmSizeDTO.class),
         @JsonSubTypes.Type(value = WmDensityDTO.class),
         @JsonSubTypes.Type(value = WmSizeResetDTO.class),
+        @JsonSubTypes.Type(value = WmDensityResetDTO.class),
         @JsonSubTypes.Type(value = PmGrantDTO.class),
         @JsonSubTypes.Type(value = BatteryLevelDTO.class),
         @JsonSubTypes.Type(value = BatteryChargeDTO.class),

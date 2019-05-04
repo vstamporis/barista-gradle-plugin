@@ -30,5 +30,5 @@ public interface CommandMapper {
 
     SvcWifi fromSvcWifiDTO(SvcWifiDTO svcWifiDTO);
 
-
+    WmDensityReset fromWmDensityResetDTO(WmDensityResetDTO wmDensityResetDTO);
 }
