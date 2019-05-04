@@ -11,7 +11,7 @@ package gr.aueb.android.barista.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.SvcData;
-import gr.aueb.android.barista.rest.mapper.CommandMapperImpl;
+import gr.aueb.android.barista.rest.mapper.CommandMapper;
 
 @JsonTypeName("SvcData")
 public class SvcDataDTO extends CommandDTO<SvcData> {
@@ -37,6 +37,6 @@ public class SvcDataDTO extends CommandDTO<SvcData> {
 
     @Override
     public SvcData toDomainObject() {
-        return CommandMapperImpl.INSTANCE.fromSvcDataDTO(this);
+        return CommandMapper.INSTANCE.fromSvcDataDTO(this);
     }
 }

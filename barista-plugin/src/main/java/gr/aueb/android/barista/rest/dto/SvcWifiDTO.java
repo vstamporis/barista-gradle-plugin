@@ -11,7 +11,7 @@ package gr.aueb.android.barista.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.SvcWifi;
-import gr.aueb.android.barista.rest.mapper.CommandMapperImpl;
+import gr.aueb.android.barista.rest.mapper.CommandMapper;
 
 @JsonTypeName("SvcWifi")
 public class SvcWifiDTO extends CommandDTO<SvcWifi> {
@@ -37,6 +37,6 @@ public class SvcWifiDTO extends CommandDTO<SvcWifi> {
 
     @Override
     public SvcWifi toDomainObject() {
-        return CommandMapperImpl.INSTANCE.fromSvcWifiDTO(this);
+        return CommandMapper.INSTANCE.fromSvcWifiDTO(this);
     }
 }

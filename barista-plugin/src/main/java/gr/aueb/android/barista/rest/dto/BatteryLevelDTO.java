@@ -12,7 +12,7 @@ package gr.aueb.android.barista.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.BatteryLevel;
-import gr.aueb.android.barista.rest.mapper.CommandMapperImpl;
+import gr.aueb.android.barista.rest.mapper.CommandMapper;
 
 @JsonTypeName("BatteryLevel")
 public class BatteryLevelDTO extends CommandDTO<BatteryLevel>{
@@ -38,6 +38,6 @@ public class BatteryLevelDTO extends CommandDTO<BatteryLevel>{
 
     @Override
     public BatteryLevel toDomainObject() {
-        return CommandMapperImpl.INSTANCE.fromBatteryLevelDTO(this);
+        return CommandMapper.INSTANCE.fromBatteryLevelDTO(this);
     }
 }
