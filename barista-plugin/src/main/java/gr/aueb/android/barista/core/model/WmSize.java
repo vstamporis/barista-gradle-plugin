@@ -2,6 +2,7 @@ package gr.aueb.android.barista.core.model;
 
 import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 
 public class WmSize extends AbstractAdbCommand {
 
@@ -48,11 +49,18 @@ public class WmSize extends AbstractAdbCommand {
     }
 
     @Override
+    /**
+     *  Verifies the sucessful execution of the size command by asseryting the actual emulator size using WmGetSize Commant
+     *  @see gr.aueb.android.barista.core.model.WmGetSize WmGetSize
+     *
+     */
     public boolean isCompleted(CommandClient client){
+        BaristaLogger.print("Checking for successfully execution of command. ");
         WmGetSize getSize = new WmGetSize(this.getSessionToken());
         client.executeCommand(getSize);
 
-        return false;
+        return (getSize.getWidth() == this.width & getSize.getHeight() == this.height);
+
     }
 
     public int getWidth() {

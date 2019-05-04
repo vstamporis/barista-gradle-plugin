@@ -9,6 +9,9 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+import gr.aueb.android.barista.utilities.BaristaLogger;
+
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -24,11 +27,12 @@ public class WmGetSize extends AbstractAdbCommand {
 
     @Override
     public String getCommandString() {
-        return "shell wm size";
+        return BaristaCommandPrefixes.WM_SIZE;
     }
 
     @Override
     public void parseResult(Stream<String> resultLines) {
+        BaristaLogger.print("Using custom output parser for fetching screen size.");
         resultLines.filter(new Predicate<String>() {
             @Override
             public boolean test(String line) {
@@ -38,14 +42,24 @@ public class WmGetSize extends AbstractAdbCommand {
                 return false;
             }
         }).forEach(new Consumer<String>() {
-                    @Override
-                    public void accept(String line) {
-                        String sizeString = line.split(" ")[2];
-                        //exract width (first number, left of x)
-                        width = Integer.parseInt(sizeString.split("x")[0]);
-                        //exract width (second number, right of x)
-                        height = Integer.parseInt(sizeString.split("x")[1]);
-                    }
-                });
+            @Override
+            public void accept(String line) {
+                String sizeString = line.split(" ")[2];
+                //exract width (first number, left of x)
+                width = Integer.parseInt(sizeString.split("x")[0]);
+                //exract width (second number, right of x)
+                height = Integer.parseInt(sizeString.split("x")[1]);
+            }
+        });
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+
+    public int getHeight() {
+        return height;
+    }
+
 }

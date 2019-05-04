@@ -1,5 +1,6 @@
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 public class WmDensity extends AbstractAdbCommand {
@@ -27,6 +28,13 @@ public class WmDensity extends AbstractAdbCommand {
         String command = buffer.toString();
         return command;
 
+    }
+
+    @Override
+    public boolean isCompleted(CommandClient client){
+        WmGetDensity wmGetDensity = new WmGetDensity(this.getSessionToken());
+        client.executeCommand(wmGetDensity);
+        return (wmGetDensity.getDensity() == this.density);
     }
 
     public int getDensity() {

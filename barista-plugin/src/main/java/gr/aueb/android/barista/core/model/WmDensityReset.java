@@ -9,5 +9,18 @@
  */
 package gr.aueb.android.barista.core.model;
 
-public class WmDensityReset {
+import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+
+public class WmDensityReset extends AbstractAdbCommand {
+
+    public WmDensityReset(String sessionToken){
+        super(sessionToken);
+    }
+
+    @Override
+    public String getCommandString() {
+        return BaristaCommandPrefixes.WM_DENSITY_RESET;
+    }
+
+
 }

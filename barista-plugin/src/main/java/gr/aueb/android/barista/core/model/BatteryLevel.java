@@ -9,7 +9,9 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 
 public class BatteryLevel extends AbstractAdbCommand {
     private int level;
@@ -32,6 +34,15 @@ public class BatteryLevel extends AbstractAdbCommand {
 
         String command = buffer.toString();
         return command;
+    }
+
+    @Override
+    public boolean isCompleted(CommandClient client){
+        BaristaLogger.print("Checking for successfully execution of command. ");
+        BatteryStatus batteryStatus = new BatteryStatus(this.getSessionToken());
+        client.executeCommand(batteryStatus);
+        return (batteryStatus.getLevel() == this.level);
+
     }
 
     public int getLevel() {
