@@ -58,6 +58,11 @@ public class ADBCommandClient implements CommandClient {
             cmd.parseResult(resultStream);
 
             output.close();
+            while (!cmd.isCompleted(this)){
+                //todo must handle failed execution
+                BaristaLogger.print("ATEMPT FAILED");
+
+            }
 
         } catch (IOException e) {
             BaristaLogger.print("Exception occured: "+e.getMessage());
