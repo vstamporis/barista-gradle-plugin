@@ -22,10 +22,10 @@ import gr.aueb.android.barista.core.model.*;
         @JsonSubTypes.Type(value = BatteryChargeDTO.class),
         @JsonSubTypes.Type(value = SvcDataDTO.class),
         @JsonSubTypes.Type(value = SvcWifiDTO.class),
-        @JsonSubTypes.Type(value = PmRevokeDTO.class)
+        @JsonSubTypes.Type(value = PmRevokeDTO.class),
+        @JsonSubTypes.Type(value = SetOrientationDTO.class)
 })
 public abstract class CommandDTO<T extends Command> {
-
 
     public CommandDTO(){
 
@@ -33,14 +33,18 @@ public abstract class CommandDTO<T extends Command> {
 
     private String sessionToken;
 
+    private int delay = 0;
+
     public CommandDTO(String sessionToken) {
         this.sessionToken = sessionToken;
     }
 
-
     public String getSessionToken() {
         return sessionToken;
     }
+
+    public int getDelay(){ return delay ; }
+    public void setDelay( int delay){ this.delay = delay; }
 
     public abstract T toDomainObject();
 

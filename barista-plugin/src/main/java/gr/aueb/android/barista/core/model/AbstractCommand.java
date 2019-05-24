@@ -19,6 +19,9 @@ public abstract class AbstractCommand implements Command{
 
     private String sessionToken;
 
+    private int delay = 0; // variable that can be used to declare a sleep time after the execution of the command
+
+
     @Override
     public String getSessionToken() {
         return sessionToken;
@@ -33,6 +36,16 @@ public abstract class AbstractCommand implements Command{
     @Override
     public void accept(CommandExecutor executor) {
 
+    }
+
+    @Override
+    public int getDelay(){
+        return this.delay;
+    }
+
+    @Override
+    public void setDelay(int delay){
+        this.delay = delay;
     }
 
     @Override

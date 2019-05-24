@@ -15,6 +15,10 @@ public interface Command {
 
     String getCommandString();
 
+    int getDelay();
+
+    void setDelay(int delay);
+
     void setSessionToken(String sessionToken);
 
     void accept(CommandExecutor executor);

@@ -25,6 +25,13 @@ public class CommandExecutorImpl implements CommandExecutor {
     public void executeCommands(List<Command> commandList) {
         for(Command cmd: commandList){
             cmd.accept(this);
+            if(cmd.getDelay() != 0){
+                try {
+                    Thread.sleep(cmd.getDelay());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

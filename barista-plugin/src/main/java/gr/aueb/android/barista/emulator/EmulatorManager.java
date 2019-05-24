@@ -124,6 +124,8 @@ public class EmulatorManager {
 
             //push the file to the emulator
             this.pushFile(emulatorID,tokenFileName,this.DEFAULT_EMULATOR_STORAGE_PATH);
+            //todo na pernei to path dynamika apo to plugin
+            this.pushFile(emulatorID,"C:\\Users\\s.tsisko\\Downloads\\AthensTour.kml",this.DEFAULT_EMULATOR_STORAGE_PATH);
 
             //delete the file from local storage
             File f = new File(tokenFileName);
