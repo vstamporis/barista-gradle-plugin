@@ -54,6 +54,11 @@ public class CommandExecutorImplTest {
     }
 
     @Test
-    public void executeCommands() {
+    public void executeSetOrientation() {
+        String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
+        Command c = new SetOrientation(token,1);
+        executor.executeAdbCommand(c);
     }
+
+
 }

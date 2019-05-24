@@ -59,7 +59,7 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
 
     }
 
-    @Test
+   // @Test
     public void executeSetSizeCommandWithREST(){
 
         String token = EmulatorManager.getManager().getTokenMap().keys().nextElement();

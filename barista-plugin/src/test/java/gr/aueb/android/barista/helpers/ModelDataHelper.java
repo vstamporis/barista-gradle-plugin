@@ -21,4 +21,5 @@ public class ModelDataHelper {
     public static final PmRevoke revokeCommand = new PmRevoke(ConstantValues.sessionToken,ConstantValues.permission);
     public static final WmDensity densityCommand = new WmDensity(ConstantValues.sessionToken, ConstantValues.density);
     public static final WmSize sizeCommand = new WmSize(ConstantValues.sessionToken, ConstantValues.width, ConstantValues.height, false, null);
+    public static SetOrientation orientationCommand = new SetOrientation( ConstantValues.sessionToken, ConstantValues.orientation_90);
 }

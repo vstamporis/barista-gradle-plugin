@@ -1,5 +1,6 @@
 package gr.aueb.android.barista.rest.mapper;
 
+import com.android.tools.build.jetifier.core.config.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gr.aueb.android.barista.helpers.ConstantValues;
@@ -32,6 +33,7 @@ public class CommandMapperTest {
     BatteryChargeDTO batteryChargeDTO;
     SvcWifiDTO wifiDTO;
     SvcDataDTO dataDTO;
+    SetOrientationDTO orientationDTO;
 
     private ObjectMapper objectMapper;
 
@@ -50,7 +52,7 @@ public class CommandMapperTest {
         batteryChargeDTO = (BatteryChargeDTO) objectMapper.readValue(JsonDataHelper.BATTERY_CHARGE_JSON,CommandDTO.class);
         wifiDTO = (SvcWifiDTO) objectMapper.readValue(JsonDataHelper.WIFI_JSON,CommandDTO.class);
         dataDTO = (SvcDataDTO) objectMapper.readValue(JsonDataHelper.DATA_JSON,CommandDTO.class);
-
+        orientationDTO = (SetOrientationDTO) objectMapper.readValue(JsonDataHelper.ORIENTATION_JSON, CommandDTO.class);
     }
 
     @Test
@@ -151,11 +153,20 @@ public class CommandMapperTest {
     }
 
     @Test
-    public void testRevokePermisisonCOnversion(){
+    public void testRevokePermisisonConversion(){
         PmRevoke cmd = CommandMapper.INSTANCE.fromPmRevokeDTO(revokeDTO);
         assertThat(cmd,is(not(nullValue())));
         assertThat(cmd.getPermission(),is(equalTo(ConstantValues.permission)));
         assertThat(cmd.getCommandString(),is(equalTo(ModelDataHelper.revokeCommand.getCommandString())));
+    }
+
+    @Test
+    public void testSetOrientationConversion(){
+        SetOrientation cmd = CommandMapper.INSTANCE.fromSetOrientationDTO(orientationDTO);
+        assertThat(cmd,is(not(nullValue())));
+        assertThat(cmd.getOrientation(),is(equalTo(ConstantValues.orientation_90)));
+        assertThat(cmd.getCommandString(),is(equalTo(ModelDataHelper.orientationCommand.getCommandString())));
+
     }
 
 }

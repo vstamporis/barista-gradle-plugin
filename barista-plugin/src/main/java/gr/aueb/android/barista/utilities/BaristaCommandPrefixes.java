@@ -24,6 +24,7 @@ public class BaristaCommandPrefixes {
     public static final String WM_SIZE_RESET = "shell wm size reset"; // -
     public static final String WM_DENSITY_RESET = "shell wm density reset"; // -
     public static final String AUTH = "auth"; // telnet
-
+    public static final String SET_ORIENTATION = "shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:";
+    public static final String GET_ORIENTATION = "shell content query --uri content://settings/system --projection name:value --where 'name=\\\"user_rotation\\\"'";
 
 }

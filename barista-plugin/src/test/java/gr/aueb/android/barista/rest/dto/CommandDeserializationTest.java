@@ -19,9 +19,9 @@ public class CommandDeserializationTest {
     WmSizeDTO wmSize;
     WmSizeResetDTO wmSizeReset;
 
-    String geoFixJson = "{\"type\":\"GeoFix\",\"sessionToken\":\"1\",\"latitude\":1.0,\"longitude\":2.0}";
-    String wmSizeJson = "{\"type\":\"WmSize\",\"sessionToken\":\"2\",\"width\":1280,\"height\":800,\"reset\":false,\"unit\":\"DPI\"}";
-    String wmSizeResetJson = "{\"type\":\"WmSizeReset\",\"sessionToken\":\"3\"}";
+    String geoFixJson = "{\"type\":\"GeoFix\",\"sessionToken\":\"1\",\"delay\":0,\"latitude\":1.0,\"longitude\":2.0}";
+    String wmSizeJson = "{\"type\":\"WmSize\",\"sessionToken\":\"2\",\"delay\":0,\"width\":1280,\"height\":800,\"reset\":false,\"unit\":\"DPI\"}";
+    String wmSizeResetJson = "{\"type\":\"WmSizeReset\",\"sessionToken\":\"3\",\"delay\":\"0\"}";
 
     ObjectMapper objectMapper;
 
@@ -38,7 +38,7 @@ public class CommandDeserializationTest {
 
     @Test
     public void testPolymorphicDeserialization() throws IOException {
-
+        System.out.println(objectMapper.writeValueAsString(geoFix));
         assertThat(objectMapper.writeValueAsString(geoFix), is(equalTo(geoFixJson)));
         assertThat(objectMapper.writeValueAsString(wmSize), is(equalTo(wmSizeJson)));
 

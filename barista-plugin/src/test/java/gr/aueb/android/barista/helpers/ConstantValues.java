@@ -27,6 +27,5 @@ public class ConstantValues {
     public static final boolean isPlugged = false;
     public static final boolean wifiEnable = false;
     public static final boolean dataEnable = false;
-
-
+    public static final int orientation_90 = 1;
 }

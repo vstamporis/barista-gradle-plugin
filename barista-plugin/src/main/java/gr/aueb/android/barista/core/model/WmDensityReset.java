@@ -13,6 +13,10 @@ import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 public class WmDensityReset extends AbstractAdbCommand {
 
+    public WmDensityReset(){
+
+    }
+
     public WmDensityReset(String sessionToken){
         super(sessionToken);
     }

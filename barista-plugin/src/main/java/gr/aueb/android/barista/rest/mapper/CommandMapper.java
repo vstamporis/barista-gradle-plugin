@@ -31,4 +31,6 @@ public interface CommandMapper {
     SvcWifi fromSvcWifiDTO(SvcWifiDTO svcWifiDTO);
 
     WmDensityReset fromWmDensityResetDTO(WmDensityResetDTO wmDensityResetDTO);
+
+    SetOrientation fromSetOrientationDTO(SetOrientationDTO setOrientationDTO);
 }
