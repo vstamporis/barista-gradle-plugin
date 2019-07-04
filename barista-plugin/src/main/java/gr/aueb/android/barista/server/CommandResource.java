@@ -54,19 +54,29 @@ public class CommandResource {
 
     }
 
+    @GET
+    @Path("/test")
+    public Response testCnnection(){
+
+        return Response.ok().build();
+
+    }
+
 
     @POST
     @Path("/executeAll")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response executeCommands(List<CommandDTO> commands){
-
+        // Transform arrived DTOs to model objects
         List<Command> commandList = CommandListMapper.fromCommandDTOList(commands);
+        // get Executor instance
         CommandExecutor executor = CommandExecutorFactory.getCommandExecutor();
 
         try {
             executor.executeCommands(commandList);
         } catch (CommandException e){
             // return error response
+            return Response.serverError().build();
         }
 
         return Response.ok().build();
@@ -86,6 +96,7 @@ public class CommandResource {
             executor.executeCommand(cmd);
         } catch (CommandException e){
             e.printStackTrace();
+            return Response.serverError().build();
         }
 
         return Response.ok().build();

@@ -21,6 +21,12 @@ public class CommandExecutorImpl implements CommandExecutor {
         telnetCommandClient.executeCommand(command);
     }
 
+    /**
+     *  Function that loops through all the given commands and executes them.
+     *  It takes into considaration the delay option of each command.
+     *
+     *
+     */
     @Override
     public void executeCommands(List<Command> commandList) {
         for(Command cmd: commandList){
