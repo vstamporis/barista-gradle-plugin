@@ -59,9 +59,12 @@ public class SvcWifi extends AbstractAdbCommand {
         SvcWifiStatus wifiStatus = new SvcWifiStatus(this.getSessionToken());
         client.executeCommand(wifiStatus);
         Boolean result = possibleStatusDescription.get(wifiStatus.getStatus());
-        if(result != null ){
-            return result;
+        if(result == enabled ){
+            BaristaLogger.print("Completed");
+            return true;
         }
+
+        BaristaLogger.print("not Completed");
         return false;
     }
 }
