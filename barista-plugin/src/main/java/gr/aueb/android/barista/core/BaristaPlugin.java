@@ -32,6 +32,14 @@ public class BaristaPlugin implements Plugin<Project> {
 
     private Project project;
 
+    /**
+     *  Function that is called by gradle in order to intergrate the plugin inside the buildeing process of the project
+     *  The plugin firsts checks that the target project is an Android Project and that the gradle is about to run
+     *  integration tests. Then it hooks its functionality at specific points in order to start and stop the server at the
+     *  proper time.
+     *
+     * @param project
+     */
     public void apply(Project project){
         this.project = project;
 
@@ -85,7 +93,6 @@ public class BaristaPlugin implements Plugin<Project> {
 
     /**
      * Function that determins if target project is an android project based on the imported plugins
-     * // todo find source
      *
      * @return true if is android project, false if not
      */
@@ -101,13 +108,19 @@ public class BaristaPlugin implements Plugin<Project> {
 
     }
 
+    /**
+     *  Function that hooks the task that starts the Barista Server after the execution of the targetTask.
+     *  After the execution of this function the Barista srver is up and runnng at the provided listening port.
+     *
+     *  @param targetTask The task to hook the server acctivation after it finishes.
+     */
     private void deployDispatcherServer(Task targetTask){
 
         targetTask.doLast("startServer",new Action<Task>() {
 
             @Override
             public void execute(Task task) {
-                BaristaLogger.print("LETS START");
+
                 BaristaLogger.print("Give necessary permissions to "+getApplicationID()+ " package");
                 // get the package name and give it to the
                 EmulatorManager.setPackageName(getApplicationID());

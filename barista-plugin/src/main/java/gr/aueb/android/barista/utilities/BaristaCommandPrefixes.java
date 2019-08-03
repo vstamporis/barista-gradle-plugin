@@ -4,8 +4,9 @@
  * Project: barista-plugin
  * <p>
  * ClassName: BaristaADBCommandPrefix
- * Role:
- * Description:
+ * Role: Statically define all the command prefixes used by barista
+ * Description: All the commands use those strings in order to create their full string representation
+ *              and execute themshelves in the command console.
  */
 package gr.aueb.android.barista.utilities;
 

@@ -5,9 +5,17 @@ import gr.aueb.android.barista.rest.dto.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+/**
+ *  Command Mapper interface provides all the methods required to transform a DTO object to a model Object
+ *  After the conversion from JSON to DTO, the DTOs must be transformed into model objects. This is done by
+ *  Mapstruct framework that uses the following maping.
+ */
 @Mapper
 public interface CommandMapper {
 
+    /**
+     *  Expose CommanderMapper function throught this instance.
+     */
     CommandMapper INSTANCE = Mappers.getMapper(CommandMapper.class);
 
     GeoFix fromGeoFixDTO(GeoFixDTO geoFixDTO);

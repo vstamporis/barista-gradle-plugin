@@ -21,9 +21,16 @@ public class GetOrientation extends AbstractAdbCommand {
         return BaristaCommandPrefixes.GET_ORIENTATION;
     }
 
+    /**
+     *  Parses the result of the  GetOrientation command and sets the result to the
+     *  orientation filed of the object. The possible values that can be assigned are the integers 0-3
+     *  that represents the four different orientation states.
+     *
+     * @param resultLines The lines returned after the execution of the GetOrientation Command
+     */
     @Override
-    // parse a line like 'Row: 0 name=user_rotation, value=1'
     public void parseResult(Stream<String> resultLines) {
+        // parse a line like 'Row: 0 name=user_rotation, value=1'
         resultLines.forEach(line -> {
             String optionStr = line.split(" " )[3].split("=")[1];
             this.orientation = Integer.parseInt(optionStr);

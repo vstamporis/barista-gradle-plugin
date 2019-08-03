@@ -3,9 +3,9 @@
  * Created On: 20/10/2018
  * Project: barista-plugin
  * <p>
- * ClassName: ServerFactory
- * Role:
- * Description:
+ * ClassName: CommandResource
+ * Role:    The REST API of the Barista Server
+ * Description: Implements all the REST endpoints that Barista Serve provides.
  */
 package gr.aueb.android.barista.server;
 
@@ -15,27 +15,26 @@ import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.EmulatorManager;
-
 import gr.aueb.android.barista.rest.dto.CommandDTO;
 import gr.aueb.android.barista.rest.mapper.CommandListMapper;
-
 import gr.aueb.android.barista.utilities.BaristaLogger;
-
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-// todo check jersey multithreading thread
+/**
+ *  Here is defined the REST API that Barista Server provides
+ *
+ */
 @Path("/")
 public class CommandResource {
 
     public final static String GREETING_MSG = "Hello World from Jersey Servlet Container";
 
     /**
-     * Self-destruct service. Shuts down the server.
-     * DEBUG-ONLY
+     *  Request that indicates that test execution from specific emulator is completed.
+     *
      */
     @GET
     @Path("kill")
@@ -43,6 +42,12 @@ public class CommandResource {
         HttpServerManager.stopServer();
     }
 
+    /**
+     *  Request to prepare an emulator for testing. Preparation means to grant the testing package with
+     *  neccessary permissions that needs manual confirmation (manifest isnt enough) in order the barista library operates normally. The permissions that are granted
+     *  is for reading the extrernal storage, where the session token resides.
+     * @return
+     */
     @GET
     @Path("/activate")
     public Response givePermissions(){
@@ -54,6 +59,11 @@ public class CommandResource {
 
     }
 
+    /**
+     *  Check the connection with server. (DEBUG ONLY)
+     *
+     * @return
+     */
     @GET
     @Path("/test")
     public Response testCnnection(){
@@ -62,7 +72,17 @@ public class CommandResource {
 
     }
 
-
+    /**
+     *  Request the execution of multiple commands.
+     *
+     *  The body of the request should contain a lsit all the commands needed to be executed.
+     *  The JSON list is transfoemred into DTO obbjects and the into model objects.
+     *  Using the default CommandExecutor all the commands are executed.
+     *  After their verified execution an HTTP OK response is returned to the client.
+     *
+     * @param commands
+     * @return HTTP ok (200) if execution is succsefful or HTTP error
+     */
     @POST
     @Path("/executeAll")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -77,12 +97,23 @@ public class CommandResource {
         } catch (CommandException e){
             // return error response
             return Response.serverError().build();
+
         }
 
         return Response.ok().build();
 
     }
 
+    /**
+     *
+     *  Request the execution of a single command.
+     *
+     *  It's not used by Barista library, but it provides a way to test execution of a single
+     *  command
+     *
+     * @param command The Command DTO Object to be executed
+     * @return  A Htpp Response describbing the successful or not execution of the command.
+     */
     @POST
     @Path("/execute")
     @Consumes(MediaType.APPLICATION_JSON)

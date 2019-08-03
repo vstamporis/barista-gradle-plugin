@@ -5,7 +5,10 @@
  * <p>
  * ClassName: EmulatorManager
  * Role: Determins the connected devices on the host machine, assigns and manages session tokens for each device
- * Description:
+ * Description: Singleton
+ *              Checks witch emulators are connected to the host machine then generates unique identifiers (sessionTokens)
+ *              that pushes them in the form of file to each emulator. The mapping of ecmulator to session token is
+ *              managed by this object. This object also provides methods to easily execute utility functions directly to an emulator.
  */
 package gr.aueb.android.barista.emulator;
 
@@ -18,13 +21,38 @@ import java.util.Hashtable;
 import java.util.UUID;
 
 public class EmulatorManager {
-
+    /**
+     *  Single instance to be used by other components
+     */
     private static EmulatorManager INSTANCE = null;
+
+    /**
+     *  The default storage path inside the emulator to push various files
+     */
     private final String DEFAULT_EMULATOR_STORAGE_PATH = "/storage/emulated/0";
+
+    /**
+     *  A list to store the deviceIds of each connecteed emulator
+     */
     ArrayList<String> connectedDevices;
+
+    /**
+     *  A Map collection to store deviceId,sessionToken pairs
+     */
     Hashtable<String,String> emulatorTokens;
+
+    /**
+     *  A string contatingn the package name of the testing application
+     */
     private static String packageName;
 
+    /**
+     *  Private costructor that identifies the connected emulators and assigns to them their sessionTokens
+     *  After the execution of the constructor the connectedDevices lsit contains the ids of the connected emulators,
+     *  the emulatorTokens map contains the deviceId - sessionToken pairs and all the emulators contain in their local storage
+     *  the sessionTokens.
+     *
+     */
     private EmulatorManager(){
 
         BaristaLogger.print("Initializing ADB client");
@@ -179,58 +207,6 @@ public class EmulatorManager {
         return this.emulatorTokens;
     }
 
-    /**
-     * Returns the Override size as returned from the 'adb -s [emulatorId] shell wm size'.
-     * Mainly used for testing purposes.
-     * @param emulatorID The emulatorId
-     * @return A WmSizeDTO {@See WmSizeDTO.If not overided size is found null is returned.
-     *          The SizeDto instance will contain only width and height properties
-     */
-    public WmSizeDTO getOverrideSize(String emulatorID){
-        BaristaLogger.print("Calling getActualSize");
-        try {
-            WmSizeDTO currentScreen = new WmSizeDTO();
-
-            // build command
-            ProcessBuilder pb = new ProcessBuilder("adb", "-s", emulatorID,"shell","wm","size");
-
-            //execute command
-            Process p = pb.start();
-
-            //read the output
-            BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line ="";
-            while( (line = output.readLine()) !=null){
-
-                // parse lines like 'Override size: ...'
-                if(line.matches("Override size:(.*)")){
-
-                    // get only the WxH part
-                    String sizeString = line.split(" ")[2];
-                    //exract width (first number, left of x)
-                    int width = Integer.parseInt(sizeString.split("x")[0]);
-                    //exract width (second number, right of x)
-                    int height = Integer.parseInt(sizeString.split("x")[1]);
-                    currentScreen.setWidth(width);
-                    currentScreen.setHeight(height);
-
-                }
-            }
-            BaristaLogger.print("RETURNING: "+currentScreen.getWidth()+"x"+currentScreen.getHeight());
-            return currentScreen;
-        } catch (IOException e) {
-            e.printStackTrace();
-            //todo delete
-            BaristaLogger.print("NO EMULATOR FOUND");
-            return null;
-        }
-
-    }
-
-    public void grantPermissions(){
-
-    }
-
     public static void setPackageName(String applicationID) {
         packageName = applicationID ;
     }
@@ -250,17 +226,15 @@ public class EmulatorManager {
                 BaristaLogger.print("adb -s "+device+" shell pm grant "+packageName+" "+permissions);
                 //execute command
                 Process p = pb.start();
-                BaristaLogger.print("chekpoint 2");
                 //read the output
                 BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
                 output.lines().forEach( s -> System.out.println(s));
             }
 
-
             return true;
+
         } catch (IOException e) {
             e.printStackTrace();
-            //todo delete
             BaristaLogger.print("NO EMULATOR FOUND");
             return false;
         }

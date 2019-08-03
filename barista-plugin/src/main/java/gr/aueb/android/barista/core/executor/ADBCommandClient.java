@@ -4,15 +4,17 @@
  * Project: barista-plugin
  * <p>
  * ClassName: ADBCommandClient
- * Role:
- * Description:
+ * Role: Executes ADB commands
+ * Description: ADBCommandClient implements the CommandClient interface and it responsible
+ *              for executing all the adb commands. In addition it verifies the execution of
+ *              any command by using the isComplete() member function of the Command interface.
+ *
  */
 package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,20 +23,35 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class ADBCommandClient implements CommandClient {
-
+    /**
+     * Prefix String for adb console commands
+     */
     private final String ADB_COMMAND = "adb";
 
-    //todo use interface for result - for size now
+    /**
+     * Executes and verifies the execution of an ADB command. It uses the ProcessBuilder to create system processes.
+     * All the commands executed have the form 'adb -s [device_id] [command] [args]'.
+     * To route the command to the apropriate emulator, -s flag is used and the device_id is acquired from the EmulatorManager
+     * by using the sessionToken encapsulated in each Command instance.
+     *
+     * This function is terminated only when the execution of the command is verified or if an exeption occurs during
+     * the execution of the process.
+     *
+     * @param cmd The command to be executed. It is asserted that cmd will always be instance of AbstractAdbCommand
+     */
     @Override
     public void executeCommand(Command cmd) {
-        // find emulator by command.getSessionId()
 
+        // get the sessionID from the command
         String token = cmd.getSessionToken();
-        String strCommand = cmd.getCommandString();
-        String deviceId = EmulatorManager.getManager().verifyToken(token);
-        // execute command
-        BaristaLogger.print("Must execute ADB command: "+strCommand+" for emulator: "+deviceId);
 
+        // get the command string to be executed
+        String strCommand = cmd.getCommandString();
+
+        // acquire the device id by using the sessionToken
+        String deviceId = EmulatorManager.getManager().verifyToken(token);
+
+        // constuct the argument list
         List<String> commandList = new ArrayList<>();
         commandList.add(ADB_COMMAND);
         commandList.add("-s");
@@ -45,21 +62,31 @@ public class ADBCommandClient implements CommandClient {
             commandList.add(subCommand);
         }
 
+        // print message to the console that a command is about to be executed
+        BaristaLogger.print("Exexuting ADB command: "+strCommand+" for emulator: "+deviceId);
+
         try {
+
+            // construct a process to execute the command
             ProcessBuilder pb = new ProcessBuilder();
             pb.redirectError(ProcessBuilder.Redirect.INHERIT);
-            //pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
             pb.command(commandList);
+
+            // execute the command and wait for its execution
             Process p = pb.start();
             p.waitFor();
-            //read the output
+
+            // read the output (if any) and pass it tho the result parser of the Command. It is used
+            // when the command output is needed.
             BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
             Stream<String> resultStream = output.lines();
             cmd.parseResult(resultStream);
-
             output.close();
-            while (!cmd.isCompleted(this)){
-                //todo must handle failed execution
+
+            // wait until the Command verifies its execution
+            while (!cmd.isCompl
+            eted(this)){
+
                 BaristaLogger.print("ATEMPT FAILED");
 
             }
