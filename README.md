@@ -1,6 +1,6 @@
 
 # Barista Instrumentation Framework
-**A gradle plugin for Android testing**
+**A tool for context-aware Android application testing**
 
  Tsiskomichelis Stelios - stsiskomixelis@aueb.gr - AUEB (2018 - 2019)
 
@@ -8,23 +8,30 @@
 
 ## Table of Contents
 
-1. [Overview. ](#overview)
-2. [Barista Plugin Installation. ](#plugin-install)
-3. [Barista Library Installation. ](#library-install)
-4. [How It Works.](#how-it-works)
-5. [Supported Commands.](#supported-commands)
-6. [How to Use.](#how-to-use)
+* [Getting Started](#getting-started)
+	* [Barista Plugin Installation. (Manually) ](#plugin-install)
+	* [Barista Library Installation. ](#library-install)
+* [How It Works.](#how-it-works)
+* [Supported Commands.](#supported-commands)
+* [How to Use.](#how-to-use)
 
 ---
 
-<a name="overview"></a>
-##	Overview
+ <a name="getting-started"></a>
+##	Getting Started
 
 
-Barista Plugin is a gradle plugin that works along with the [Barista Library].
- Both together offer a great tool for customizing android instrumentation tests. 
- More specific, it gives the developer an easy way to customize various emulator options 
- that are been applied to all the connected emulators at test time.   
+Barista  is a tool consisted of the [Barista Gradle Plugin](https://github.com/softeng-aueb/barista-gradle-plugin/tree/master/barista-plugin) and the [Barista Library](https://github.com/softeng-aueb/barista-android).
+ Both together offer a great framework for customizing the runtime Android enviroment during traditional instrumentation testing. 
+ More specific, it allows the developer to customize various emulator options such as Wifi/Data connectivity, geolocation, battery status, screen preferences etc., using declarations before each test method.
+ 
+ For this time of being, Barista is tested with the following prerequisites:
+ 
+ 	Androidd Gradle Plugin Version 3.2.1
+	Gradle Version 4.6
+	Compile Sdk Version API 28
+	Android Studio 3.5
+	Android Studio AVD emulators
 	
  <a name="plugin-install"></a>   
 ## Barista Plugin Installation
@@ -38,12 +45,6 @@ Barista Plugin is a gradle plugin that works along with the [Barista Library].
     
    c) At any android project use the follwing .gradle configurations:
 
-> The following configuration makes sure that gradle will look into the local
-> maven repository to find the previous installed plugin. (Later will be
-> available in global maven repo). It also sets the classpath of the
-> plugin executable as an android build dependency.
-
-   
 *Global build.gradle file*
        
 
@@ -61,7 +62,10 @@ Barista Plugin is a gradle plugin that works along with the [Barista Library].
                 classpath 'gr.aueb.android:barista-plugin:1.0-SNAPSHOT'
             }
 
-   
+> The above configuration makes sure that gradle will look into the local
+> maven repository to find the previous installed plugin. (Later will be
+> available in global maven repo). It also sets the classpath of the
+> plugin executable as an android build dependency.
 
  In order to use the Barista Plugin just declare the usage of the
 plugin using the following code in your app specific .gradle file
@@ -102,7 +106,7 @@ After successfully deploying the barista plugin this message should appear in th
 ## Barista Library Installation
 
 The Barista library provides the developer a set of commands in the form of annotations 
-that can be used at the instrumentation test in order to invoke adb commands at test time.
+that can be used at the instrumentation test in order to execute adb and telnet commands at test time to the connected emulator(s).
 
 1. Clone the library files
 2. Install the library to the local maven repository using
@@ -157,9 +161,7 @@ that can be used at the instrumentation test in order to invoke adb commands at 
 		...
 	}  	
 	````
-					
-	>Later those dependecies will be included into the library.
-
+				
 <a name="how-it-works"></a>
 ## How it works
     
@@ -178,14 +180,10 @@ that can be used at the instrumentation test in order to invoke adb commands at 
 	8. Step 4 is executed again until all tests are finished.
 	9. When all tests are finished the server shuts down. 
 	
-- How android emulator communicates with the host machine http server    
-	AVD emulators : 10.0.2.2 (https://developer.android.com/studio/run/emulator-networking)
+- Host-Emulator connectivity   
+	AVD emulators can communicate with the host-machine by using the default NAT-provided IP 10.0.2.2 (https://developer.android.com/studio/run/emulator-networking). 
 	Many factors can affect the communication between the emulator and the host machine such as a local firewall.
 	
-	
-	Genymotion  emulators: 10.0.3.2 (Found in stackoverflow commnets https://stackoverflow.com/questions/6760585/accessing-localhostport-from-android-emulator)
-	Not yet tested. 
-	TO SEARCH: Is Genymotion a popular choise for android testing among devs?
 
 <a name="supported-commands"></a>
 ## Supported Commands
