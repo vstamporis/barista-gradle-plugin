@@ -218,7 +218,9 @@ that can be used at the instrumentation test in order to execute adb and telnet 
 
 	Set the screen density of the target device. This command is equivalent to:
 	
-	adb shell wm density [density_value]
+	
+		adb shell wm density [density_value]
+	
 	
 <a name="orientation"></a>
 - ##### Screen Orientation
@@ -229,7 +231,8 @@ that can be used at the instrumentation test in order to execute adb and telnet 
 
 	Set the screen orientation of the target device. This command is equivalent to:
 	
-	adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:[user option]
+		adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:[user option]
+	
 
 #### GeoFix
 <a name="geofix"></a>
