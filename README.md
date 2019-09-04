@@ -187,32 +187,52 @@ that can be used at the instrumentation test in order to execute adb and telnet 
 
 <a name="supported-commands"></a>
 ## Supported Commands
+| Declaration  | Description   |
+|---|---|
+| [@Wifi](#wifi)  | Enable or disable the internet connection using WiFi |
+| [@Data](#data)  | Enable or disable the internet connection using Mobile Data  |
+| [@GeoFix](#geofix)  | Set the geographic location of the device (longitude, latitude)  |
+| [@Permission](#permission)  | Grant the app package a "dangerous permission"  |
+| [@BatteryOptions](#battery)  | Set the battery level and the charging status of the device  |
+| [@ScreenSize](#screen)  | Set the screen dimensions (width, height)  |
+| [@Density](#density)  | Set the screen pixel density  |
+| [@Orientation](#orientation)  | Set the orientation of the device  |
 
 #### Screen Options
-
+<a name="screen"></a>
 - ##### Screen Size Set 
 	
 	@ScreenSize ( **width** = _[integerValue]_,  **height** = _[integerValue]_ )
 	
 	
-   Set the screen dimensions of the target device. This command is equivalent to:
+   	Set the screen dimensions of the target device. This command is equivalent to:
 	
 		adb shell wm size [width]x[height]
 	
-
+<a name="density"></a>
 - ##### Screen Density
 
-  @Density ( **density** = _[integerValue]_ )
+ 	 @Density ( **density** = _[integerValue]_ )
 	
 	
 
-Set the screen density of the target device. This command is equivalent to:
+	Set the screen density of the target device. This command is equivalent to:
 	
 	adb shell wm density [density_value]
+	
+<a name="orientation"></a>
+- ##### Screen Orientation
+	
+	 @Orientation ( **OrientationOptions** )
+	
+	
 
+	Set the screen orientation of the target device. This command is equivalent to:
+	
+	adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:[user option]
 
 #### GeoFix
-
+<a name="geofix"></a>
 - ##### GPS Location
 
 	@GeoFix ( **lat** = _[doubleValue]_ , **longt** = _[doubleValue]_ )
@@ -224,7 +244,7 @@ Set the screen density of the target device. This command is equivalent to:
 		
 
 #### Battery Options
-
+<a name="battery"></a>
 - ##### Charging Status
 
 	@BatteryOption ( **plugged** = _[booleanValue]_ )
@@ -256,7 +276,7 @@ _default value is **100**._
 	e.x @BatteryOption ( plugged = [booleanValue] , level = [integerValue] )
 
 #### Connectivity Options
-
+<a name="wifi"></a>
 - ##### Wifi Connection Status
 
 	@Wifi ( **enabled** = _[NetworkAdapterStateType]_ )
@@ -266,7 +286,7 @@ Disables or enables the wifi connection of the emulator using the equivalent adb
 
 	
 		shell svc wifi [enable|disable]
-	
+<a name="data"></a>
 - ##### Mobile Data Connection Status
 
 	@Data ( **enabled** = _[NetworkAdapterStateType]_ )
@@ -282,7 +302,7 @@ the equivalent adb command:
 	
 	
 #### Permission Provider
-
+<a name="permission"></a>
 - ##### Grant Permission Runtime
 
 	@Permission ( **type** = _[stringValue]_ )
