@@ -1,8 +1,10 @@
 
-# Barista Instrumentation Framework
+# Barista Testing Framework
 **A tool for context-aware Android application testing**
 
- Tsiskomichelis Stelios - stsiskomixelis@aueb.gr - AUEB (2018 - 2019)
+ Developed By: Tsiskomichelis Stelios - stsiskomixelis@aueb.gr - AUEB (2018 - 2019), 
+ 
+ Inspiration/Architectural design: [Vassilis Zafeiris](https://github.com/bzafiris)
 
 ---
 
@@ -27,7 +29,7 @@ Barista  is a tool consisted of the [Barista Gradle Plugin](https://github.com/s
  
  For this time of being, Barista is tested with the following prerequisites:
  
- 	Androidd Gradle Plugin Version 3.2.1
+ 	Android Gradle Plugin Version 3.2.1
 	Gradle Version 4.6
 	Compile Sdk Version API 28
 	Android Studio 3.5
