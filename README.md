@@ -333,10 +333,4 @@ If you want to test a feature of your app that depends on
 a specific state of the device, then you add the appropriate annotations that will build this state
 for you at test time.  
 
-For example, you have developed a feature that changes the behavior of your app and you want to assert that 
-that this behavior trigers properly and do what is supposed to do. 
-Let's say that this feature depends on the battery level and when the battery of the device drops bellow a specific 
-level then it switch off the data automaticaly. 
-
-Given this scenario, when running a test for this feature you would normally set the battery 
 
