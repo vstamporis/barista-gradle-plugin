@@ -84,11 +84,8 @@ public class ADBCommandClient implements CommandClient {
             output.close();
 
             // wait until the Command verifies its execution
-            while (!cmd.isCompl
-            eted(this)){
-
+            while (!cmd.isCompleted(this)){
                 BaristaLogger.print("ATEMPT FAILED");
-
             }
 
         } catch (IOException e) {

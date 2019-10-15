@@ -18,6 +18,7 @@ import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
 import gr.aueb.android.barista.rest.mapper.CommandListMapper;
 import gr.aueb.android.barista.utilities.BaristaLogger;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
