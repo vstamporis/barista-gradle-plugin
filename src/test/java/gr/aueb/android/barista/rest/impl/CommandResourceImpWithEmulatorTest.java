@@ -4,6 +4,8 @@ package gr.aueb.android.barista.rest.impl;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.model.DimensionUnit;
+import gr.aueb.android.barista.core.model.WmGetSize;
+import gr.aueb.android.barista.core.model.WmSizeReset;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
 import gr.aueb.android.barista.rest.dto.GeoFixDTO;
@@ -59,10 +61,23 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
 
     }
 
-   // @Test
+    private WmGetSize getScreenSize(String token){
+        WmGetSize getActualSize = new WmGetSize(token);
+        commandExecutorImpl.executeAdbCommand(getActualSize);
+        return getActualSize;
+    }
+
+    private void resetScreenSize(String token){
+        WmSizeReset sizeReset = new WmSizeReset(token);
+        commandExecutorImpl.executeAdbCommand(sizeReset);
+    }
+
+    @Test
     public void executeSetSizeCommandWithREST(){
 
         String token = EmulatorManager.getManager().getTokenMap().keys().nextElement();
+
+        resetScreenSize(token);
 
         CommandDTO commandDTO = new WmSizeDTO(token, 1280, 800, false, DimensionUnit.DPI.toString());
 
@@ -74,8 +89,10 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
                             .post(Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE));
         assertThat(response.getStatus(), is(equalTo(200)));
 
-        WmSizeDTO realSize = emulator.getOverrideSize(emulator.verifyToken(token));
-        assertThat(realSize.getHeight(),is(equalTo(800)));
+        WmGetSize actualSize = getScreenSize(token);
+        assertThat(actualSize.getHeight(),is(equalTo(800)));
+
+        resetScreenSize(token);
 
     }
 
