@@ -87,6 +87,9 @@ public class CommandResourceImpWithEmulatorTest extends JerseyTest {
         Response response = target("/execute")
                             .request()
                             .post(Entity.entity(commandDTO, MediaType.APPLICATION_JSON_TYPE));
+
+        System.out.println(response.getEntity().toString());
+
         assertThat(response.getStatus(), is(equalTo(200)));
 
         WmGetSize actualSize = getScreenSize(token);

@@ -63,7 +63,7 @@ public class ADBCommandClient implements CommandClient {
         }
 
         // print message to the console that a command is about to be executed
-        BaristaLogger.print("Exexuting ADB command: "+strCommand+" for emulator: "+deviceId);
+        BaristaLogger.print("Executing ADB command: "+strCommand+" for emulator: "+deviceId);
 
         try {
 
@@ -85,11 +85,12 @@ public class ADBCommandClient implements CommandClient {
 
             // wait until the Command verifies its execution
             while (!cmd.isCompleted(this)){
-                BaristaLogger.print("ATEMPT FAILED");
+                BaristaLogger.print("Waiting for command completion");
+                Thread.sleep(500);
             }
 
         } catch (IOException e) {
-            BaristaLogger.print("Exception occured: "+e.getMessage());
+            BaristaLogger.print("Exception occurred: "+e.getMessage());
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
