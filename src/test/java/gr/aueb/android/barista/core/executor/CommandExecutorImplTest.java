@@ -21,21 +21,41 @@ public class CommandExecutorImplTest {
     public void executeAdbCommand() {
 
         String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
+
+        resetScreenSize(token);
+
         Command c = new WmSize(token,500,600,false, DimensionUnit.PIXEL);
         executor.executeAdbCommand(c);
 
+        resetScreenSize(token);
+
+    }
+
+    private void resetScreenSize(String token){
+        WmSizeReset sizeReset = new WmSizeReset(token);
+        executor.executeAdbCommand(sizeReset);
+    }
+
+    private void resetDensity(String token){
+        WmDensityReset wmDensityReset = new WmDensityReset(token);
+        executor.executeAdbCommand(wmDensityReset);
     }
 
     @Test
     public void executeDensityCommand() {
 
         String  token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
+
+        resetDensity(token);
+
         Command c = new WmDensity(token,600);
         executor.executeAdbCommand(c);
 
         Command c2 = new WmGetDensity(token);
         executor.executeAdbCommand(c2);
         assertEquals(600,((WmGetDensity) c2).getDensity());
+
+        resetDensity(token);
 
     }
 

@@ -58,6 +58,7 @@ public class CommandResourceImplTest extends JerseyTest {
 
     }
 
+
     @Test
     public void executeSingleCommand(){
 
