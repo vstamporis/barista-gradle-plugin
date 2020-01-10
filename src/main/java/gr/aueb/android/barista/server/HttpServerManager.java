@@ -17,6 +17,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import java.net.URI;
+import java.util.concurrent.TimeUnit;
 
 public class HttpServerManager {
 
@@ -95,8 +96,8 @@ public class HttpServerManager {
         TestMonitor.testFinished();
 
         if(! TestMonitor.hasActiveTests()) {
-            BaristaLogger.print("Last Test finished. Stopping Server");
-            serverInstance.shutdownNow();
+            BaristaLogger.print("Last Test finished. Gracefully stopping server in 5 seconds");
+            serverInstance.shutdown(5, TimeUnit.SECONDS);
         }else{
             BaristaLogger.print("Test finished. Remaining: "+TestMonitor.getRuningTests());
         }
