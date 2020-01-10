@@ -124,20 +124,18 @@ public class BaristaPlugin implements Plugin<Project> {
                 BaristaLogger.print("Give necessary permissions to "+getApplicationID()+ " package");
                 // get the package name and give it to the
                 EmulatorManager.setPackageName(getApplicationID());
-                BaristaLogger.print("Trying to start Server on "+ HttpServerManager.getBaseUri());
+
                 // load the provided extension settings
                 BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
 
-                if(settings != null){   // if settings are provided
+                HttpServerManager serverManager = HttpServerManager.getInstance();
+                serverManager.setConfiguration(settings);
 
-                    // configure server to run on the provided listening port
-                    BaristaLogger.print("Setting listening port to "+settings.getPort() );
-                    HttpServerManager.setPort(settings.getPort());
-                }
+                BaristaLogger.print("Starting server on "+ serverManager.getEndpoint());
 
                 //start the server on localhost
-                BaristaLogger.print("Starting Server on "+ HttpServerManager.getBaseUri());
-                HttpServerManager.startServer();
+                BaristaLogger.print("Starting Server on "+ serverManager.getEndpoint());
+                serverManager.startServer();
             }
         });
 
@@ -163,7 +161,7 @@ public class BaristaPlugin implements Plugin<Project> {
             @Override
             public void execute(Task task) {
                 BaristaLogger.print("Closing Server");
-                HttpServerManager.forceKillServer();
+                HttpServerManager.getInstance().forceKillServer();
             }
         });
 

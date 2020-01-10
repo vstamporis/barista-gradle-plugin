@@ -21,6 +21,8 @@ public class BaristaConfigurationExtension implements Serializable {
      */
     private Integer port = 8040;
 
+    private String host = "10.0.2.2";
+
     /**
      *  Get the value provided to the 'port' option at the configuration file
      *
@@ -37,6 +39,14 @@ public class BaristaConfigurationExtension implements Serializable {
      */
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
     }
 
     public String toString(){

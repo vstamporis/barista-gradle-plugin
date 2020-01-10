@@ -40,7 +40,7 @@ public class CommandResource {
     @GET
     @Path("kill")
     public void stopServer(){
-        HttpServerManager.stopServer();
+        HttpServerManager.getInstance().stopServer();
     }
 
     /**

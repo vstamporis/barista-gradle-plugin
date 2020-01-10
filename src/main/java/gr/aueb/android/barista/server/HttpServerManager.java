@@ -9,6 +9,7 @@
  */
 package gr.aueb.android.barista.server;
 
+import gr.aueb.android.barista.core.BaristaConfigurationExtension;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.emulator.helpers.TestMonitor;
 import gr.aueb.android.barista.utilities.BaristaLogger;
@@ -19,12 +20,28 @@ import java.net.URI;
 
 public class HttpServerManager {
 
-    private static HttpServer serverInstance;
+
+    private HttpServer serverInstance;
+    private int port = 8070;
+    private String host = "192.168.0.1";
+
+    private static HttpServerManager theInstance;
+
+    public static HttpServerManager getInstance(){
+        if (theInstance == null){
+            theInstance = new HttpServerManager();
+        }
+        return theInstance;
+    }
+
+    public void setConfiguration(BaristaConfigurationExtension configuration){
+        this.host = configuration.getHost();
+        this.port = configuration.getPort();
+        endpoint = String.format(endpoint, host, Integer.toString(port));
+    }
 
     // Base URI the HTTP server will listen on
-    // TODO Server URL must be specified from the plugin extension configuration input
-    // todo better coding style
-    private static String BASE_URI = "http://localhost:8040/barista/";
+    private String endpoint = "http://%s:%s/barista/";
 
     /**
      *  Starts Grizzly HTTP server exposing the REST API defined in the CommandResource class.
@@ -32,10 +49,10 @@ public class HttpServerManager {
      *  a monitoring procedure in order to keep track of the active testing sessions.
      *
      */
-    public static void  startServer() {
+    public void  startServer() {
 
         // initialize Barista Configuation
-        final ResourceConfig baristaConfiguration = new BaristaApplication();
+        final ResourceConfig application = new BaristaApplication();
 
          // check if a previous instance is still active and shut it down
         //  propably unreached code
@@ -53,24 +70,15 @@ public class HttpServerManager {
         // initialize TestMonitor
         TestMonitor.setRunningTests(EmulatorManager.getManager().getConnectedDevices().size());
 
-        // create and start a new instance of grizzly http server exposing the Jersey application at BASE_URI
+        // create and start a new instance of grizzly http server exposing the Jersey application at endpoint
         try {
-            serverInstance = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), baristaConfiguration);
+            serverInstance = GrizzlyHttpServerFactory.createHttpServer(URI.create(endpoint), application);
         }
         catch (Exception e ){
-            BaristaLogger.print("Failed to start server. Try "+BASE_URI+"/kill");
+            BaristaLogger.print("Failed to start server. Try "+ endpoint +"/kill");
 
         }
 
-    }
-
-    /**
-     *  Create the server configuration
-     *
-     * @return
-     */
-    public static ResourceConfig createApp() {
-        return new BaristaApplication();
     }
 
     /**
@@ -79,7 +87,7 @@ public class HttpServerManager {
      *  If all running tests are finished and then shuts down the server.
      *
      */
-    public static void stopServer(){
+    public void stopServer(){
 
         BaristaLogger.print("Signal to kill Server. Current tests:"+ TestMonitor.getRuningTests());
         //todo change test check role
@@ -87,7 +95,7 @@ public class HttpServerManager {
         TestMonitor.testFinished();
 
         if(! TestMonitor.hasActiveTests()) {
-            BaristaLogger.print("Last Test finished. Stoping Server");
+            BaristaLogger.print("Last Test finished. Stopping Server");
             serverInstance.shutdownNow();
         }else{
             BaristaLogger.print("Test finished. Remaining: "+TestMonitor.getRuningTests());
@@ -99,23 +107,15 @@ public class HttpServerManager {
      * Get the base URI of the server
      * @return the string representation oth the server URI
      */
-    public static String getBaseUri() {
-        return BASE_URI;
+    public String getEndpoint() {
+        return endpoint;
     }
 
-    /**
-     * Set the listening port of the server. Default is 8040
-     * @param port the listening port number (ex: 9090 )
-     */
-    public static void setPort(int port) {
-        // todo possible control
-        BASE_URI = "http://localhost:"+port+"/barista/";
-    }
 
     /**
      *  Function that kills the server without checking if there are active tests running.
      */
-    public static void forceKillServer() {
+    public void forceKillServer() {
         BaristaLogger.print("Force Stop Server");
         serverInstance.shutdownNow();
     }
