@@ -334,3 +334,6 @@ a specific state of the device, then you add the appropriate annotations that wi
 for you at test time.  
 
 
+## Common problems
+
+1. Barista cannot find the `adb` executable in system path: Ensure that you set the path of android binaries to `/etc/profile` or other global configuration files.
