@@ -41,4 +41,6 @@ public interface CommandMapper {
     WmDensityReset fromWmDensityResetDTO(WmDensityResetDTO wmDensityResetDTO);
 
     SetOrientation fromSetOrientationDTO(SetOrientationDTO setOrientationDTO);
+
+    GpsState fromGPSDDTO(GpsStatusDTO GPSDTO);
 }

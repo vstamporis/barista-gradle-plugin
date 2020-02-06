@@ -28,5 +28,5 @@ public class BaristaCommandPrefixes {
     public static final String AUTH = "auth"; // telnet
     public static final String SET_ORIENTATION = "shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:";
     public static final String GET_ORIENTATION = "shell content query --uri content://settings/system --projection name:value --where \"name='user_rotation'\"";
-
+    public static final String GPS_STATUS = "shell settings put secure location_providers_allowed";
 }
