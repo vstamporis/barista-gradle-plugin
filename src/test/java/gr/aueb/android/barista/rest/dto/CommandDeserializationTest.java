@@ -18,6 +18,7 @@ public class CommandDeserializationTest {
     GeoFixDTO geoFix;
     WmSizeDTO wmSize;
     WmSizeResetDTO wmSizeReset;
+    GpsStatusDTO gpsStatusDTO;
 
     String geoFixJson = "{\"type\":\"GeoFix\",\"sessionToken\":\"1\",\"delay\":0,\"latitude\":1.0,\"longitude\":2.0}";
     String wmSizeJson = "{\"type\":\"WmSize\",\"sessionToken\":\"2\",\"delay\":0,\"width\":1280,\"height\":800,\"reset\":false,\"unit\":\"DPI\"}";
@@ -31,6 +32,7 @@ public class CommandDeserializationTest {
         geoFix = new GeoFixDTO("1", 1.0, 2.0);
         wmSize = new WmSizeDTO("2", 1280, 800, false, "DPI");
         wmSizeReset = new WmSizeResetDTO("3");
+        gpsStatusDTO = new GpsStatusDTO("4", false);
 
         objectMapper = new ObjectMapper();
 
