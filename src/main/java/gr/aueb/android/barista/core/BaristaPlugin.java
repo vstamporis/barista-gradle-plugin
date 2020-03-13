@@ -11,6 +11,7 @@ package gr.aueb.android.barista.core;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.plugin.BaristaServerStartTask;
 import gr.aueb.android.barista.server.HttpServerManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.Action;
@@ -32,8 +33,15 @@ public class BaristaPlugin implements Plugin<Project> {
 
     private Project project;
 
+
+    private void registerCustomTask(Task targetTask){
+        project.getTasks().register("BaristaServerStartTask", BaristaServerStartTask.class);
+        Task myCustomTask = project.getTasks().getByName("BaristaServerStartTask");
+        targetTask.dependsOn(myCustomTask);
+    }
+
     /**
-     *  Function that is called by gradle in order to intergrate the plugin inside the buildeing process of the project
+     *  Function that is called by gradle in order to intergrate the plugin inside the building process of the project
      *  The plugin firsts checks that the target project is an Android Project and that the gradle is about to run
      *  integration tests. Then it hooks its functionality at specific points in order to start and stop the server at the
      *  proper time.
@@ -49,7 +57,7 @@ public class BaristaPlugin implements Plugin<Project> {
         // check if target project is an android project
         if(isAndroidProject()){
 
-            BaristaLogger.print("This is an Android Project");
+            BaristaLogger.print("Android project identified");
 
             project.afterEvaluate(new Action<Project>() {
 
@@ -57,14 +65,15 @@ public class BaristaPlugin implements Plugin<Project> {
                 public void execute(Project project) {
                     // check if task assembleDebugAndroidTest is about to be executed
                     Task targetTask = project.getTasks().findByPath(ASSEMBLE_DEBUG_ANDROID_TEST);
-
+                    Task connectedDebugAndroidTest = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
                    // targetTask.finalizedBy("stopBaristaServer");
+
+                    registerCustomTask(connectedDebugAndroidTest);
 
                     // if no tests are runnig do nothing
                     if(targetTask == null ){
                         project.getLogger().log(LogLevel.ERROR,"No Android task '"+ASSEMBLE_DEBUG_ANDROID_TEST+"' found");
                     }
-
                     else{
                         project.getLogger().log(LogLevel.ERROR,"Task  '"+ASSEMBLE_DEBUG_ANDROID_TEST+"' Found !!! ");
 
@@ -72,11 +81,12 @@ public class BaristaPlugin implements Plugin<Project> {
                         hookPortConfiguration();
 
                         // deploy the server when ready to run connected tests
+                        // FIXME uncomment or replace with task registration
                         BaristaLogger.print("Deploying Server");
-                        deployDispatcherServer(targetTask);
+                        //deployDispatcherServer(targetTask);
                         BaristaLogger.print("Server Deployed");
                         // stop server when connected android tests finishes
-                        hookServerStopTask();
+                        //hookServerStopTask();
 
                     }
                 }
@@ -131,15 +141,11 @@ public class BaristaPlugin implements Plugin<Project> {
                 HttpServerManager serverManager = HttpServerManager.getInstance();
                 serverManager.setConfiguration(settings);
 
-                BaristaLogger.print("Starting server on "+ serverManager.getEndpoint());
-
                 //start the server on localhost
                 BaristaLogger.print("Starting Server on "+ serverManager.getEndpoint());
                 serverManager.startServer();
             }
         });
-
-
     }
 
     // Jersey server should be automaticaly shut down when connectedAndroidTest task is completed
@@ -174,7 +180,8 @@ public class BaristaPlugin implements Plugin<Project> {
         BaseAppModuleExtension androidExtension= getAndroidExtension();
 
         if(androidExtension != null) {
-            androidExtension.getDefaultConfig().buildConfigField("Integer","BARISTA_PORT",""+getProvidedPort()+"");
+            int port = getProvidedPort();
+            androidExtension.getDefaultConfig().buildConfigField("Integer","BARISTA_PORT","" + port + "");
         }
     }
 
@@ -209,7 +216,7 @@ public class BaristaPlugin implements Plugin<Project> {
     private Integer getProvidedPort(){
         BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
         int port = settings.getPort();
-        BaristaLogger.print("Loaded given configuration for port "+port);
+        BaristaLogger.print("Configuration <server port>: "+port);
         return port;
     }
 

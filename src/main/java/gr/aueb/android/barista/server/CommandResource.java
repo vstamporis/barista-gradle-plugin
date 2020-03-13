@@ -67,7 +67,7 @@ public class CommandResource {
      */
     @GET
     @Path("/test")
-    public Response testCnnection(){
+    public Response testConnection(){
 
         return Response.ok().build();
 
