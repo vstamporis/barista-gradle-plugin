@@ -18,26 +18,36 @@ import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
-import org.gradle.api.logging.LogLevel;
 
 public class BaristaPlugin implements Plugin<Project> {
 
-    //The android task that assembles the debug test app
-    private final String ASSEMBLE_DEBUG_ANDROID_TEST = "assembleDebugAndroidTest";
+    public static final String BARISTA_PLUGIN_SETTINGS_SECTION = "baristaSettings";
+    public static final String BARISTA_PORT_BUILD_CONFIG = "BARISTA_PORT";
+    public static final String BARISTA_HOST_BUILD_CONFIG = "BARISTA_HOST";
 
     // the android task that runs the android instrumented tests of the project
-    //todo try this task for all cases 1 & 2
     private String CONNECTED_ANDROID_TEST = "connectedDebugAndroidTest";
     
     private final String ANDROID_EXTENSION_NAME = "android";
+    private BaseAppModuleExtension androidExtension;
+
+    private BaristaConfigurationExtension config;
 
     private Project project;
 
 
-    private void registerCustomTask(Task targetTask){
-        project.getTasks().register("BaristaServerStartTask", BaristaServerStartTask.class);
-        Task myCustomTask = project.getTasks().getByName("BaristaServerStartTask");
+    private void registerStartServerTask(Task targetTask){
+        project.getTasks().register(BaristaServerStartTask.NAME, BaristaServerStartTask.class);
+        Task myCustomTask = project.getTasks().getByName(BaristaServerStartTask.NAME);
         targetTask.dependsOn(myCustomTask);
+    }
+
+    private void addAndroidBuildConfigField(String type, String name, String value){
+        String configValue = value;
+        if (type.equals("String")){
+            configValue = "\"" + value + "\"";
+        }
+        androidExtension.getDefaultConfig().buildConfigField(type, name, configValue);
     }
 
     /**
@@ -49,10 +59,10 @@ public class BaristaPlugin implements Plugin<Project> {
      * @param project
      */
     public void apply(Project project){
-        this.project = project;
 
+        this.project = project;
         // load the configuration extension
-        project.getExtensions().create("baristaSettings", BaristaConfigurationExtension.class);
+        project.getExtensions().create(BARISTA_PLUGIN_SETTINGS_SECTION, BaristaConfigurationExtension.class);
 
         // check if target project is an android project
         if(isAndroidProject()){
@@ -63,42 +73,28 @@ public class BaristaPlugin implements Plugin<Project> {
 
                 @Override
                 public void execute(Project project) {
-                    // check if task assembleDebugAndroidTest is about to be executed
-                    Task targetTask = project.getTasks().findByPath(ASSEMBLE_DEBUG_ANDROID_TEST);
+
+                    androidExtension = getAndroidExtension();
+
+                    config = project.getExtensions().findByType(BaristaConfigurationExtension.class);
+
+                    BaristaLogger.print("Configuration <host>: " + config.getHost());
+                    BaristaLogger.print("Configuration <port>: " + config.getPort());
+                    addAndroidBuildConfigField("Integer", BARISTA_PORT_BUILD_CONFIG, config.getPort().toString());
+                    addAndroidBuildConfigField("String", BARISTA_HOST_BUILD_CONFIG, config.getHost());
+
+                    EmulatorManager.setPackageName(getApplicationID());
+
+                    // Hook start server task
                     Task connectedDebugAndroidTest = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
-                   // targetTask.finalizedBy("stopBaristaServer");
+                    registerStartServerTask(connectedDebugAndroidTest);
 
-                    registerCustomTask(connectedDebugAndroidTest);
-
-                    // if no tests are runnig do nothing
-                    if(targetTask == null ){
-                        project.getLogger().log(LogLevel.ERROR,"No Android task '"+ASSEMBLE_DEBUG_ANDROID_TEST+"' found");
-                    }
-                    else{
-                        project.getLogger().log(LogLevel.ERROR,"Task  '"+ASSEMBLE_DEBUG_ANDROID_TEST+"' Found !!! ");
-
-                        // inject port configuration for barista http client
-                        hookPortConfiguration();
-
-                        // deploy the server when ready to run connected tests
-                        // FIXME uncomment or replace with task registration
-                        BaristaLogger.print("Deploying Server");
-                        //deployDispatcherServer(targetTask);
-                        BaristaLogger.print("Server Deployed");
-                        // stop server when connected android tests finishes
-                        //hookServerStopTask();
-
-                    }
                 }
             });
 
+        } else{    // If the target project is NOT an android project, do nothing
+            BaristaLogger.print("Aborting, not an Android project.");
         }
-
-        else{    // If the target project is NOT an android project, do nothing
-            BaristaLogger.print("This is not an Android Project");
-        }
-
-
     }
 
     /**
@@ -118,35 +114,6 @@ public class BaristaPlugin implements Plugin<Project> {
 
     }
 
-    /**
-     *  Function that hooks the task that starts the Barista Server after the execution of the targetTask.
-     *  After the execution of this function the Barista srver is up and runnng at the provided listening port.
-     *
-     *  @param targetTask The task to hook the server acctivation after it finishes.
-     */
-    private void deployDispatcherServer(Task targetTask){
-
-        targetTask.doLast("startServer",new Action<Task>() {
-
-            @Override
-            public void execute(Task task) {
-
-                BaristaLogger.print("Give necessary permissions to "+getApplicationID()+ " package");
-                // get the package name and give it to the
-                EmulatorManager.setPackageName(getApplicationID());
-
-                // load the provided extension settings
-                BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
-
-                HttpServerManager serverManager = HttpServerManager.getInstance();
-                serverManager.setConfiguration(settings);
-
-                //start the server on localhost
-                BaristaLogger.print("Starting Server on "+ serverManager.getEndpoint());
-                serverManager.startServer();
-            }
-        });
-    }
 
     // Jersey server should be automaticaly shut down when connectedAndroidTest task is completed
     // todo There are two ways to run an  instrumented test. Must find how to close when using 2
@@ -173,19 +140,6 @@ public class BaristaPlugin implements Plugin<Project> {
 
     }
 
-    /**
-     *
-     */
-    private void hookPortConfiguration(){
-        BaseAppModuleExtension androidExtension= getAndroidExtension();
-
-        if(androidExtension != null) {
-            int port = getProvidedPort();
-            androidExtension.getDefaultConfig().buildConfigField("Integer","BARISTA_PORT","" + port + "");
-        }
-    }
-
-    //todo comments
     private  String getApplicationID(){
         BaseAppModuleExtension androidExtension= getAndroidExtension();
         return androidExtension.getDefaultConfig().getApplicationId();
@@ -206,18 +160,6 @@ public class BaristaPlugin implements Plugin<Project> {
 
         return null;
 
-    }
-
-    /**
-     * Scans for the baristaSettings extension and extracts the provided port number
-     *
-     * @return  the port number requested by the user
-     */
-    private Integer getProvidedPort(){
-        BaristaConfigurationExtension settings = project.getExtensions().findByType(BaristaConfigurationExtension.class);
-        int port = settings.getPort();
-        BaristaLogger.print("Configuration <server port>: "+port);
-        return port;
     }
 
     /**
