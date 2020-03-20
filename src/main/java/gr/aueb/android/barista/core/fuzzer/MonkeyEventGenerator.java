@@ -13,6 +13,10 @@ public class MonkeyEventGenerator extends AbstractAdbCommand {
     private int seed, count, throttle;
     private String apk;
 
+    public MonkeyEventGenerator() {
+
+    }
+
     public MonkeyEventGenerator(String sessionToken, int seed, int count, Integer throttle, String apk) {
         super(sessionToken);
         this.seed = seed;
@@ -59,9 +63,10 @@ public class MonkeyEventGenerator extends AbstractAdbCommand {
     @Override
     public String getCommandString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(BaristaCommandPrefixes.MONKEY).append(" ").append("-s ").append(this.seed);
-        buffer.append(" ").append("-v ").append(this.count);
-        buffer.append(" ").append("--throttle ").append(this.throttle);
+        buffer.append(BaristaCommandPrefixes.MONKEY).append(" ").append("-p ").append(this.apk);
+        buffer.append(" ").append("-s ").append(this.seed);
+        buffer.append(" ").append("-v ");
+        buffer.append(" ").append("--throttle ").append(this.throttle).append(" ").append(this.count);;
         String command = buffer.toString();
         return command;
     }
