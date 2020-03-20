@@ -17,14 +17,11 @@ public class MonkeyEventGenerator extends AbstractAdbCommand {
 
     }
 
-    public MonkeyEventGenerator(String sessionToken, int seed, int count, Integer throttle, String apk) {
+    public MonkeyEventGenerator(String sessionToken, int seed, int count, int throttle, String apk) {
         super(sessionToken);
         this.seed = seed;
         this.count = count;
-        if (throttle != null) {
-            this.throttle = throttle;
-        }
-        else this.throttle = DEFAULT_THROTTLE;
+        this.throttle = throttle;
         this.apk = apk;
     }
 

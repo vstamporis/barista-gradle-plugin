@@ -12,6 +12,7 @@ package gr.aueb.android.barista.core;
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.plugin.BaristaServerStartTask;
+import gr.aueb.android.barista.plugin.MonkeyTask;
 import gr.aueb.android.barista.server.HttpServerManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.Action;
@@ -50,6 +51,10 @@ public class BaristaPlugin implements Plugin<Project> {
         androidExtension.getDefaultConfig().buildConfigField(type, name, configValue);
     }
 
+    private void registerNonDependentTasks() {
+        project.getTasks().register(MonkeyTask.NAME, MonkeyTask.class);
+    }
+
     /**
      *  Function that is called by gradle in order to intergrate the plugin inside the building process of the project
      *  The plugin firsts checks that the target project is an Android Project and that the gradle is about to run
@@ -68,6 +73,8 @@ public class BaristaPlugin implements Plugin<Project> {
         if(isAndroidProject()){
 
             BaristaLogger.print("Android project identified");
+
+            registerNonDependentTasks();
 
             project.afterEvaluate(new Action<Project>() {
 
