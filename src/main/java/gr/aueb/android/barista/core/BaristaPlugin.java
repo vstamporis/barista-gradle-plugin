@@ -12,7 +12,7 @@ package gr.aueb.android.barista.core;
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.plugin.BaristaServerStartTask;
-import gr.aueb.android.barista.plugin.MonkeyTask;
+import gr.aueb.android.barista.plugin.MonkeyStartTask;
 import gr.aueb.android.barista.server.HttpServerManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.Action;
@@ -52,7 +52,7 @@ public class BaristaPlugin implements Plugin<Project> {
     }
 
     private void registerNonDependentTasks() {
-        project.getTasks().register(MonkeyTask.NAME, MonkeyTask.class);
+        project.getTasks().register(MonkeyStartTask.NAME, MonkeyStartTask.class);
     }
 
     /**

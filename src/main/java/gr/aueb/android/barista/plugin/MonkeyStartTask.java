@@ -1,9 +1,8 @@
 package gr.aueb.android.barista.plugin;
 
-import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.core.fuzzer.MonkeyEventGenerator;
+import gr.aueb.android.barista.core.fuzzer.Monkey;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import org.gradle.api.DefaultTask;
@@ -11,7 +10,7 @@ import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.options.Option;
 
-public class MonkeyTask extends DefaultTask {
+public class MonkeyStartTask extends DefaultTask {
 
     private int seed, count, throttle;
     private String apk;
@@ -64,7 +63,7 @@ public class MonkeyTask extends DefaultTask {
 
         String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
 
-        Command monkey = new MonkeyEventGenerator(token, seed, count, throttle, apk);
+        Command monkey = new Monkey(token, seed, count, throttle, apk);
         executor.executeAdbCommand(monkey);
     }
 

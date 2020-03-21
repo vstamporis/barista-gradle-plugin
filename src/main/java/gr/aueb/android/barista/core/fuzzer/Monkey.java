@@ -6,18 +6,18 @@ import gr.aueb.android.barista.core.model.AbstractAdbCommand;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
-public class MonkeyEventGenerator extends AbstractAdbCommand {
+public class Monkey extends AbstractAdbCommand {
 
     private static final int DEFAULT_THROTTLE = 1000;
 
     private int seed, count, throttle;
     private String apk;
 
-    public MonkeyEventGenerator() {
+    public Monkey() {
 
     }
 
-    public MonkeyEventGenerator(String sessionToken, int seed, int count, int throttle, String apk) {
+    public Monkey(String sessionToken, int seed, int count, int throttle, String apk) {
         super(sessionToken);
         this.seed = seed;
         this.count = count;

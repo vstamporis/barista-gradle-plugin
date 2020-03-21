@@ -1,6 +1,5 @@
 package gr.aueb.android.barista.rest.mapper;
 
-import gr.aueb.android.barista.core.fuzzer.MonkeyEventGenerator;
 import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.rest.dto.*;
 import org.mapstruct.Mapper;
@@ -44,6 +43,4 @@ public interface CommandMapper {
     SetOrientation fromSetOrientationDTO(SetOrientationDTO setOrientationDTO);
 
     GpsState fromGPSDDTO(GpsStatusDTO GPSDTO);
-
-    MonkeyEventGenerator fromMonkeyDTO(MonkeyDTO monkeyDTO);
 }
