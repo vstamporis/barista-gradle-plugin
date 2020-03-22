@@ -11,6 +11,7 @@ package gr.aueb.android.barista.core;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.plugin.BaristaFuzzerStartTask;
 import gr.aueb.android.barista.plugin.BaristaServerStartTask;
 import gr.aueb.android.barista.plugin.MonkeyStartTask;
 import gr.aueb.android.barista.server.HttpServerManager;
@@ -28,6 +29,7 @@ public class BaristaPlugin implements Plugin<Project> {
 
     // the android task that runs the android instrumented tests of the project
     private String CONNECTED_ANDROID_TEST = "connectedDebugAndroidTest";
+    private String INSTALL_DEBUG = "installDebug";
     
     private final String ANDROID_EXTENSION_NAME = "android";
     private BaseAppModuleExtension androidExtension;
@@ -49,6 +51,12 @@ public class BaristaPlugin implements Plugin<Project> {
             configValue = "\"" + value + "\"";
         }
         androidExtension.getDefaultConfig().buildConfigField(type, name, configValue);
+    }
+
+    private void registerBaristaFuzzerStartTask(Task targetTask) {
+        project.getTasks().register(BaristaFuzzerStartTask.NAME, BaristaFuzzerStartTask.class);
+        Task myCustomTask = project.getTasks().getByName(BaristaFuzzerStartTask.NAME);
+        myCustomTask.dependsOn(targetTask);
     }
 
     private void registerNonDependentTasks() {
@@ -95,6 +103,9 @@ public class BaristaPlugin implements Plugin<Project> {
                     // Hook start server task
                     Task connectedDebugAndroidTest = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
                     registerStartServerTask(connectedDebugAndroidTest);
+
+                    Task installDebug = project.getTasks().findByPath(INSTALL_DEBUG);
+                    registerBaristaFuzzerStartTask(installDebug);
 
                 }
             });
