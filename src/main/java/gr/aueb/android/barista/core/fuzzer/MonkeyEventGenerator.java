@@ -1,24 +1,18 @@
 package gr.aueb.android.barista.core.fuzzer;
 
-import gr.aueb.android.barista.core.executor.ADBCommandClient;
-import gr.aueb.android.barista.core.executor.CommandClient;
-import gr.aueb.android.barista.core.model.AbstractAdbCommand;
+import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
+import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
+import gr.aueb.android.barista.core.model.Monkey;
+import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 
-public class Monkey extends AbstractAdbCommand {
-
-    private static final int DEFAULT_THROTTLE = 1000;
+public class MonkeyEventGenerator {
 
     private int seed, count, throttle;
     private String apk;
+    private Monkey monkey;
 
-    public Monkey() {
-
-    }
-
-    public Monkey(String sessionToken, int seed, int count, int throttle, String apk) {
-        super(sessionToken);
+    public MonkeyEventGenerator(int seed, int count, int throttle, String apk) {
         this.seed = seed;
         this.count = count;
         this.throttle = throttle;
@@ -57,20 +51,22 @@ public class Monkey extends AbstractAdbCommand {
         this.apk = apk;
     }
 
-    @Override
-    public String getCommandString() {
+    private String createMonkeyCommand() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(BaristaCommandPrefixes.MONKEY).append(" ").append("-p ").append(this.apk);
         buffer.append(" ").append("-s ").append(this.seed);
         buffer.append(" ").append("-v ");
-        buffer.append(" ").append("--throttle ").append(this.throttle).append(" ").append(this.count);;
+        buffer.append(" ").append("--throttle ").append(this.throttle).append(" ").append(this.count);
         String command = buffer.toString();
         return command;
     }
 
-    @Override
-    public boolean isCompleted(CommandClient client) {
-        BaristaLogger.print("Completed");
-        return true;
+    public void startMonkeyFuzzing() {
+        CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
+
+        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
+
+        this.monkey = new Monkey(token, this.createMonkeyCommand());
+        executor.executeAdbCommand(this.monkey);
     }
 }

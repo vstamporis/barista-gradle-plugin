@@ -1,12 +1,15 @@
 package gr.aueb.android.barista.plugin;
 
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.core.fuzzer.Monkey;
+import gr.aueb.android.barista.core.fuzzer.MonkeyEventGenerator;
+import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.options.Option;
 
@@ -47,24 +50,13 @@ public class MonkeyStartTask extends DefaultTask {
         return throttle;
     }
 
-    @Option(option = "apk", description = "Package to test")
-    public void setApk(String apk) {
-        this.apk = apk;
-    }
-
-    @Input
-    public String getApk() {
-        return apk;
-    }
-
     @TaskAction
     public void action() {
-        CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
+        BaseAppModuleExtension android = (BaseAppModuleExtension) this.getProject().getExtensions().findByName("android");
+        this.apk = android.getDefaultConfig().getApplicationId();
 
-        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-
-        Command monkey = new Monkey(token, seed, count, throttle, apk);
-        executor.executeAdbCommand(monkey);
+        MonkeyEventGenerator monkey = new MonkeyEventGenerator(this.seed, this.count, this.throttle, this.apk);
+        monkey.startMonkeyFuzzing();
     }
 
 }

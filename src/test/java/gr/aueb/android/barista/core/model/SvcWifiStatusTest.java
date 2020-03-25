@@ -1,5 +1,9 @@
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
+import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
+import gr.aueb.android.barista.emulator.EmulatorManager;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -10,6 +14,13 @@ import static org.junit.Assert.*;
 
 
 public class SvcWifiStatusTest {
+
+    private static CommandExecutorImpl executor;
+
+    @BeforeClass
+    public static void setup(){
+        executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
+    }
 
     @Test
     public void parseResultIfConnected() {
@@ -111,6 +122,19 @@ public class SvcWifiStatusTest {
         System.out.println(wifiStatus.getStatus());
     }
 
+    @Test
+    public void testWifi() {
+        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
 
+        Command wifi = new SvcWifi(token, true);
+        executor.executeCommand(wifi);
+    }
 
+    @Test
+    public void testWifiStatus() {
+        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
+
+        Command wifiStatus = new SvcWifiStatus(token);
+        executor.executeCommand(wifiStatus);
+    }
 }

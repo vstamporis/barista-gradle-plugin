@@ -20,7 +20,7 @@ import java.util.Map;
 public class SvcWifi extends AbstractAdbCommand {
 
     private boolean enabled;
-    private  static final Map<String, Boolean> possibleStatusDescription;
+    private static final Map<String, Boolean> possibleStatusDescription;
 
     static{
         possibleStatusDescription = new Hashtable<>();

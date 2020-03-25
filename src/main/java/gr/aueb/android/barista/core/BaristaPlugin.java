@@ -20,6 +20,13 @@ import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
+import com.android.build.gradle.internal.dsl.ProductFlavor;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class BaristaPlugin implements Plugin<Project> {
 
@@ -37,7 +44,6 @@ public class BaristaPlugin implements Plugin<Project> {
     private BaristaConfigurationExtension config;
 
     private Project project;
-
 
     private void registerStartServerTask(Task targetTask){
         project.getTasks().register(BaristaServerStartTask.NAME, BaristaServerStartTask.class);
@@ -158,7 +164,7 @@ public class BaristaPlugin implements Plugin<Project> {
 
     }
 
-    private  String getApplicationID(){
+    private String getApplicationID(){
         BaseAppModuleExtension androidExtension= getAndroidExtension();
         return androidExtension.getDefaultConfig().getApplicationId();
     }
@@ -177,7 +183,6 @@ public class BaristaPlugin implements Plugin<Project> {
         }
 
         return null;
-
     }
 
     /**

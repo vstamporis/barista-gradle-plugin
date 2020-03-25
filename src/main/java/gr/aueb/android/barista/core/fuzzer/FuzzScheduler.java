@@ -3,31 +3,38 @@ package gr.aueb.android.barista.core.fuzzer;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
+import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.utilities.BaristaLogger;
+import org.gradle.api.publish.ivy.internal.artifact.SingleOutputTaskIvyArtifact;
 
 public class FuzzScheduler {
 
-    private Command monkey;
+    private MonkeyEventGenerator monkey;
+    private ContextEventGenerator context;
 
-    private int duration, count, throttle;
+    private int count, throttle, batchSize;
     private String apk, token;
 
-    public FuzzScheduler(int duration, int count, int throttle, String apk) {
-        this.duration = duration;
+    public FuzzScheduler(int count, int throttle, int batchSize, String apk) {
         this.count = count;
         this.throttle = throttle;
         this.apk = apk;
+        this.batchSize = batchSize;
     }
 
     public void startFuzz() {
         int seed = (int)(Math.random()*100);
-        this.monkey = new Monkey(this.token, seed, this.count, this.throttle, this.apk);
 
-        CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
+        this.monkey = new MonkeyEventGenerator(seed, this.batchSize, this.throttle, this.apk);
+        this.context = new ContextEventGenerator();
 
-        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-
-        this.monkey = new Monkey(token, seed, count, throttle, apk);
-        executor.executeAdbCommand(this.monkey);
+        this.context.startContextFuzzing();
+        int epochs = this.count/this.batchSize;
+        /*for (int i = 0; i < epochs; i++) {
+            this.monkey.startMonkeyFuzzing();
+        }
+        this.context.stopContextFuzzing();*/
     }
+
 }
