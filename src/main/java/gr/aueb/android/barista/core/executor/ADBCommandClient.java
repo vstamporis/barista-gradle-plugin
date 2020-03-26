@@ -74,14 +74,17 @@ public class ADBCommandClient implements CommandClient {
 
             // execute the command and wait for its execution
             Process p = pb.start();
-            p.waitFor();
+            pb.redirectErrorStream(true);
 
             // read the output (if any) and pass it tho the result parser of the Command. It is used
             // when the command output is needed.
             BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
             Stream<String> resultStream = output.lines();
+
             cmd.parseResult(resultStream);
             output.close();
+
+            p.waitFor();
 
             // wait until the Command verifies its execution
             while (!cmd.isCompleted(this)){
