@@ -1,22 +1,20 @@
 package gr.aueb.android.barista.core.fuzzer.context;
 
-import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.SvcData;
 import gr.aueb.android.barista.core.model.SvcWifi;
-import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PoorConnectivityModel extends ContextModel {
+public class RandomConnectivityModel extends ContextModel {
 
     private Map<Integer, Command> possibleCommands;
 
-    public PoorConnectivityModel(String token) {
+    public RandomConnectivityModel(String token) {
         super();
         this.possibleCommands = new HashMap<>();
         this.possibleCommands.put(1, new SvcWifi(token, true));
@@ -31,9 +29,9 @@ public class PoorConnectivityModel extends ContextModel {
             while (!this.stop) {
                 CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
                 executor.executeCommand(possibleCommands.get(this.generateRandomInt(1, 4)));
-                BaristaLogger.print("Executing Wifi/Data");
+                BaristaLogger.print("Executing Random Wifi/Data");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(this.generateRandomInt(10, 60)*1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

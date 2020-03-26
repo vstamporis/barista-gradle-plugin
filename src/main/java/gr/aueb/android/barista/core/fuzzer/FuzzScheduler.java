@@ -29,12 +29,13 @@ public class FuzzScheduler {
         this.monkey = new MonkeyEventGenerator(seed, this.batchSize, this.throttle, this.apk);
         this.context = new ContextEventGenerator();
 
+        this.context.initializeContextEvents();
         this.context.startContextFuzzing();
         int epochs = this.count/this.batchSize;
-        /*for (int i = 0; i < epochs; i++) {
+        for (int i = 0; i < epochs; i++) {
             this.monkey.startMonkeyFuzzing();
         }
-        this.context.stopContextFuzzing();*/
+        this.context.stopContextFuzzing();
     }
 
 }

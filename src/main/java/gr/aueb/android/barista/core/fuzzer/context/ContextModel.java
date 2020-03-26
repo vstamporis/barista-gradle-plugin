@@ -8,6 +8,12 @@ import java.util.Random;
 
 public abstract class ContextModel {
 
+    protected boolean stop;
+
+    public ContextModel() {
+        this.stop = false;
+    }
+
     public abstract void execute();
 
     public String getToken() {
@@ -24,5 +30,9 @@ public abstract class ContextModel {
         int number = random.nextInt((max - min) + 1) + min;
 
         return number;
+    }
+
+    public void stop() {
+        this.stop = true;
     }
 }
