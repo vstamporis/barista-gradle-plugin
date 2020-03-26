@@ -126,15 +126,12 @@ public class SvcWifiStatusTest {
     public void testWifi() {
         String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
 
-        Command wifi = new SvcWifi(token, true);
+        Command wifi = new SvcWifi(token, false);
         executor.executeCommand(wifi);
-    }
-
-    @Test
-    public void testWifiStatus() {
-        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
 
         Command wifiStatus = new SvcWifiStatus(token);
         executor.executeCommand(wifiStatus);
+        assertEquals("DISCONNECTED/DISCONNECTED", ((SvcWifiStatus) wifiStatus).getStatus());
     }
+
 }
