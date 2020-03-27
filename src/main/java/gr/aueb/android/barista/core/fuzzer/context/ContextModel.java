@@ -1,38 +1,33 @@
 package gr.aueb.android.barista.core.fuzzer.context;
 
-import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
-import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.emulator.EmulatorManager;
-
 import java.util.Random;
 
 public abstract class ContextModel {
 
     protected boolean stop;
+    protected String token;
+    protected Random random;
 
-    public ContextModel() {
+    public ContextModel(String token) {
         this.stop = false;
+        this.token = token;
+        this.random = new Random();
     }
 
     public abstract void execute();
 
-    public String getToken() {
-        return EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-    }
-
-    public CommandExecutorImpl getCommandExecutor() {
-        return (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
-    }
-
     public int generateRandomInt(int min, int max) {
-        Random random = new Random();
 
-        int number = random.nextInt((max - min) + 1) + min;
+        int number = this.random.nextInt((max - min) + 1) + min;
 
         return number;
     }
 
     public void stop() {
         this.stop = true;
+    }
+
+    public String getToken() {
+        return this.token;
     }
 }

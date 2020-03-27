@@ -1,9 +1,6 @@
 package gr.aueb.android.barista.core.fuzzer;
 
-import gr.aueb.android.barista.core.fuzzer.context.BatteryDrainModel;
-import gr.aueb.android.barista.core.fuzzer.context.ContextModel;
-import gr.aueb.android.barista.core.fuzzer.context.PoorConnectivityModel;
-import gr.aueb.android.barista.core.fuzzer.context.RandomConnectivityModel;
+import gr.aueb.android.barista.core.fuzzer.context.*;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 
 import java.util.*;
@@ -38,17 +35,11 @@ public class ContextEventGenerator {
         this.contextEvents.put(1, new PoorConnectivityModel(token));
         this.contextEvents.put(2, new RandomConnectivityModel(token));
         this.contextEvents.put(3, new BatteryDrainModel(token));
-        this.models.add(new BatteryDrainModel(token));
-        this.models.add(new PoorConnectivityModel(token));
-        this.models.add(new RandomConnectivityModel(token));
-    }
-
-    private int generateRandomInt(int min, int max) {
-        Random random = new Random();
-
-        int number = random.nextInt((max - min) + 1) + min;
-
-        return number;
+//        this.models.add(new BatteryDrainModel(token));
+//        this.models.add(new PoorConnectivityModel(token));
+//        this.models.add(new RandomConnectivityModel(token));
+        this.models.add(new RandomWalkModel(token));
+//        this.models.add(new FuzzMovementModel(token));
     }
 
     public void stopContextFuzzing() {
