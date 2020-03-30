@@ -51,10 +51,21 @@ public class RandomWalkModel extends MovementContextModel {
     }
 
     private int generateRandomArrayPosition() {
-        Random r = new Random();
-        int number = r.nextInt(3);
+        Random random = new Random(1);
 
-        return number;
+        double r = random.nextDouble();
+
+        if (r < 0.33) {
+            return 0;
+        }
+        else if (r < 0.66) {
+            return 1;
+        }
+        else if (r < 0.99) {
+            return 2;
+        }
+
+        return new Random(3).nextInt();
     }
 
 }
