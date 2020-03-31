@@ -1,9 +1,7 @@
-package gr.aueb.android.barista.core.fuzzer.context;
+package gr.aueb.android.barista.core.context.model;
 
-import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
-import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
+import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.GeoFix;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 
 public class FuzzMovementModel extends MovementContextModel {
 
@@ -13,7 +11,7 @@ public class FuzzMovementModel extends MovementContextModel {
         super(token);
     }
 
-    @Override
+    /*@Override
     public void execute() {
         new Thread(() -> {
             CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
@@ -28,6 +26,10 @@ public class FuzzMovementModel extends MovementContextModel {
                 }
             }
         }).start();
-    }
+    }*/
 
+    @Override
+    public Command next(long elapsedTimeMillis) {
+        return new GeoFix(this.token, generateRandomLatitude(), generateRandomLongitude());
+    }
 }

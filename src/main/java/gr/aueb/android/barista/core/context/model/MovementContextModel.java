@@ -1,11 +1,18 @@
-package gr.aueb.android.barista.core.fuzzer.context;
+package gr.aueb.android.barista.core.context.model;
 
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
-public abstract class MovementContextModel extends ContextModel {
+import java.util.Random;
+
+public abstract class MovementContextModel implements ContextModel {
+
+    private Random random;
+
+    protected String token;
 
     public MovementContextModel(String token) {
-        super(token);
+        this.token = token;
+        this.random = new Random();
     }
 
     protected double generateRandomLatitude() {
@@ -20,5 +27,12 @@ public abstract class MovementContextModel extends ContextModel {
         randomValue = Double.parseDouble(String.format("%.6f", randomValue));
         BaristaLogger.print("Random double: " + randomValue);
         return randomValue;
+    }
+
+    protected int generateRandomInt(int min, int max) {
+
+        int number = this.random.nextInt((max - min) + 1) + min;
+
+        return number;
     }
 }

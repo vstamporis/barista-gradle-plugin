@@ -1,22 +1,27 @@
-package gr.aueb.android.barista.core.fuzzer;
+package gr.aueb.android.barista.fuzzer;
 
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
+import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
-public class MonkeyEventGenerator {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MonkeyEventGenerator implements EventGenerator{
 
     private int seed, count, throttle;
-    private String apk;
+    private String apk, token;
     private Monkey monkey;
 
-    public MonkeyEventGenerator(int seed, int count, int throttle, String apk) {
+    public MonkeyEventGenerator(int seed, int count, int throttle, String apk, String token) {
         this.seed = seed;
         this.count = count;
         this.throttle = throttle;
         this.apk = apk;
+        this.token = token;
     }
 
     public int getSeed() {
@@ -55,18 +60,16 @@ public class MonkeyEventGenerator {
         StringBuffer buffer = new StringBuffer();
         buffer.append(BaristaCommandPrefixes.MONKEY).append(" ").append("-p ").append(this.apk);
         buffer.append(" ").append("-s ").append(this.seed);
-        buffer.append(" ").append("-v ");
+        buffer.append(" ").append("-v");
         buffer.append(" ").append("--throttle ").append(this.throttle).append(" ").append(this.count);
         String command = buffer.toString();
         return command;
     }
 
-    public void startMonkeyFuzzing() {
-        CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
-
-        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-
-        this.monkey = new Monkey(token, this.createMonkeyCommand());
-        executor.executeAdbCommand(this.monkey);
+    public List<Command> generate() {
+        Monkey monkey = new Monkey(this.token, this.createMonkeyCommand());
+        List<Command> toExecute = new ArrayList<>();
+        toExecute.add(monkey);
+        return toExecute;
     }
 }

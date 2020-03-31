@@ -1,8 +1,6 @@
-package gr.aueb.android.barista.core.fuzzer.context;
+package gr.aueb.android.barista.core.context.model;
 
-import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
-import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.utilities.BaristaLogger;
+import gr.aueb.android.barista.core.model.Command;
 
 public class PoorConnectivityModel extends ConnectivityContextModel {
 
@@ -11,7 +9,7 @@ public class PoorConnectivityModel extends ConnectivityContextModel {
         this.initiateConnectivityCommands();
     }
 
-    @Override
+    /*@Override
     public void execute() {
         new Thread(() -> {
             CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
@@ -25,6 +23,10 @@ public class PoorConnectivityModel extends ConnectivityContextModel {
                 }
             }
         }).start();
-    }
+    }*/
 
+    @Override
+    public Command next(long elapsedTimeMillis) {
+        return possibleCommands.get(this.generateRandomInt(1, 4));
+    }
 }
