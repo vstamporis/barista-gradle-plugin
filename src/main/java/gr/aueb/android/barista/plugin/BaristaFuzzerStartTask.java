@@ -1,16 +1,22 @@
 package gr.aueb.android.barista.plugin;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
+import gr.aueb.android.barista.core.context.model.ContextModel;
 import gr.aueb.android.barista.fuzzer.FuzzScheduler;
+import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.options.Option;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaristaFuzzerStartTask extends DefaultTask {
 
     private int eventsPerEpoch, throttle, epochs;
-    private String apk;
+    private String apk, conf;
 
     public static final String NAME = "startBaristaFuzzer";
 
@@ -44,12 +50,22 @@ public class BaristaFuzzerStartTask extends DefaultTask {
         return throttle;
     }
 
+    @Option(option = "config", description = "Config file of context testing")
+    public void setConf(String conf) {
+        this.conf = conf;
+    }
+
+    @Input
+    public String getConf() {
+        return conf;
+    }
+
     @TaskAction
     public void action() {
         BaseAppModuleExtension android = (BaseAppModuleExtension) this.getProject().getExtensions().findByName("android");
         this.apk = android.getDefaultConfig().getApplicationId();
 
-        FuzzScheduler fuzzer = new FuzzScheduler(this.epochs, this.throttle, this.eventsPerEpoch, this.apk);
+        FuzzScheduler fuzzer = new FuzzScheduler(this.epochs, this.throttle, this.eventsPerEpoch, this.apk, this.conf);
         fuzzer.initialize(true, false);
         fuzzer.start();
     }
