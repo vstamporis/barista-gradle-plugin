@@ -9,7 +9,7 @@ import java.util.Random;
 public class RandomWalkModel extends MovementContextModel {
 
     private GeoFix geoFix;
-    private double lat, longt;
+    private Double lat, longt;
 
 //    private static double[] movements = new double[]{ -0.000005, 0.000000, 0.000005 };
 
@@ -28,32 +28,6 @@ public class RandomWalkModel extends MovementContextModel {
     public RandomWalkModel(String token) {
         super(token);
     }
-
-    /*@Override
-    public void execute() {
-        new Thread(() -> {
-            CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
-            double lat = generateRandomLatitude();
-            double longt = generateRandomLongitude();
-            double lat = 37.975374;
-            double longt = 23.734873;
-            this.geoFix = new GeoFix(this.token, lat, longt);
-            executor.executeCommand(this.geoFix);
-            BaristaLogger.print("Initializing random walk model with pos: " + lat + " " + longt);
-            while (!this.stop) {
-                lat += movements[generateRandomArrayPosition()][generateRandomArrayPosition()].getLatitude();
-                longt += movements[generateRandomArrayPosition()][generateRandomArrayPosition()].getLongitude();
-                this.geoFix = new GeoFix(this.token, lat, longt);
-                executor.executeCommand(this.geoFix);
-                BaristaLogger.print("Moving to pos: " + lat + " " + longt);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }*/
 
     private int generateRandomArrayPosition() {
         Random random = new Random(300);
@@ -75,8 +49,25 @@ public class RandomWalkModel extends MovementContextModel {
 
     @Override
     public Command next(long elapsedTimeMillis) {
+        if (this.geoFix == null) {
+            if (this.lat == null && this.longt == null) {
+                this.lat = this.generateRandomLatitude();
+                this.longt = this.generateRandomLongitude();
+            }
+            this.geoFix = new GeoFix(this.token, this.lat, this.longt);
+            return this.geoFix;
+        }
         this.lat += movements[generateRandomArrayPosition()][generateRandomArrayPosition()].getLatitude();
         this.longt += movements[generateRandomArrayPosition()][generateRandomArrayPosition()].getLongitude();
-        return new GeoFix(this.token, this.lat, this.longt);
+        this.geoFix = new GeoFix(this.token, this.lat, this.longt);
+        return this.geoFix;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public void setLongt(double longt) {
+        this.longt = longt;
     }
 }

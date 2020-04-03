@@ -18,6 +18,8 @@ public class ContextModelFactory {
                 return new PoorConnectivityModel(this.token);
             case RANDOM:
                 return new RandomConnectivityModel(this.token);
+            case GPS:
+                return new FuzzGPSModel(this.token);
         }
         return null;
     }

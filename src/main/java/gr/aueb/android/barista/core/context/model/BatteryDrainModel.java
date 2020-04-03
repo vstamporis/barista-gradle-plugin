@@ -12,82 +12,33 @@ import java.util.Random;
 
 public class BatteryDrainModel implements ContextModel {
 
-    private Command batteryCharge;
     private Command batteryLevel;
-    private Command batteryStatus;
     private String token;
 
     public BatteryDrainModel(String token) {
         this.token = token;
     }
 
-    /*@Override
-    public void execute() {
-        new Thread(() -> {
-            CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
-            while (!this.stop) {
-                this.batteryStatus = new BatteryStatus(this.token);
-                executeCommand(this.batteryStatus, executor);
-
-                if (((BatteryStatus) this.batteryStatus).getLevel() < 10) {
-                    this.batteryCharge = new BatteryCharge(this.token, true);
-                    executeCommand(this.batteryCharge, executor);
-                    this.batteryLevel = new BatteryLevel(this.token, 100);
-                    executeCommand(this.batteryLevel, executor);
-                    this.batteryCharge = new BatteryCharge(this.token, false);
-                    executeCommand(this.batteryCharge, executor);
-                }
-                if (((BatteryStatus) this.batteryStatus).getLevel() == 100) {
-                    this.batteryCharge = new BatteryCharge(this.token, false);
-                    executeCommand(this.batteryCharge, executor);
-                }
-
-                if (!((BatteryStatus) this.batteryStatus).getChargingStatus()) {
-                    this.batteryStatus = new BatteryStatus(token);
-                    executeCommand(this.batteryStatus, executor);
-                    int currentLevel = ((BatteryStatus) this.batteryStatus).getLevel();
-                    int finalLevel = currentLevel - this.generateRandomInt(0, 4);
-
-                    this.batteryLevel = new BatteryLevel(this.token,finalLevel);
-                    executeCommand(this.batteryLevel, executor);
-                }
-                try {
-                    Thread.sleep(this.generateRandomInt(15, 45)*1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-    }*/
-
-    private void executeCommand(Command cmd, CommandExecutorImpl executor) {
-        executor.executeCommand(cmd);
-        BaristaLogger.print("Executing battery command");
-    }
-
     @Override
     public Command next(long elapsedTimeMillis) {
-        CommandExecutorImpl executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
-        this.batteryStatus = new BatteryStatus(this.token);
-        executeCommand(this.batteryStatus, executor);
-
-        if (((BatteryStatus) this.batteryStatus).getLevel() < 10 && !((BatteryStatus) this.batteryStatus).getChargingStatus()) {
-            return new BatteryCharge(this.token, true);
+        if (this.batteryLevel == null) {
+            this.batteryLevel = new BatteryLevel(this.token, 100);
+            return this.batteryLevel;
         }
 
-        if (((BatteryStatus) this.batteryStatus).getLevel() == 100 && ((BatteryStatus) this.batteryStatus).getChargingStatus()) {
-            return new BatteryCharge(this.token, false);
-        }
+        Command temp = null;
 
-        if (((BatteryStatus) this.batteryStatus).getChargingStatus()) {
-            int currentLevel = ((BatteryStatus) this.batteryStatus).getLevel();
+        if (((BatteryLevel) this.batteryLevel).getLevel() < 10) {
+            temp = new BatteryLevel(this.token, 100);
+        }
+        else {
+            int currentLevel = ((BatteryLevel) this.batteryLevel).getLevel();
             int finalLevel = currentLevel - this.generateRandomInt(0, 4);
 
-            return new BatteryLevel(this.token,finalLevel);
+            temp = new BatteryLevel(this.token, finalLevel);
         }
 
-        return new BatteryStatus(this.token);
+        return temp;
     }
 
     private int generateRandomInt(int min, int max) {
