@@ -16,7 +16,7 @@ public class GpsStatus extends AbstractAdbCommand {
 
     @Override
     public String getCommandString() {
-        return BaristaCommandPrefixes.GPS_STATUS;
+        return BaristaCommandPrefixes.GPS_STATUS_RES;
     }
 
     @Override
@@ -31,14 +31,13 @@ public class GpsStatus extends AbstractAdbCommand {
             @Override
             public void accept(String line) {
 
-                String tmp = line.substring(line.indexOf('[')+1, line.lastIndexOf(']'));
-                String[] tmpArray = tmp.trim().split(",");
-                status = tmpArray[1].trim().split(":")[1].trim();
+                status = line;
+
             }
         });
     }
 
     public String getStatus() {
-        return this.status;
+        return this.status != null ? "ENABLED" : "DISABLED";
     }
 }

@@ -45,15 +45,13 @@ public class GpsState extends AbstractAdbCommand {
 
     @Override
     public boolean isCompleted(CommandClient client){
-        SvcWifiStatus wifiStatus = new SvcWifiStatus(this.getSessionToken());
-        client.executeCommand(wifiStatus);
-        Boolean result = possibleStatusDescription.get(wifiStatus.getStatus());
+        GpsStatus gpsStatus = new GpsStatus(this.getSessionToken());
+        client.executeCommand(gpsStatus);
+        Boolean result = possibleStatusDescription.get(gpsStatus.getStatus());
         if(result == enabled ){
             BaristaLogger.print("Completed");
             return true;
         }
-
-        BaristaLogger.print("not Completed");
-        return false;
+        return true;
     }
 }
