@@ -25,6 +25,7 @@ public class Monkey extends AbstractAdbCommand {
     public Monkey(String sessionToken, String command) {
         super(sessionToken);
         this.command = command;
+        this.completed = false;
     }
 
     @Override
@@ -37,12 +38,12 @@ public class Monkey extends AbstractAdbCommand {
         resultLines.filter(new Predicate<String>() {
             @Override
             public boolean test(String line) {
-                return line.contains("Monkey aborted due to error") || line.contains("Monkey finished");
+                return line.contains("Monkey aborted due to error") || line.contains("Monkey finished") || line.contains("CRASHED");
             }
         }).forEach(new Consumer<String>() {
             @Override
             public void accept(String line) {
-                if (line.contains("Monkey aborted due to error")) {
+                if (line.contains("Monkey aborted due to error") || line.contains("CRASHED")) {
                     completed = false;
                 }
                 if (line.contains("Monkey finished")) {

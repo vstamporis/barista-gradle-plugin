@@ -17,6 +17,7 @@ public class BaristaFuzzerStartTask extends DefaultTask {
 
     private int eventsPerEpoch, throttle, epochs;
     private String apk, conf;
+    private boolean parallel = false;
 
     public static final String NAME = "startBaristaFuzzer";
 
@@ -60,13 +61,18 @@ public class BaristaFuzzerStartTask extends DefaultTask {
         return conf;
     }
 
+    @Option(option = "parallelRun", description = "Run events in parallel")
+    public void setParallel() {
+        this.parallel = true;
+    }
+
     @TaskAction
     public void action() {
         BaseAppModuleExtension android = (BaseAppModuleExtension) this.getProject().getExtensions().findByName("android");
         this.apk = android.getDefaultConfig().getApplicationId();
 
         FuzzScheduler fuzzer = new FuzzScheduler(this.epochs, this.throttle, this.eventsPerEpoch, this.apk, this.conf);
-        fuzzer.initialize(true, false);
+        fuzzer.initialize(true, this.parallel);
         fuzzer.start();
     }
 }

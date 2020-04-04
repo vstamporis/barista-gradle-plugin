@@ -1,10 +1,7 @@
 package gr.aueb.android.barista.fuzzer;
 
-import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
-import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.Monkey;
-import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 import java.util.ArrayList;

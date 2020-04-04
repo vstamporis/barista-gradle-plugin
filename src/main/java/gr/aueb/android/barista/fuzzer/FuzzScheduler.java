@@ -7,16 +7,23 @@ import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
+import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.runner.ParallelRunner;
+import gr.aueb.android.barista.runner.Runner;
+import gr.aueb.android.barista.runner.SerialRunner;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import gr.aueb.android.barista.utilities.PropertiesReader;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
 public class FuzzScheduler {
+
+    private Runner runner;
 
     private MonkeyEventGenerator monkey;
     private ContextEventGenerator context;
@@ -26,6 +33,8 @@ public class FuzzScheduler {
 
     private List<Command> commandsToExecute;
     private List<EventGenerator> eventGenerators;
+    private List<Command> monkeyCommands;
+    private List<Command> contextCommands;
 
     private int epochs, throttle, batchSize;
     private String apk, token, conf;
@@ -35,9 +44,12 @@ public class FuzzScheduler {
         this.throttle = throttle;
         this.apk = apk;
         this.batchSize = batchSize;
+        this.conf = conf;
+
         this.commandsToExecute = new ArrayList<>();
         this.eventGenerators = new ArrayList<>();
-        this.conf = conf;
+        this.monkeyCommands = new ArrayList<>();
+        this.contextCommands = new ArrayList<>();
     }
 
     public void initialize(boolean context, boolean parallel) {
@@ -49,11 +61,29 @@ public class FuzzScheduler {
         this.initializeMonkey();
         if (context) this.initializeContext();
 
+        Instant start = Instant.now();
+
         for (int i = 0; i < this.epochs; i++) {
             for (EventGenerator eg: this.eventGenerators) {
                 List<Command> commands = eg.generate();
                 this.commandsToExecute.addAll(commands);
             }
+        }
+
+        for (Command cmd : this.commandsToExecute) {
+            if (cmd instanceof Monkey) {
+                this.monkeyCommands.add(cmd);
+            }
+            else {
+                this.contextCommands.add(cmd);
+            }
+        }
+
+        if (parallel) {
+            this.runner = new ParallelRunner(this.monkeyCommands, this.contextCommands);
+        }
+        else {
+            this.runner = new SerialRunner(this.commandsToExecute);
         }
     }
 
@@ -99,11 +129,11 @@ public class FuzzScheduler {
 
 
     public void start() {
-        this.executor.executeCommands(this.commandsToExecute);
+        this.runner.start();
     }
 
     public void stop() {
-
+        this.runner.stop();
     }
 
 }

@@ -37,33 +37,4 @@ public class ContextEventGenerator implements EventGenerator {
         this.models.add(contextModel);
     }
 
-    /*public void startContextFuzzing() {
-        new Thread(() -> {
-            while (!this.stop) {
-                this.contextEvents.get(this.generateRandomInt(1, 3)).execute();
-            }
-        }).start();
-        for (ContextModel model : this.models) {
-            model.execute();
-        }
-    }*/
-
-    /*public void initializeContextEvents() {
-        String token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-        this.contextEvents.put(1, new PoorConnectivityModel());
-        this.contextEvents.put(2, new RandomConnectivityModel());
-        this.contextEvents.put(3, new BatteryDrainModel());
-        this.models.add(new BatteryDrainModel());
-        this.models.add(new PoorConnectivityModel());
-        this.models.add(new RandomConnectivityModel());
-        this.models.add(new RandomWalkModel());
-        this.models.add(new FuzzMovementModel());
-    }
-
-    public void stopContextFuzzing() {
-        this.stop = true;
-        for (ContextModel model : this.models) {
-            model.stop();
-        }
-    }*/
 }
