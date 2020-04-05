@@ -1,8 +1,8 @@
-package gr.aueb.android.barista.emulator.telnet;
+package gr.aueb.android.barista.core.emulator.telnet;
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */
-import gr.aueb.android.barista.emulator.EmulatorException;
+import gr.aueb.android.barista.core.emulator.EmulatorException;
 
 import java.io.BufferedReader;
 import java.io.File;

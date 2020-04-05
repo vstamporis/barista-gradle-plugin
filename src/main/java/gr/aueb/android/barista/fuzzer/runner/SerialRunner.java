@@ -1,10 +1,9 @@
-package gr.aueb.android.barista.runner;
+package gr.aueb.android.barista.fuzzer.runner;
 
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.List;
 

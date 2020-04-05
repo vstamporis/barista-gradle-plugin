@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.emulator;
+package gr.aueb.android.barista.core.emulator;
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */

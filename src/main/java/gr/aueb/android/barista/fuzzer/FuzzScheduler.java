@@ -8,18 +8,15 @@ import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.Monkey;
-import gr.aueb.android.barista.emulator.EmulatorManager;
-import gr.aueb.android.barista.runner.ParallelRunner;
-import gr.aueb.android.barista.runner.Runner;
-import gr.aueb.android.barista.runner.SerialRunner;
-import gr.aueb.android.barista.utilities.BaristaLogger;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
+import gr.aueb.android.barista.fuzzer.runner.ParallelRunner;
+import gr.aueb.android.barista.fuzzer.runner.Runner;
+import gr.aueb.android.barista.fuzzer.runner.SerialRunner;
 import gr.aueb.android.barista.utilities.PropertiesReader;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.Random;
 
 public class FuzzScheduler {
 

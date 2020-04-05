@@ -9,7 +9,7 @@
  */
 package gr.aueb.android.barista.core.model;
 
-import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 public class PmRevoke extends AbstractAdbCommand {

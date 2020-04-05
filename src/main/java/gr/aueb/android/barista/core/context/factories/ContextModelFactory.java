@@ -2,7 +2,6 @@ package gr.aueb.android.barista.core.context.factories;
 
 import gr.aueb.android.barista.core.context.*;
 import gr.aueb.android.barista.core.context.model.*;
-import gr.aueb.android.barista.emulator.EmulatorManager;
 
 public class ContextModelFactory {
 
