@@ -1,8 +1,8 @@
-package gr.aueb.android.barista.rest.dto;
+package gr.aueb.android.barista.server.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.WmDensity;
-import gr.aueb.android.barista.rest.mapper.CommandMapper;
+import gr.aueb.android.barista.server.mapper.CommandMapper;
 
 @JsonTypeName("WmDensity")
 public class WmDensityDTO extends CommandDTO<WmDensity> {

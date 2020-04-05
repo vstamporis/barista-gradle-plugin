@@ -10,7 +10,7 @@
 //package gr.aueb.android.barista.core.emulator.adb;
 //
 //
-//import gr.aueb.android.barista.rest.dto.WmSizeDTO;
+//import gr.aueb.android.barista.server.dto.WmSizeDTO;
 //import org.junit.Test;
 //
 //import static org.junit.Assert.assertEquals;

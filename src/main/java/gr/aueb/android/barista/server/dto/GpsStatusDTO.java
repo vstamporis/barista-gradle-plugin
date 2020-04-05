@@ -1,8 +1,7 @@
-package gr.aueb.android.barista.rest.dto;
+package gr.aueb.android.barista.server.dto;
 
-import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.GpsState;
-import gr.aueb.android.barista.rest.mapper.CommandMapper;
+import gr.aueb.android.barista.server.mapper.CommandMapper;
 
 public class GpsStatusDTO extends CommandDTO<GpsState> {
 

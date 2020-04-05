@@ -7,11 +7,11 @@
  * Role:
  * Description:
  */
-package gr.aueb.android.barista.rest.dto;
+package gr.aueb.android.barista.server.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.BatteryCharge;
-import gr.aueb.android.barista.rest.mapper.CommandMapper;
+import gr.aueb.android.barista.server.mapper.CommandMapper;
 
 @JsonTypeName("BatteryCharge")
 public class BatteryChargeDTO extends CommandDTO<BatteryCharge> {

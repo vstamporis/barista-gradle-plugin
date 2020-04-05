@@ -1,9 +1,9 @@
-package gr.aueb.android.barista.rest.dto;
+package gr.aueb.android.barista.server.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.SetOrientation;
-import gr.aueb.android.barista.rest.mapper.CommandMapper;
+import gr.aueb.android.barista.server.mapper.CommandMapper;
 
 @JsonTypeName("SetOrientation")
 public class SetOrientationDTO extends CommandDTO<SetOrientation> {

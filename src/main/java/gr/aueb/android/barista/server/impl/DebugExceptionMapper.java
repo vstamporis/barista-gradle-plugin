@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.rest.impl;
+package gr.aueb.android.barista.server.impl;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

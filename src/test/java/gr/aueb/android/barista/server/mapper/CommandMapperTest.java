@@ -1,13 +1,12 @@
-package gr.aueb.android.barista.rest.mapper;
+package gr.aueb.android.barista.server.mapper;
 
-import com.android.tools.build.jetifier.core.config.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gr.aueb.android.barista.helpers.ConstantValues;
 import gr.aueb.android.barista.helpers.JsonDataHelper;
 import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.helpers.ModelDataHelper;
-import gr.aueb.android.barista.rest.dto.*;
+import gr.aueb.android.barista.server.dto.*;
 import org.junit.Before;
 import org.junit.Test;
 

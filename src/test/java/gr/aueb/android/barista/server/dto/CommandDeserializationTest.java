@@ -1,9 +1,6 @@
-package gr.aueb.android.barista.rest.dto;
+package gr.aueb.android.barista.server.dto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gr.aueb.android.barista.rest.dto.CommandDTO;
-import gr.aueb.android.barista.rest.dto.GeoFixDTO;
-import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import org.junit.Before;
 import org.junit.Test;
 

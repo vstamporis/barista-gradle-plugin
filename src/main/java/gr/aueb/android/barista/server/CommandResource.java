@@ -15,8 +15,8 @@ import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.emulator.EmulatorManager;
-import gr.aueb.android.barista.rest.dto.CommandDTO;
-import gr.aueb.android.barista.rest.mapper.CommandListMapper;
+import gr.aueb.android.barista.server.dto.CommandDTO;
+import gr.aueb.android.barista.server.mapper.CommandListMapper;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import javax.ws.rs.*;
