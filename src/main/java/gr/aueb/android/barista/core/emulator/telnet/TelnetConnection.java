@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.emulator.telnet;
+package gr.aueb.android.barista.core.emulator.telnet;
 /**
  * Cloned From  https://github.com/bzafiris/barrista.git
  */

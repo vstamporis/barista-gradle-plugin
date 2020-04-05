@@ -7,7 +7,7 @@
 // * Role:
 // * Description:
 // */
-//package gr.aueb.android.barista.emulator.adb;
+//package gr.aueb.android.barista.core.emulator.adb;
 //
 //
 //import gr.aueb.android.barista.rest.dto.WmSizeDTO;

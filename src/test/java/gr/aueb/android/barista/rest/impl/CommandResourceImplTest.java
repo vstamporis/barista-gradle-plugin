@@ -3,7 +3,7 @@ package gr.aueb.android.barista.rest.impl;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImplStub;
 import gr.aueb.android.barista.core.model.DimensionUnit;
-import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
 import gr.aueb.android.barista.rest.dto.WmDensityDTO;
 import gr.aueb.android.barista.rest.dto.WmSizeDTO;

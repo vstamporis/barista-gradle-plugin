@@ -6,7 +6,7 @@ import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.core.model.WmGetSize;
 import gr.aueb.android.barista.core.model.WmSizeReset;
-import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.rest.dto.CommandDTO;
 import gr.aueb.android.barista.rest.dto.GeoFixDTO;
 import gr.aueb.android.barista.rest.dto.WmSizeDTO;

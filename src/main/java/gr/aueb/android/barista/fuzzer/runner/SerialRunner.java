@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.runner;
+package gr.aueb.android.barista.fuzzer.runner;
 
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
@@ -9,31 +9,22 @@ import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.List;
 
-public class ParallelRunner implements Runner {
+public class SerialRunner implements Runner {
 
-    private List<Command> monkeyCommands;
-    private List<Command> contextCommands;
+    private List<Command> commands;
     private CommandExecutor executor;
     private LogcatCrash crashReporter;
 
-    public ParallelRunner(List<Command> monkeyCommands, List<Command> contextCommands, LogcatCrash crashReporter) {
-        this.monkeyCommands = monkeyCommands;
-        this.contextCommands = contextCommands;
+    public SerialRunner(List<Command> commands, LogcatCrash crashReporter) {
+        this.commands = commands;
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
         this.crashReporter = crashReporter;
     }
 
     @Override
     public void start() {
-        for (Command cmd : this.monkeyCommands) {
-            synchronized (this) {
-                this.executor.executeCommand(cmd);
-                new Thread(() -> {
-                    for (Command i : this.contextCommands) {
-                        this.executor.executeCommand(i);
-                    }
-                }).start();
-            }
+        for (Command cmd : this.commands) {
+            this.executor.executeCommand(cmd);
         }
         this.executor.executeCommand(this.crashReporter);
         BaristaLogger.printList(this.crashReporter.getCrashLog());

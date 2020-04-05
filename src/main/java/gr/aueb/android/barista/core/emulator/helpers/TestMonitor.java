@@ -7,7 +7,7 @@
  * Role:
  * Description:
  */
-package gr.aueb.android.barista.emulator.helpers;
+package gr.aueb.android.barista.core.emulator.helpers;
 
 public class TestMonitor {
 

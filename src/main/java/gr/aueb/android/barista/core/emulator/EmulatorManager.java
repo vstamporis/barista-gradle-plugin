@@ -10,9 +10,8 @@
  *              that pushes them in the form of file to each emulator. The mapping of ecmulator to session token is
  *              managed by this object. This object also provides methods to easily execute utility functions directly to an emulator.
  */
-package gr.aueb.android.barista.emulator;
+package gr.aueb.android.barista.core.emulator;
 
-import gr.aueb.android.barista.rest.dto.WmSizeDTO;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.io.*;

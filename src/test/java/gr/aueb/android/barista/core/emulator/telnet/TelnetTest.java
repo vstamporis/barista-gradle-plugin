@@ -7,13 +7,9 @@
  * Role:
  * Description:
  */
-package gr.aueb.android.barista.emulator.telnet;
+package gr.aueb.android.barista.core.emulator.telnet;
 
-import gr.aueb.android.barista.emulator.EmulatorException;
-import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
-import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
-
-import org.junit.Test;
+import gr.aueb.android.barista.core.emulator.EmulatorException;
 
 import java.io.File;
 

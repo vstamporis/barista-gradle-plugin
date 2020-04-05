@@ -10,7 +10,7 @@
 package gr.aueb.android.barista.core;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
-import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.plugin.BaristaFuzzerStartTask;
 import gr.aueb.android.barista.plugin.BaristaServerStartTask;
 import gr.aueb.android.barista.plugin.MonkeyStartTask;
@@ -20,13 +20,6 @@ import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
-import com.android.build.gradle.internal.dsl.ProductFlavor;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class BaristaPlugin implements Plugin<Project> {
 
