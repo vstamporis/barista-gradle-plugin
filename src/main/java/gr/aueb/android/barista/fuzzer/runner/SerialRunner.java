@@ -30,4 +30,5 @@ public class SerialRunner implements Runner {
         BaristaLogger.printList(this.crashReporter.getCrashLog());
     }
 
+
 }
