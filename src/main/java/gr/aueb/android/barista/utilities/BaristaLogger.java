@@ -9,6 +9,8 @@
  */
 package gr.aueb.android.barista.utilities;
 
+import java.util.List;
+
 public class BaristaLogger {
 
     /**
@@ -18,6 +20,10 @@ public class BaristaLogger {
      */
     public static void print(String str){
         System.out.println("[BARISTA-PLUGIN] "+str);
+    }
+
+    public static void printList(List<String> list) {
+        if (list != null) list.forEach(BaristaLogger::print);
     }
 
 }

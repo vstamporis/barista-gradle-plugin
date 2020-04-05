@@ -31,5 +31,5 @@ public class BaristaCommandPrefixes {
     public static final String GPS_STATUS = "shell settings put secure location_providers_allowed";
     public static final String GPS_STATUS_RES = "shell settings get secure location_providers_allowed";
     public static final String MONKEY = "shell monkey";
-
+    public static final String LOGCAT_CRASH = "logcat --buffer=crash";
 }

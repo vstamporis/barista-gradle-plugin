@@ -12,7 +12,6 @@ public class FuzzGPSModel extends ConnectivityContextModel {
 
     @Override
     public Command next(long elapsedTimeMillis) {
-        BaristaLogger.print("--------------" + this.generateRandomInt(5, 6));
         return possibleCommands.get(this.generateRandomInt(5, 6));
     }
 }

@@ -4,6 +4,4 @@ public interface Runner {
 
     void start();
 
-    void stop();
-
 }

@@ -7,11 +7,14 @@ import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
+import gr.aueb.android.barista.core.model.LogcatCrash;
+import gr.aueb.android.barista.core.model.LogcatCrashClear;
 import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.emulator.EmulatorManager;
 import gr.aueb.android.barista.runner.ParallelRunner;
 import gr.aueb.android.barista.runner.Runner;
 import gr.aueb.android.barista.runner.SerialRunner;
+import gr.aueb.android.barista.utilities.ADBServer;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import gr.aueb.android.barista.utilities.PropertiesReader;
 
@@ -30,6 +33,7 @@ public class FuzzScheduler {
     private CommandExecutor executor;
     private ContextModelFactory ctxFactory;
     private PropertiesReader reader;
+    private LogcatCrash crashReporter;
 
     private List<Command> commandsToExecute;
     private List<EventGenerator> eventGenerators;
@@ -61,7 +65,9 @@ public class FuzzScheduler {
         this.initializeMonkey();
         if (context) this.initializeContext();
 
-        Instant start = Instant.now();
+        this.executor.executeCommand(new LogcatCrashClear(token));
+        this.crashReporter = new LogcatCrash(token, apk);
+//        Instant start = Instant.now();
 
         for (int i = 0; i < this.epochs; i++) {
             for (EventGenerator eg: this.eventGenerators) {
@@ -80,10 +86,10 @@ public class FuzzScheduler {
         }
 
         if (parallel) {
-            this.runner = new ParallelRunner(this.monkeyCommands, this.contextCommands);
+            this.runner = new ParallelRunner(this.monkeyCommands, this.contextCommands, this.crashReporter);
         }
         else {
-            this.runner = new SerialRunner(this.commandsToExecute);
+            this.runner = new SerialRunner(this.commandsToExecute, this.crashReporter);
         }
     }
 
@@ -130,10 +136,6 @@ public class FuzzScheduler {
 
     public void start() {
         this.runner.start();
-    }
-
-    public void stop() {
-        this.runner.stop();
     }
 
 }
