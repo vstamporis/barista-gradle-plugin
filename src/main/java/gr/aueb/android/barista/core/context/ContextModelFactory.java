@@ -1,7 +1,4 @@
-package gr.aueb.android.barista.core.context.factories;
-
-import gr.aueb.android.barista.core.context.*;
-import gr.aueb.android.barista.core.context.model.*;
+package gr.aueb.android.barista.core.context;
 
 public class ContextModelFactory {
 

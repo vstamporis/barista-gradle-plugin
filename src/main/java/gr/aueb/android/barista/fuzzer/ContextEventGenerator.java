@@ -1,6 +1,6 @@
 package gr.aueb.android.barista.fuzzer;
 
-import gr.aueb.android.barista.core.context.model.*;
+import gr.aueb.android.barista.core.context.ContextModel;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
