@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.rest.impl;
+package gr.aueb.android.barista.server.impl;
 
 
 import gr.aueb.android.barista.core.executor.CommandExecutor;
@@ -7,9 +7,9 @@ import gr.aueb.android.barista.core.model.DimensionUnit;
 import gr.aueb.android.barista.core.model.WmGetSize;
 import gr.aueb.android.barista.core.model.WmSizeReset;
 import gr.aueb.android.barista.core.emulator.EmulatorManager;
-import gr.aueb.android.barista.rest.dto.CommandDTO;
-import gr.aueb.android.barista.rest.dto.GeoFixDTO;
-import gr.aueb.android.barista.rest.dto.WmSizeDTO;
+import gr.aueb.android.barista.server.dto.CommandDTO;
+import gr.aueb.android.barista.server.dto.GeoFixDTO;
+import gr.aueb.android.barista.server.dto.WmSizeDTO;
 import gr.aueb.android.barista.server.BaristaApplication;
 import gr.aueb.android.barista.server.MyObjectMapperProvider;
 import org.glassfish.jersey.client.ClientConfig;

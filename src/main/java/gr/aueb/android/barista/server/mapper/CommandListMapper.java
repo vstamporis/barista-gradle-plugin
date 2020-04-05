@@ -1,7 +1,7 @@
-package gr.aueb.android.barista.rest.mapper;
+package gr.aueb.android.barista.server.mapper;
 
 import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.rest.dto.CommandDTO;
+import gr.aueb.android.barista.server.dto.CommandDTO;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package gr.aueb.android.barista.rest.mapper;
+package gr.aueb.android.barista.server.mapper;
 
 import gr.aueb.android.barista.core.model.*;
-import gr.aueb.android.barista.rest.dto.*;
+import gr.aueb.android.barista.server.dto.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

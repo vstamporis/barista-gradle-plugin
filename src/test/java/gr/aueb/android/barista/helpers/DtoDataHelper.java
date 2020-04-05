@@ -9,7 +9,7 @@
  */
 package gr.aueb.android.barista.helpers;
 
-import gr.aueb.android.barista.rest.dto.GeoFixDTO;
+import gr.aueb.android.barista.server.dto.GeoFixDTO;
 
 public class DtoDataHelper {
 

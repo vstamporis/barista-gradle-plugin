@@ -1,8 +1,8 @@
-package gr.aueb.android.barista.rest.dto;
+package gr.aueb.android.barista.server.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.model.GeoFix;
-import gr.aueb.android.barista.rest.mapper.CommandMapper;
+import gr.aueb.android.barista.server.mapper.CommandMapper;
 
 @JsonTypeName("GeoFix")
 public class GeoFixDTO extends CommandDTO<GeoFix> {
