@@ -1,18 +1,12 @@
 package gr.aueb.android.barista.plugin;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
-import gr.aueb.android.barista.core.context.model.ContextModel;
 import gr.aueb.android.barista.fuzzer.FuzzScheduler;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.tasks.Input;
-import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.options.Option;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BaristaFuzzerStartTask extends DefaultTask {
 

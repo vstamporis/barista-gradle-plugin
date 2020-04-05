@@ -1,4 +1,4 @@
-package gr.aueb.android.barista.core.context.model;
+package gr.aueb.android.barista.core.context;
 
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.utilities.BaristaLogger;

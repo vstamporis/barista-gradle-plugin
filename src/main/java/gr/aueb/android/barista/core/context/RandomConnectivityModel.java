@@ -1,10 +1,10 @@
-package gr.aueb.android.barista.core.context.model;
+package gr.aueb.android.barista.core.context;
 
 import gr.aueb.android.barista.core.model.Command;
 
-public class PoorConnectivityModel extends ConnectivityContextModel {
+public class RandomConnectivityModel extends ConnectivityContextModel {
 
-    public PoorConnectivityModel(String token) {
+    public RandomConnectivityModel(String token) {
         super(token);
         this.initiateConnectivityCommands();
     }

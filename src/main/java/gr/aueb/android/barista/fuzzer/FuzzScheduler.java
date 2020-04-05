@@ -1,8 +1,8 @@
 package gr.aueb.android.barista.fuzzer;
 
 import gr.aueb.android.barista.core.context.EnumTypes;
-import gr.aueb.android.barista.core.context.factories.ContextModelFactory;
-import gr.aueb.android.barista.core.context.model.RandomWalkModel;
+import gr.aueb.android.barista.core.context.ContextModelFactory;
+import gr.aueb.android.barista.core.context.RandomWalkModel;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;

@@ -1,12 +1,7 @@
-package gr.aueb.android.barista.core.context.model;
+package gr.aueb.android.barista.core.context;
 
-import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
-import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.core.model.BatteryCharge;
 import gr.aueb.android.barista.core.model.BatteryLevel;
-import gr.aueb.android.barista.core.model.BatteryStatus;
 import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.Random;
 
