@@ -58,8 +58,10 @@ public class BaristaPlugin implements Plugin<Project> {
         myCustomTask.dependsOn(targetTask);
     }
 
-    private void registerNonDependentTasks() {
+    private void registerMonkeyTask(Task targetTask) {
         project.getTasks().register(MonkeyStartTask.NAME, MonkeyStartTask.class);
+        Task myCustomTask = project.getTasks().getByName(MonkeyStartTask.NAME);
+        myCustomTask.dependsOn(targetTask);
     }
 
     /**
@@ -80,8 +82,6 @@ public class BaristaPlugin implements Plugin<Project> {
         if(isAndroidProject()){
 
             BaristaLogger.print("Android project identified");
-
-            registerNonDependentTasks();
 
             project.afterEvaluate(new Action<Project>() {
 
@@ -104,6 +104,7 @@ public class BaristaPlugin implements Plugin<Project> {
                     registerStartServerTask(connectedDebugAndroidTest);
 
                     Task installDebug = project.getTasks().findByPath(INSTALL_DEBUG);
+                    registerMonkeyTask(installDebug);
                     registerBaristaFuzzerStartTask(installDebug);
 
                 }

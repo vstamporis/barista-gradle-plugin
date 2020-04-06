@@ -12,8 +12,6 @@ import java.util.stream.Stream;
 
 public class Monkey extends AbstractAdbCommand {
 
-    private static final int DEFAULT_THROTTLE = 1000;
-
     private String command;
 
     private boolean completed;
@@ -43,12 +41,6 @@ public class Monkey extends AbstractAdbCommand {
         }).forEach(new Consumer<String>() {
             @Override
             public void accept(String line) {
-                if (line.contains("Monkey aborted due to error") || line.contains("CRASHED")) {
-                    completed = false;
-                }
-                if (line.contains("Monkey finished")) {
-                    completed = true;
-                }
                 completed = true;
             }
         });
@@ -59,4 +51,5 @@ public class Monkey extends AbstractAdbCommand {
         BaristaLogger.print("Completed");
         return this.completed;
     }
+
 }
