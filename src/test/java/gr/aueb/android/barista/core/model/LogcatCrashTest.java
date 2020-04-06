@@ -1,14 +1,12 @@
 package gr.aueb.android.barista.core.model;
 
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.emulator.EmulatorManager;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class LogcatCrashTest {
 
@@ -31,12 +29,11 @@ public class LogcatCrashTest {
 
     @Test
     public void hasCrashed() {
-        Assert.assertTrue(crash.hasCrashed());
+        Assert.assertFalse(crash.hasCrashed());
     }
 
     @Test
     public void getCrashLog() {
-        Assert.assertNotNull(crash.getCrashLog());
-        crash.getCrashLog().stream().forEach(System.out::println);
+        Assert.assertNull(crash.getCrashLog());
     }
 }

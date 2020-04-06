@@ -26,7 +26,6 @@ public class ContextEventGenerator implements EventGenerator {
         List<Command> toExecute = new ArrayList<>();
         for (ContextModel model: this.models) {
             Command cmd = model.next(1);
-            BaristaLogger.print("COMMAND TOKEN: " + cmd.getSessionToken());
             toExecute.add(cmd);
         }
         return toExecute;
