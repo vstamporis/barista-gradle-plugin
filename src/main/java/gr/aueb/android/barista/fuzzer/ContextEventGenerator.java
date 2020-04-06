@@ -32,8 +32,19 @@ public class ContextEventGenerator implements EventGenerator {
         return toExecute;
     }
 
+    public Command generateSingle() {
+        ContextModel model = this.models.get(randomInt(this.models.size()));
+
+        return model.next(1);
+    }
+
     public void register(ContextModel contextModel) {
         this.models.add(contextModel);
     }
 
+    private int randomInt(int max) {
+        Random rand = new Random();
+
+        return rand.nextInt(max);
+    }
 }

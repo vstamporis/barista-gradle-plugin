@@ -82,7 +82,7 @@ public class FuzzScheduler {
         }
 
         if (parallel) {
-            this.runner = new ParallelRunner(this.monkeyCommands, this.contextCommands, this.crashReporter);
+            this.runner = new ParallelRunner(this.monkeyCommands, (ContextEventGenerator) this.eventGenerators.get(this.eventGenerators.indexOf(this.context)), this.crashReporter);
         }
         else {
             this.runner = new SerialRunner(this.commandsToExecute, this.crashReporter);

@@ -5,6 +5,7 @@ import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.LogcatCrash;
+import gr.aueb.android.barista.fuzzer.ContextEventGenerator;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.List;
@@ -12,13 +13,14 @@ import java.util.List;
 public class ParallelRunner implements Runner {
 
     private List<Command> monkeyCommands;
-    private List<Command> contextCommands;
+    private ContextEventGenerator eventGenerator;
     private CommandExecutor executor;
     private LogcatCrash crashReporter;
+    private boolean stop;
 
-    public ParallelRunner(List<Command> monkeyCommands, List<Command> contextCommands, LogcatCrash crashReporter) {
+    public ParallelRunner(List<Command> monkeyCommands, ContextEventGenerator eventGenerator, LogcatCrash crashReporter) {
         this.monkeyCommands = monkeyCommands;
-        this.contextCommands = contextCommands;
+        this.eventGenerator = eventGenerator;
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
         this.crashReporter = crashReporter;
     }
@@ -26,13 +28,15 @@ public class ParallelRunner implements Runner {
     @Override
     public void start() {
         for (Command cmd : this.monkeyCommands) {
+            this.stop = false;
             synchronized (this) {
                 this.executor.executeCommand(cmd);
                 new Thread(() -> {
-                    for (Command i : this.contextCommands) {
-                        this.executor.executeCommand(i);
+                    while (!this.stop) {
+                        this.executor.executeCommand(this.eventGenerator.generateSingle());
                     }
                 }).start();
+                this.stop = true;
             }
         }
         this.executor.executeCommand(this.crashReporter);
