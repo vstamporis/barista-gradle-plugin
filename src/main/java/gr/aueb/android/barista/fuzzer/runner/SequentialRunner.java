@@ -9,13 +9,13 @@ import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.List;
 
-public class SerialRunner implements Runner {
+public class SequentialRunner implements Runner {
 
     private List<Command> commands;
     private CommandExecutor executor;
     private LogcatCrash crashReporter;
 
-    public SerialRunner(List<Command> commands, LogcatCrash crashReporter) {
+    public SequentialRunner(List<Command> commands, LogcatCrash crashReporter) {
         this.commands = commands;
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
         this.crashReporter = crashReporter;

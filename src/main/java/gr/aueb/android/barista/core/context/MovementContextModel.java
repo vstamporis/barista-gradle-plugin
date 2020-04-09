@@ -2,6 +2,7 @@ package gr.aueb.android.barista.core.context;
 
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public abstract class MovementContextModel implements ContextModel {
@@ -16,17 +17,15 @@ public abstract class MovementContextModel implements ContextModel {
     }
 
     protected double generateRandomLatitude() {
+        DecimalFormat df = new DecimalFormat("#.######");
         double randomValue = -90 + (90 - (-90)) * this.random.nextDouble();
-        randomValue = Double.parseDouble(String.format("%.6f", randomValue));
-        BaristaLogger.print("Random double: " + randomValue);
-        return randomValue;
+        return Double.parseDouble(df.format(randomValue).replaceAll(",", "."));
     }
 
     protected double generateRandomLongitude() {
+        DecimalFormat df = new DecimalFormat("#.######");
         double randomValue = -180 + (180 - (-180)) * this.random.nextDouble();
-        randomValue = Double.parseDouble(String.format("%.6f", randomValue));
-        BaristaLogger.print("Random double: " + randomValue);
-        return randomValue;
+        return Double.parseDouble(df.format(randomValue).replaceAll(",", "."));
     }
 
     protected int generateRandomInt(int min, int max) {

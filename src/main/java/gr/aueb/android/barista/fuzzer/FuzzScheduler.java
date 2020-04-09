@@ -13,10 +13,9 @@ import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.fuzzer.runner.ParallelRunner;
 import gr.aueb.android.barista.fuzzer.runner.Runner;
-import gr.aueb.android.barista.fuzzer.runner.SerialRunner;
+import gr.aueb.android.barista.fuzzer.runner.SequentialRunner;
 import gr.aueb.android.barista.utilities.PropertiesReader;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,10 +81,10 @@ public class FuzzScheduler {
         }
 
         if (parallel) {
-            this.runner = new ParallelRunner(this.monkeyCommands, this.contextCommands, this.crashReporter);
+            this.runner = new ParallelRunner(this.monkeyCommands, (ContextEventGenerator) this.eventGenerators.get(this.eventGenerators.indexOf(this.context)), this.crashReporter);
         }
         else {
-            this.runner = new SerialRunner(this.commandsToExecute, this.crashReporter);
+            this.runner = new SequentialRunner(this.commandsToExecute, this.crashReporter);
         }
     }
 

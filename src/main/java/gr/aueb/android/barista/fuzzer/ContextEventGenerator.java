@@ -26,14 +26,24 @@ public class ContextEventGenerator implements EventGenerator {
         List<Command> toExecute = new ArrayList<>();
         for (ContextModel model: this.models) {
             Command cmd = model.next(1);
-            BaristaLogger.print("COMMAND TOKEN: " + cmd.getSessionToken());
             toExecute.add(cmd);
         }
         return toExecute;
+    }
+
+    public Command generateSingle() {
+        ContextModel model = this.models.get(randomInt(this.models.size()));
+
+        return model.next(1);
     }
 
     public void register(ContextModel contextModel) {
         this.models.add(contextModel);
     }
 
+    private int randomInt(int max) {
+        Random rand = new Random();
+
+        return rand.nextInt(max);
+    }
 }
