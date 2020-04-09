@@ -7,9 +7,10 @@
  * Role: Implements the task that deploys the adb test dispacher
  * Description:
  */
-package gr.aueb.android.barista.core;
+package gr.aueb.android.barista.plugin;
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
+import gr.aueb.android.barista.core.BaristaConfigurationExtension;
 import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.plugin.BaristaFuzzerStartTask;
 import gr.aueb.android.barista.plugin.BaristaServerStartTask;
