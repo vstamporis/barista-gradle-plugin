@@ -25,9 +25,12 @@ public class SequentialRunner implements Runner {
     public void start() {
         for (Command cmd : this.commands) {
             this.executor.executeCommand(cmd);
+            this.executor.executeCommand(this.crashReporter);
+            if (this.crashReporter.hasCrashed()) break;
         }
-        this.executor.executeCommand(this.crashReporter);
+
         BaristaLogger.printList(this.crashReporter.getCrashLog());
+        BaristaLogger.writeCrashLog(this.crashReporter.getCrashLog());
     }
 
 
