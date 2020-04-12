@@ -13,6 +13,10 @@ public class RemoteMonkey extends AbstractAdbCommand {
     private int seed, count, throttle;
     private String apk;
 
+    public RemoteMonkey() {
+
+    }
+
     public RemoteMonkey(String sessionToken, int seed, int count, Integer throttle, String apk) {
         super(sessionToken);
         this.seed = seed;
