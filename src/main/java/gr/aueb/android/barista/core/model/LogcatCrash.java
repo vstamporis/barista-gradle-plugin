@@ -1,5 +1,6 @@
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
@@ -11,6 +12,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@JsonTypeName("LogcatCrash")
 public class LogcatCrash extends AbstractAdbCommand {
 
     private String apk;
@@ -78,5 +80,45 @@ public class LogcatCrash extends AbstractAdbCommand {
 
     public List<String> getCrashLog() {
         return this.result;
+    }
+
+    public String getApk() {
+        return apk;
+    }
+
+    public void setApk(String apk) {
+        this.apk = apk;
+    }
+
+    public boolean isException() {
+        return exception;
+    }
+
+    public void setException(boolean exception) {
+        this.exception = exception;
+    }
+
+    public boolean isThisApk() {
+        return thisApk;
+    }
+
+    public void setThisApk(boolean thisApk) {
+        this.thisApk = thisApk;
+    }
+
+    public List<String> getExceptions() {
+        return exceptions;
+    }
+
+    public void setExceptions(List<String> exceptions) {
+        this.exceptions = exceptions;
+    }
+
+    public List<String> getResult() {
+        return result;
+    }
+
+    public void setResult(List<String> result) {
+        this.result = result;
     }
 }

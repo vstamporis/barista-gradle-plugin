@@ -1,5 +1,8 @@
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 
@@ -9,6 +12,22 @@ import java.util.stream.Stream;
  *  Command interface. Is the most generic representation of a command object.
  *  Specifies all the functions to be implemented by any command object.
  */
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.PROPERTY, property="type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Auth.class),
+        @JsonSubTypes.Type(value = BatteryCharge.class),
+        @JsonSubTypes.Type(value = BatteryLevel.class),
+        @JsonSubTypes.Type(value = BatteryStatus.class),
+        @JsonSubTypes.Type(value = GeoFix.class),
+        @JsonSubTypes.Type(value = GetOrientation.class),
+        @JsonSubTypes.Type(value = GpsState.class),
+        @JsonSubTypes.Type(value = GpsStatus.class),
+        @JsonSubTypes.Type(value = LogcatCrash.class),
+        @JsonSubTypes.Type(value = LogcatCrashClear.class),
+        @JsonSubTypes.Type(value = Monkey.class),
+        @JsonSubTypes.Type(value = SvcData.class),
+        @JsonSubTypes.Type(value = SvcWifi.class)
+})
 public interface Command {
 
     /**
@@ -25,6 +44,7 @@ public interface Command {
      *
      * @return The command to be executed in the command line
      */
+    @JsonIgnore
     String getCommandString();
 
     /**

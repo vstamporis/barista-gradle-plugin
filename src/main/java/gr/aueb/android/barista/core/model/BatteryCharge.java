@@ -10,10 +10,12 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
+@JsonTypeName("BatteryCharge")
 public class BatteryCharge extends AbstractAdbCommand {
 
     /**

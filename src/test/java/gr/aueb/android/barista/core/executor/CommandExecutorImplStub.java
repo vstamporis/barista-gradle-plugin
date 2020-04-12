@@ -1,7 +1,5 @@
 package gr.aueb.android.barista.core.executor;
 
-import gr.aueb.android.barista.core.executor.CommandClient;
-import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 

@@ -1,15 +1,14 @@
 package gr.aueb.android.barista.core.model;
 
-import gr.aueb.android.barista.core.executor.ADBCommandClient;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.executor.CommandClient;
-import gr.aueb.android.barista.core.model.AbstractAdbCommand;
-import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+@JsonTypeName("Monkey")
 public class Monkey extends AbstractAdbCommand {
 
     private String command;
@@ -52,4 +51,11 @@ public class Monkey extends AbstractAdbCommand {
         return this.completed;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 }

@@ -3,10 +3,12 @@ package gr.aueb.android.barista.core.model;
 import java.util.Hashtable;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.executor.CommandClient;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
+@JsonTypeName("GpsState")
 public class GpsState extends AbstractAdbCommand {
 
     private boolean enabled;

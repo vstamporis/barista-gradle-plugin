@@ -1,7 +1,5 @@
 package gr.aueb.android.barista.core.context;
 
-import gr.aueb.android.barista.utilities.BaristaLogger;
-
 import java.text.DecimalFormat;
 import java.util.Random;
 

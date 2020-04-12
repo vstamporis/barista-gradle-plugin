@@ -6,14 +6,12 @@ import gr.aueb.android.barista.core.context.RandomWalkModel;
 import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
-import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.core.model.LogcatCrash;
-import gr.aueb.android.barista.core.model.LogcatCrashClear;
-import gr.aueb.android.barista.core.model.Monkey;
+import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.fuzzer.runner.ParallelRunner;
 import gr.aueb.android.barista.fuzzer.runner.Runner;
 import gr.aueb.android.barista.fuzzer.runner.SequentialRunner;
+import gr.aueb.android.barista.utilities.CommandExporter;
 import gr.aueb.android.barista.utilities.PropertiesReader;
 
 import java.util.ArrayList;
@@ -36,14 +34,15 @@ public class FuzzScheduler {
     private List<Command> contextCommands;
 
     private int epochs, throttle, batchSize;
-    private String apk, token, conf;
+    private String apk, token, conf, input;
 
-    public FuzzScheduler(int epochs, int throttle, int batchSize, String apk, String conf) {
+    public FuzzScheduler(int epochs, int throttle, int batchSize, String apk, String conf, String input) {
         this.epochs = epochs;
         this.throttle = throttle;
         this.apk = apk;
         this.batchSize = batchSize;
         this.conf = conf;
+        this.input = input;
 
         this.commandsToExecute = new ArrayList<>();
         this.eventGenerators = new ArrayList<>();
@@ -64,20 +63,28 @@ public class FuzzScheduler {
         this.crashReporter = new LogcatCrash(token, apk);
 //        Instant start = Instant.now();
 
-        for (int i = 0; i < this.epochs; i++) {
-            for (EventGenerator eg: this.eventGenerators) {
-                List<Command> commands = eg.generate();
-                this.commandsToExecute.addAll(commands);
+        if (this.input == null) {
+            for (int i = 0; i < this.epochs; i++) {
+                for (EventGenerator eg: this.eventGenerators) {
+                    List<Command> commands = eg.generate();
+                    this.commandsToExecute.addAll(commands);
+                }
+            }
+
+            CommandExporter.export(this.commandsToExecute);
+
+            for (Command cmd : this.commandsToExecute) {
+                if (cmd instanceof Monkey) {
+                    this.monkeyCommands.add(cmd);
+                }
+                else {
+                    this.contextCommands.add(cmd);
+                }
             }
         }
-
-        for (Command cmd : this.commandsToExecute) {
-            if (cmd instanceof Monkey) {
-                this.monkeyCommands.add(cmd);
-            }
-            else {
-                this.contextCommands.add(cmd);
-            }
+        else {
+            CommandImporter importer = new CommandImporter(this.input, this.token);
+            this.commandsToExecute.addAll(importer.getCommandList());
         }
 
         if (parallel) {

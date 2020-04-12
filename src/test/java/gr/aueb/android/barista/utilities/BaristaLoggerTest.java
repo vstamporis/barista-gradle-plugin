@@ -7,8 +7,6 @@ import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.LogcatCrash;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class BaristaLoggerTest {
 
     @Test
