@@ -10,8 +10,10 @@
 package gr.aueb.android.barista.core.model;
 
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
+@JsonTypeName("SvcData")
 public class SvcData extends AbstractAdbCommand {
 
     private boolean enabled;

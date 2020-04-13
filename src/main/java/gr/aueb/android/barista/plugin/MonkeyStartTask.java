@@ -18,7 +18,7 @@ public class MonkeyStartTask extends DefaultTask {
 
     private int seed, epochs, throttle, eventsPerEpoch;
 
-    private String conf;
+    private String conf, input;
 
     private List<String> contextModels = new ArrayList<>();
 
@@ -64,12 +64,23 @@ public class MonkeyStartTask extends DefaultTask {
         return conf;
     }
 
+    @Optional
+    @Option(option = "input", description = "Input file of commands to execute")
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    @Input
+    public String getInput() {
+        return input;
+    }
+
     @TaskAction
     public void action() {
         BaseAppModuleExtension android = (BaseAppModuleExtension) this.getProject().getExtensions().findByName("android");
         String apk = android.getDefaultConfig().getApplicationId();
 
-        FuzzScheduler fuzzScheduler = new FuzzScheduler(this.epochs, this.throttle, this.eventsPerEpoch, apk, this.conf);
+        FuzzScheduler fuzzScheduler = new FuzzScheduler(this.epochs, this.throttle, this.eventsPerEpoch, apk, this.conf, this.input);
         fuzzScheduler.initialize(false, false);
         fuzzScheduler.start();
     }

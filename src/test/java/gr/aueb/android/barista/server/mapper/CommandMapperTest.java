@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gr.aueb.android.barista.helpers.ConstantValues;
 import gr.aueb.android.barista.helpers.JsonDataHelper;
-import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.helpers.ModelDataHelper;
+import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.server.dto.*;
 import org.junit.Before;
 import org.junit.Test;

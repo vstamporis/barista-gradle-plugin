@@ -31,9 +31,19 @@ public class ParallelRunner implements Runner {
             this.stop = false;
             synchronized (this) {
                 this.executor.executeCommand(cmd);
+                this.executor.executeCommand(this.crashReporter);
+                if (this.crashReporter.hasCrashed()) {
+                    this.stop = true;
+                    break;
+                }
                 new Thread(() -> {
                     while (!this.stop) {
                         this.executor.executeCommand(this.eventGenerator.generateSingle());
+                        this.executor.executeCommand(this.crashReporter);
+                        if (this.crashReporter.hasCrashed()) {
+                            this.stop = true;
+                            break;
+                        }
                     }
                 }).start();
                 this.stop = true;
@@ -41,6 +51,7 @@ public class ParallelRunner implements Runner {
         }
         this.executor.executeCommand(this.crashReporter);
         BaristaLogger.printList(this.crashReporter.getCrashLog());
+        BaristaLogger.writeCrashLog(this.crashReporter.getCrashLog());
     }
 
 }

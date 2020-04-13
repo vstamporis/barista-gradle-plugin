@@ -1,5 +1,6 @@
 package gr.aueb.android.barista.server.mapper;
 
+import gr.aueb.android.barista.core.model.RemoteMonkey;
 import gr.aueb.android.barista.core.model.*;
 import gr.aueb.android.barista.server.dto.*;
 import org.mapstruct.Mapper;
@@ -43,4 +44,6 @@ public interface CommandMapper {
     SetOrientation fromSetOrientationDTO(SetOrientationDTO setOrientationDTO);
 
     GpsState fromGPSDDTO(GpsStatusDTO GPSDTO);
+
+    RemoteMonkey fromMonkeyDTO(MonkeyDTO monkeyDTO);
 }

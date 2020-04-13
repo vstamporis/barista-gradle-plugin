@@ -9,6 +9,7 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
@@ -17,6 +18,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+@JsonTypeName("BatteryStatus")
 public class BatteryStatus extends AbstractAdbCommand{
 
     private static final String AC_POWERED = "AC powered";

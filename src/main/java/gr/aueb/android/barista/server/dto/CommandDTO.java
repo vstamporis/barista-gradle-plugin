@@ -2,7 +2,7 @@ package gr.aueb.android.barista.server.dto;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import gr.aueb.android.barista.core.model.*;
+import gr.aueb.android.barista.core.model.Command;
 
 /**
  * Mapping with JSON to DTO with jackson
@@ -28,7 +28,8 @@ import gr.aueb.android.barista.core.model.*;
         @JsonSubTypes.Type(value = SvcWifiDTO.class),
         @JsonSubTypes.Type(value = PmRevokeDTO.class),
         @JsonSubTypes.Type(value = SetOrientationDTO.class),
-        @JsonSubTypes.Type(value = GpsStatusDTO.class)
+        @JsonSubTypes.Type(value = GpsStatusDTO.class),
+        @JsonSubTypes.Type(value = MonkeyDTO.class)
 })
 public abstract class CommandDTO<T extends Command> {
 
