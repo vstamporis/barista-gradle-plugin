@@ -1,10 +1,10 @@
 package gr.aueb.android.barista.server.dto;
 
-import gr.aueb.android.barista.core.model.RemoteMonkey;
+import gr.aueb.android.barista.core.model.Monkey;
 import gr.aueb.android.barista.server.mapper.CommandMapper;
 import gr.aueb.android.barista.server.dto.CommandDTO;
 
-public class MonkeyDTO extends CommandDTO<RemoteMonkey> {
+public class MonkeyDTO extends CommandDTO<Monkey> {
 
     private int seed, count, throttle;
     private String apk;
@@ -22,7 +22,7 @@ public class MonkeyDTO extends CommandDTO<RemoteMonkey> {
     }
 
     @Override
-    public RemoteMonkey toDomainObject() {
+    public Monkey toDomainObject() {
         return CommandMapper.INSTANCE.fromMonkeyDTO(this);
     }
 
