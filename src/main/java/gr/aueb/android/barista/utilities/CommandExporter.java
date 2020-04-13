@@ -6,18 +6,28 @@ import gr.aueb.android.barista.core.model.Command;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class CommandExporter {
 
+    private static final String path = "commands/";
+
     public static void export(List<Command> list) {
         String time = new SimpleDateFormat("yyyy-MM-dd HH-mm").format(new Date());
         String name = time + "-barista-commands.json";
 
         try {
-            FileWriter writer = new FileWriter(name);
+            Files.createDirectories(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter writer = new FileWriter(path + name);
 
             writer.write("[ " + System.lineSeparator());
             writer.flush();

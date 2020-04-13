@@ -11,11 +11,15 @@ package gr.aueb.android.barista.utilities;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class BaristaLogger {
+
+    private static final String path = "crashLog/";
 
     /**
      *  Prints a String at the console with the prifix '[BARISTA-PLUGIN]'
@@ -36,7 +40,13 @@ public class BaristaLogger {
             String name = time + "-barista-fuzzer-crash.log";
 
             try {
-                FileWriter writer = new FileWriter(name);
+                Files.createDirectories(Paths.get(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                FileWriter writer = new FileWriter(path + name);
 
                 list.forEach(i -> {
                     try {

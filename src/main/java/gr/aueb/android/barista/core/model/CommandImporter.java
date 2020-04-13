@@ -1,5 +1,6 @@
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -27,6 +28,14 @@ public class CommandImporter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        commands.forEach(i -> {
+            try {
+                System.out.println(mapper.writeValueAsString(i));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        });
 
         if (commands != null) {
             commands.forEach(i -> {

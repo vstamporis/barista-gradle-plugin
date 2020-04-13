@@ -57,13 +57,12 @@ public class BaristaFuzzerStartTask extends DefaultTask {
         return conf;
     }
 
-    @Optional
-    @Option(option = "input", description = "Input file of commands to execute")
+    @Option(option = "input", description = "Input file of commands to execute") @Optional
     public void setInput(String input) {
         this.input = input;
     }
 
-    @Input
+    @Input @Optional
     public String getInput() {
         return input;
     }

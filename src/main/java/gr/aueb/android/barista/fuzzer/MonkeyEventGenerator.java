@@ -65,6 +65,10 @@ public class MonkeyEventGenerator implements EventGenerator{
 
     public List<Command> generate() {
         Monkey monkey = new Monkey(this.token, this.createMonkeyCommand());
+        monkey.setApk(this.apk);
+        monkey.setSeed(this.seed);
+        monkey.setThrottle(this.throttle);
+        monkey.setCount(this.count);
         List<Command> toExecute = new ArrayList<>();
         toExecute.add(monkey);
         return toExecute;
