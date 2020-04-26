@@ -39,7 +39,7 @@ public class BaristaPlugin implements Plugin<Project> {
     private void registerStartServerTask(Task targetTask){
         project.getTasks().register(BaristaServerStartTask.NAME, BaristaServerStartTask.class);
         Task myCustomTask = project.getTasks().getByName(BaristaServerStartTask.NAME);
-        targetTask.dependsOn(myCustomTask);
+//        targetTask.dependsOn(myCustomTask);
     }
 
     private void addAndroidBuildConfigField(String type, String name, String value){
@@ -52,14 +52,16 @@ public class BaristaPlugin implements Plugin<Project> {
 
     private void registerBaristaFuzzerStartTask(Task targetTask) {
         project.getTasks().register(BaristaFuzzerStartTask.NAME, BaristaFuzzerStartTask.class);
-        Task myCustomTask = project.getTasks().getByName(BaristaFuzzerStartTask.NAME);
-        myCustomTask.dependsOn(targetTask);
+//        project.getTasks().register(BaristaFuzzerStartTask.NAME, BaristaFuzzerStartTask.class);
+        /*Task myCustomTask = project.getTasks().getByName(BaristaFuzzerStartTask.NAME);
+        myCustomTask.dependsOn(targetTask);*/
     }
 
     private void registerMonkeyTask(Task targetTask) {
         project.getTasks().register(MonkeyStartTask.NAME, MonkeyStartTask.class);
-        Task myCustomTask = project.getTasks().getByName(MonkeyStartTask.NAME);
-        myCustomTask.dependsOn(targetTask);
+//        project.getTasks().register(MonkeyStartTask.NAME, MonkeyStartTask.class);
+        /*Task myCustomTask = project.getTasks().getByName(MonkeyStartTask.NAME);
+        myCustomTask.dependsOn(targetTask);*/
     }
 
     /**

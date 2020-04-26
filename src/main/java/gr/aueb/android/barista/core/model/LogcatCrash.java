@@ -74,7 +74,6 @@ public class LogcatCrash extends AbstractAdbCommand {
     }
 
     public boolean hasCrashed() {
-        BaristaLogger.print("123123123123123123");
         return this.exception && this.thisApk;
     }
 

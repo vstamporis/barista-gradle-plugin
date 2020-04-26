@@ -56,8 +56,8 @@ public class FuzzScheduler {
 
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
         this.token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-        this.initializeMonkey();
         if (context) this.initializeContext();
+        this.initializeMonkey();
 
         this.executor.executeCommand(new LogcatCrashClear(token));
         this.crashReporter = new LogcatCrash(token, apk);
