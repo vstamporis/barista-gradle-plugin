@@ -9,15 +9,18 @@
  */
 package gr.aueb.android.barista.plugin;
 
+import com.android.build.gradle.api.ApplicationVariant;
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension;
 import gr.aueb.android.barista.core.BaristaConfigurationExtension;
 import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.server.HttpServerManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
-import org.gradle.api.Action;
-import org.gradle.api.Plugin;
-import org.gradle.api.Project;
-import org.gradle.api.Task;
+import org.gradle.api.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
 
 public class BaristaPlugin implements Plugin<Project> {
 
@@ -27,7 +30,7 @@ public class BaristaPlugin implements Plugin<Project> {
 
     // the android task that runs the android instrumented tests of the project
     private String CONNECTED_ANDROID_TEST = "connectedDebugAndroidTest";
-    private String INSTALL_DEBUG = "installDebug";
+    private String INSTALL = "install";
     
     private final String ANDROID_EXTENSION_NAME = "android";
     private BaseAppModuleExtension androidExtension;
@@ -37,9 +40,12 @@ public class BaristaPlugin implements Plugin<Project> {
     private Project project;
 
     private void registerStartServerTask(Task targetTask){
-        project.getTasks().register(BaristaServerStartTask.NAME, BaristaServerStartTask.class);
+        project.getTasks().create(BaristaServerStartTask.NAME, BaristaServerStartTask.class);
         Task myCustomTask = project.getTasks().getByName(BaristaServerStartTask.NAME);
-//        targetTask.dependsOn(myCustomTask);
+        targetTask.dependsOn(myCustomTask);
+
+        myCustomTask.setGroup("Barista");
+        myCustomTask.setDescription("Start barista server");
     }
 
     private void addAndroidBuildConfigField(String type, String name, String value){
@@ -50,18 +56,51 @@ public class BaristaPlugin implements Plugin<Project> {
         androidExtension.getDefaultConfig().buildConfigField(type, name, configValue);
     }
 
-    private void registerBaristaFuzzerStartTask(Task targetTask) {
-        project.getTasks().register(BaristaFuzzerStartTask.NAME, BaristaFuzzerStartTask.class);
-//        project.getTasks().register(BaristaFuzzerStartTask.NAME, BaristaFuzzerStartTask.class);
-        /*Task myCustomTask = project.getTasks().getByName(BaristaFuzzerStartTask.NAME);
-        myCustomTask.dependsOn(targetTask);*/
+    private void registerBaristaFuzzerStartTask() {
+
+        for (String i : getVariants()) {
+
+            project.getTasks().create(BaristaFuzzerStartTask.NAME + i, BaristaFuzzerStartTask.class);
+            Task myCustomTask = project.getTasks().getByName(BaristaFuzzerStartTask.NAME +  i);
+
+            Task targetTask = project.getTasks().getByName(INSTALL + i);
+
+            myCustomTask.dependsOn(targetTask);
+
+            project.getTasks().getByName(BaristaFuzzerStartTask.NAME + i).setGroup("Barista");
+            project.getTasks().getByName(BaristaFuzzerStartTask.NAME + i).setDescription("Spawns a monkey on the variant " + i);
+        }
+
     }
 
-    private void registerMonkeyTask(Task targetTask) {
-        project.getTasks().register(MonkeyStartTask.NAME, MonkeyStartTask.class);
-//        project.getTasks().register(MonkeyStartTask.NAME, MonkeyStartTask.class);
-        /*Task myCustomTask = project.getTasks().getByName(MonkeyStartTask.NAME);
-        myCustomTask.dependsOn(targetTask);*/
+    private void registerMonkeyTask() {
+
+        for (String i : getVariants()) {
+
+            project.getTasks().create(MonkeyStartTask.NAME + i, MonkeyStartTask.class);
+            Task myCustomTask = project.getTasks().getByName(MonkeyStartTask.NAME +  i);
+
+            Task targetTask = project.getTasks().getByName(INSTALL + i);
+
+            myCustomTask.dependsOn(targetTask);
+
+            project.getTasks().getByName(MonkeyStartTask.NAME + i).setGroup("Barista");
+            project.getTasks().getByName(MonkeyStartTask.NAME + i).setDescription("Spawns a monkey on the variant " + i);
+        }
+
+    }
+
+    private List<String> getVariants() {
+        DomainObjectSet<ApplicationVariant> variants = getAndroidExtension().getApplicationVariants();
+        List<String> variantNames = new ArrayList<>();
+
+        for (ApplicationVariant var: variants) {
+            if (var.getName().toLowerCase().contains("release")) continue;
+
+            variantNames.add(var.getName().substring(0, 1).toUpperCase() + var.getName().substring(1));
+        }
+
+        return variantNames;
     }
 
     /**
@@ -103,9 +142,8 @@ public class BaristaPlugin implements Plugin<Project> {
                     Task connectedDebugAndroidTest = project.getTasks().findByPath(CONNECTED_ANDROID_TEST);
                     registerStartServerTask(connectedDebugAndroidTest);
 
-                    Task installDebug = project.getTasks().findByPath(INSTALL_DEBUG);
-                    registerMonkeyTask(installDebug);
-                    registerBaristaFuzzerStartTask(installDebug);
+                    registerMonkeyTask();
+                    registerBaristaFuzzerStartTask();
 
                 }
             });

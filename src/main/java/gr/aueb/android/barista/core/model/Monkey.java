@@ -48,6 +48,7 @@ public class Monkey extends AbstractAdbCommand {
         buffer.append(" ").append("-s ").append(this.seed);
         buffer.append(" ").append("-v");
         buffer.append(" ").append("--throttle ").append(this.throttle).append(" ").append(this.count);
+        buffer.append(" --pct-appswitch 0");
         String command = buffer.toString();
         return command;
     }

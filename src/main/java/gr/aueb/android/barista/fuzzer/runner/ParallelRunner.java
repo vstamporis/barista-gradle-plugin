@@ -5,6 +5,8 @@ import gr.aueb.android.barista.core.executor.CommandExecutorFactory;
 import gr.aueb.android.barista.core.executor.CommandExecutorImpl;
 import gr.aueb.android.barista.core.model.Command;
 import gr.aueb.android.barista.core.model.LogcatCrash;
+import gr.aueb.android.barista.core.model.SvcData;
+import gr.aueb.android.barista.core.model.SvcWifi;
 import gr.aueb.android.barista.fuzzer.ContextEventGenerator;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
@@ -38,7 +40,18 @@ public class ParallelRunner implements Runner {
                 }
                 new Thread(() -> {
                     while (!this.stop) {
-                        this.executor.executeCommand(this.eventGenerator.generateSingle());
+                        Command ctx = this.eventGenerator.generateSingle();
+                        this.executor.executeCommand(ctx);
+                        try {
+                            if (ctx instanceof SvcWifi || ctx instanceof SvcData) {
+                                Thread.sleep(5000);
+                            }
+                            else {
+                                Thread.sleep(1500);
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         this.executor.executeCommand(this.crashReporter);
                         if (this.crashReporter.hasCrashed()) {
                             this.stop = true;
