@@ -1,7 +1,7 @@
 package gr.aueb.android.barista.core.executor;
 
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.core.model.*;
-import gr.aueb.android.barista.emulator.EmulatorManager;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

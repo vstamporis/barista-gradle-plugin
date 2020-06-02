@@ -1,7 +1,6 @@
 package gr.aueb.android.barista.core.model;
 
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
-import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;

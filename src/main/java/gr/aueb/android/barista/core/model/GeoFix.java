@@ -1,7 +1,9 @@
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
+@JsonTypeName("GeoFix")
 public class GeoFix extends AbstractTelnetCommand {
 
     private double latitude;

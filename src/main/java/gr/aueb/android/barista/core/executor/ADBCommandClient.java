@@ -13,7 +13,7 @@
 package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.emulator.EmulatorManager;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import java.io.BufferedReader;
 import java.io.IOException;

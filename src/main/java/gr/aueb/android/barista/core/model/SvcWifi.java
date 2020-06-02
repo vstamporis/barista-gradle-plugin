@@ -9,18 +9,19 @@
  */
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.core.executor.CommandClient;
-import gr.aueb.android.barista.core.executor.CommandExecutor;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 
 import java.util.Hashtable;
 import java.util.Map;
 
+@JsonTypeName("SvcWifi")
 public class SvcWifi extends AbstractAdbCommand {
 
     private boolean enabled;
-    private  static final Map<String, Boolean> possibleStatusDescription;
+    private static final Map<String, Boolean> possibleStatusDescription;
 
     static{
         possibleStatusDescription = new Hashtable<>();
@@ -67,4 +68,5 @@ public class SvcWifi extends AbstractAdbCommand {
         BaristaLogger.print("not Completed");
         return false;
     }
+
 }

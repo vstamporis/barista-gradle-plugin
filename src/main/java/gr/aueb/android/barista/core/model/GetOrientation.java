@@ -1,9 +1,11 @@
 package gr.aueb.android.barista.core.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
 import java.util.stream.Stream;
 
+@JsonTypeName("GetOrientation")
 public class GetOrientation extends AbstractAdbCommand {
 
     int orientation;
@@ -14,6 +16,10 @@ public class GetOrientation extends AbstractAdbCommand {
 
     public  int getOrientationValue() {
         return orientation;
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
     }
 
     @Override

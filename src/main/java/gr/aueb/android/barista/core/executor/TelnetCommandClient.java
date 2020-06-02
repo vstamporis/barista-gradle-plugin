@@ -11,10 +11,10 @@
 package gr.aueb.android.barista.core.executor;
 
 import gr.aueb.android.barista.core.model.Command;
-import gr.aueb.android.barista.emulator.EmulatorException;
-import gr.aueb.android.barista.emulator.EmulatorManager;
-import gr.aueb.android.barista.emulator.telnet.ConnectionManager;
-import gr.aueb.android.barista.emulator.telnet.TelnetConnection;
+import gr.aueb.android.barista.core.emulator.EmulatorException;
+import gr.aueb.android.barista.core.emulator.EmulatorManager;
+import gr.aueb.android.barista.core.emulator.telnet.ConnectionManager;
+import gr.aueb.android.barista.core.emulator.telnet.TelnetConnection;
 import gr.aueb.android.barista.utilities.BaristaLogger;
 import java.io.File;
 

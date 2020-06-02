@@ -4,8 +4,10 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import gr.aueb.android.barista.utilities.BaristaCommandPrefixes;
 
+@JsonTypeName("GpsStatus")
 public class GpsStatus extends AbstractAdbCommand {
 
     private String status;
@@ -16,7 +18,7 @@ public class GpsStatus extends AbstractAdbCommand {
 
     @Override
     public String getCommandString() {
-        return BaristaCommandPrefixes.GPS_STATUS;
+        return BaristaCommandPrefixes.GPS_STATUS_RES;
     }
 
     @Override
@@ -31,14 +33,17 @@ public class GpsStatus extends AbstractAdbCommand {
             @Override
             public void accept(String line) {
 
-                String tmp = line.substring(line.indexOf('[')+1, line.lastIndexOf(']'));
-                String[] tmpArray = tmp.trim().split(",");
-                status = tmpArray[1].trim().split(":")[1].trim();
+                status = line;
+
             }
         });
     }
 
     public String getStatus() {
-        return this.status;
+        return this.status != null ? "ENABLED" : "DISABLED";
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -1,6 +1,6 @@
 package gr.aueb.android.barista.server;
 
-import gr.aueb.android.barista.rest.impl.DebugExceptionMapper;
+import gr.aueb.android.barista.server.impl.DebugExceptionMapper;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
