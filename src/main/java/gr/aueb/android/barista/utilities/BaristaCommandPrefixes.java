@@ -32,8 +32,8 @@ public class BaristaCommandPrefixes {
     public static final String GPS_STATUS_RES = "shell settings get secure location_providers_allowed";
     public static final String MONKEY = "shell monkey";
     public static final String LOGCAT_CRASH = "logcat --buffer=crash";
-    public static final String GO_HOME = "shell input keyevent 3";
     public static final String APP_SWITCH = "shell input keyevent 187";
     public static final String SWIPE_UP = "shell input touchscreen swipe 200 500 200 0";
     public static final String PULL = "pull";
+    public static final String RM = "shell rm";
 }

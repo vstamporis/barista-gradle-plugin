@@ -153,12 +153,14 @@ public class FuzzScheduler {
         Command gpsOn = new GpsState(token, true);
         Command batteryCharging = new BatteryCharge(token, false);
         Command battery100 = new BatteryLevel(token, 100);
+        Command rmCoverage = new Rm(token, "sdcard/coverage.exec");
 
         emulatorReset.add(wifiOn);
         emulatorReset.add(dataOn);
         emulatorReset.add(gpsOn);
         emulatorReset.add(batteryCharging);
         emulatorReset.add(battery100);
+        emulatorReset.add(rmCoverage);
 
         return emulatorReset;
     }
