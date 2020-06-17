@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ParallelRunner implements Runner {
 
-    private List<Command> monkeyCommands;
+    private List<Command> monkeyCommands, emulatorReset;
     private ContextEventGenerator eventGenerator;
     private CommandExecutor executor;
     private LogcatCrash crashReporter;
@@ -20,7 +20,7 @@ public class ParallelRunner implements Runner {
     private SwipeUp swipeUp;
     private boolean stop;
 
-    public ParallelRunner(List<Command> monkeyCommands, ContextEventGenerator eventGenerator, LogcatCrash crashReporter, AppSwitch appSwitch, SwipeUp swipeUp, Pull pull) {
+    public ParallelRunner(List<Command> monkeyCommands, ContextEventGenerator eventGenerator, LogcatCrash crashReporter, AppSwitch appSwitch, SwipeUp swipeUp, Pull pull, List<Command> emulatorReset) {
         this.monkeyCommands = monkeyCommands;
         this.eventGenerator = eventGenerator;
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
@@ -28,10 +28,19 @@ public class ParallelRunner implements Runner {
         this.appSwitch = appSwitch;
         this.swipeUp = swipeUp;
         this.pull = pull;
+        this.emulatorReset = emulatorReset;
     }
 
     @Override
     public void start() {
+        this.executor.executeCommands(this.emulatorReset);
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         for (Command cmd : this.monkeyCommands) {
             this.stop = false;
             synchronized (this) {

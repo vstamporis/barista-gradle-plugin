@@ -10,24 +10,33 @@ import java.util.List;
 
 public class SequentialRunner implements Runner {
 
-    private List<Command> commands;
+    private List<Command> commands, emulatorReset;
     private CommandExecutor executor;
     private LogcatCrash crashReporter;
     private AppSwitch appSwitch;
     private SwipeUp swipeUp;
     private Pull pull;
 
-    public SequentialRunner(List<Command> commands, LogcatCrash crashReporter, AppSwitch appSwitch, SwipeUp swipeUp, Pull pull) {
+    public SequentialRunner(List<Command> commands, LogcatCrash crashReporter, AppSwitch appSwitch, SwipeUp swipeUp, Pull pull, List<Command> emulatorReset) {
         this.commands = commands;
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
         this.crashReporter = crashReporter;
         this.appSwitch = appSwitch;
         this.swipeUp = swipeUp;
         this.pull = pull;
+        this.emulatorReset = emulatorReset;
     }
 
     @Override
     public void start() {
+        this.executor.executeCommands(this.emulatorReset);
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         for (Command cmd : this.commands) {
             this.executor.executeCommand(cmd);
             this.executor.executeCommand(this.crashReporter);
