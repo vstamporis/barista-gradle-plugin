@@ -92,14 +92,16 @@ public class FuzzScheduler {
             this.commandsToExecute.addAll(importer.getCommandList());
         }
 
+        List<Command> emulatorReset = resetEmulator(this.token);
+
         if (parallel) {
             this.runner = new ParallelRunner(this.monkeyCommands,
                                             (ContextEventGenerator) this.eventGenerators.get(this.eventGenerators.indexOf(this.context)),
                                             this.crashReporter,
-                                            appSwitch, swipeUp, pull);
+                                            appSwitch, swipeUp, pull, emulatorReset);
         }
         else {
-            this.runner = new SequentialRunner(this.commandsToExecute, this.crashReporter, appSwitch, swipeUp, pull);
+            this.runner = new SequentialRunner(this.commandsToExecute, this.crashReporter, appSwitch, swipeUp, pull, emulatorReset);
         }
     }
 
@@ -143,6 +145,25 @@ public class FuzzScheduler {
         this.eventGenerators.add(this.context);
     }
 
+    private List<Command> resetEmulator(String token) {
+        List<Command> emulatorReset = new ArrayList<>();
+
+        Command wifiOn = new SvcWifi(token, true);
+        Command dataOn = new SvcData(token, true);
+        Command gpsOn = new GpsState(token, true);
+        Command batteryCharging = new BatteryCharge(token, false);
+        Command battery100 = new BatteryLevel(token, 100);
+        Command rmCoverage = new Rm(token, "sdcard/coverage.exec");
+
+        emulatorReset.add(wifiOn);
+        emulatorReset.add(dataOn);
+        emulatorReset.add(gpsOn);
+        emulatorReset.add(batteryCharging);
+        emulatorReset.add(battery100);
+        emulatorReset.add(rmCoverage);
+
+        return emulatorReset;
+    }
 
     public void start() {
         this.runner.start();
