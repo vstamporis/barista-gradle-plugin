@@ -43,6 +43,7 @@ public class Monkey extends AbstractAdbCommand {
             return this.command;
         }
 
+        // FIXME: Duplicate code with MonkeyEventGenerator
         StringBuffer buffer = new StringBuffer();
         buffer.append(BaristaCommandPrefixes.MONKEY).append(" ").append("-p ").append(this.apk);
         buffer.append(" -c android.intent.category.LAUNCHER -c android.intent.category.MONKEY");

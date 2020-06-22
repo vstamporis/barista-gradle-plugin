@@ -59,11 +59,12 @@ public class MonkeyEventGenerator implements EventGenerator{
         buffer.append(" -c android.intent.category.LAUNCHER -c android.intent.category.MONKEY");
         buffer.append(" ").append("-s ").append(this.seed);
         buffer.append(" ").append("-v");
-        buffer.append(" ").append("--throttle ").append(this.throttle).append(" ").append(this.count);
+        buffer.append(" ").append("--throttle ").append(this.throttle);
         buffer.append(" --pct-appswitch 0");
         buffer.append(" --pct-syskeys 0");
         buffer.append(" --pct-appswitch 0");
         buffer.append(" --pct-majornav 0");
+        buffer.append(" ").append(this.count);
         String command = buffer.toString();
         return command;
     }
