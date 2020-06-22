@@ -13,7 +13,6 @@ import gr.aueb.android.barista.fuzzer.runner.Runner;
 import gr.aueb.android.barista.fuzzer.runner.SequentialRunner;
 import gr.aueb.android.barista.utilities.CommandExporter;
 import gr.aueb.android.barista.utilities.PropertiesReader;
-import groovy.sql.Sql;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,14 +50,17 @@ public class FuzzScheduler {
         this.contextCommands = new ArrayList<>();
     }
 
-    public void initialize(boolean context, boolean parallel) {
+    public void initialize(boolean contextBasedFuzzing, boolean parallel) {
         this.reader = new PropertiesReader(this.conf);
         this.reader.loadProperties();
 
         this.executor = (CommandExecutorImpl) CommandExecutorFactory.getCommandExecutor();
         this.token = EmulatorManager.getManager().getTokenMap().keySet().iterator().next();
-        if (context) this.initializeContext();
-        this.initializeMonkey();
+        if (contextBasedFuzzing) {
+            this.initializeContextBasedFuzzing();
+        } else {
+            this.initializeMonkeyOnlyFuzzing();
+        }
 
         this.executor.executeCommand(new LogcatCrashClear(token));
         this.crashReporter = new LogcatCrash(token, apk);
@@ -67,6 +69,8 @@ public class FuzzScheduler {
         AppSwitch appSwitch = new AppSwitch(token);
         SwipeUp swipeUp = new SwipeUp(token);
         Pull pull = new Pull(token, "/sdcard/coverage.exec");
+
+        List<Command> emulatorReset = resetEmulator(this.token);
 
         if (this.input == null) {
             for (int i = 0; i < this.epochs; i++) {
@@ -92,7 +96,7 @@ public class FuzzScheduler {
             this.commandsToExecute.addAll(importer.getCommandList());
         }
 
-        List<Command> emulatorReset = resetEmulator(this.token);
+
 
         if (parallel) {
             this.runner = new ParallelRunner(this.monkeyCommands,
@@ -105,11 +109,13 @@ public class FuzzScheduler {
         }
     }
 
-    private void initializeMonkey() {
+    private void initializeMonkeyOnlyFuzzing() {
+        // restore context before any monkey epoch
+        this.eventGenerators.add(new ContextResetEventGenerator(token));
         this.eventGenerators.add(new MonkeyEventGenerator(this.reader.getMonkeySeed(), this.batchSize, this.throttle, this.apk, this.token));
     }
 
-    private void initializeContext() {
+    private void initializeContextBasedFuzzing() {
         this.ctxFactory = new ContextModelFactory(this.token);
 
         this.context = new ContextEventGenerator();
@@ -117,15 +123,12 @@ public class FuzzScheduler {
         if (this.reader.getModel("fuzzer.poorConnectivity")) {
             this.context.register(this.ctxFactory.getConnectivityModel(EnumTypes.ConnectivityType.POOR));
         }
-
         if (this.reader.getModel("fuzzer.randomConnectivity")) {
             this.context.register(this.ctxFactory.getConnectivityModel(EnumTypes.ConnectivityType.RANDOM));
         }
-
         if (this.reader.getModel("fuzzer.fuzzGPS")) {
             this.context.register(this.ctxFactory.getConnectivityModel(EnumTypes.ConnectivityType.GPS));
         }
-
         if (this.reader.getModel("fuzzer.walkModel")) {
             RandomWalkModel walkModel = (RandomWalkModel) this.ctxFactory.getNavigationModel(EnumTypes.NavigationType.RANDOM_WALK);
             walkModel.setLat(this.reader.getWalkLatitude());
@@ -133,16 +136,15 @@ public class FuzzScheduler {
 
             this.context.register(walkModel);
         }
-
         if (this.reader.getModel("fuzzer.randomMovement")) {
             this.context.register(this.ctxFactory.getNavigationModel(EnumTypes.NavigationType.FUZZ));
         }
-
         if (this.reader.getModel("fuzzer.batteryDrain")) {
             this.context.register(this.ctxFactory.getBatteryDrainModel());
         }
 
         this.eventGenerators.add(this.context);
+        this.eventGenerators.add(new MonkeyEventGenerator(this.reader.getMonkeySeed(), this.batchSize, this.throttle, this.apk, this.token));
     }
 
     private List<Command> resetEmulator(String token) {
